@@ -3,6 +3,7 @@
 import glob
 import cv2
 import csv
+import argparse
 
 
 def get_key(image):
@@ -51,7 +52,7 @@ def evaluate_video(video_path):
 
     motion_frames = []
     current_frame_range = [0, 0]
-    video_frames = glob.glob(video_path + '/*.png')[:5]
+    video_frames = glob.glob(video_path + '/*.png')
     for image_name in video_frames:
         frame_n = image_name.split('/')[-1].split('.png')[0]
         if show_image(image_name, frame_n) == 'mark':
@@ -68,22 +69,31 @@ def evaluate_video(video_path):
 
 
 def write_log(idx, vid, evaluation, logfile):
-    # if isinstance(evaluation, list):
-    #     evaluation = [', '.join(frame_range) for frame_range in evaluation]
-    #     print(evaluation)
     with open(logfile, 'a') as log:
         log.write(str(idx) + ', ' + vid + ', ' + str(evaluation) + '\n')
 
 
-def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log'):
+def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log', starting_idx=0):
+    stable_image_idx_offset = 294
+    starting_idx += stable_image_idx_offset
+
     with open('./movies_sorted_by_length.csv', 'r') as f:
         reader = csv.reader(f)
         file_names = [path_prefix + fn[0] for fn in list(reader)]
 
-    for idx, vid in enumerate(file_names[500:505]):
+    for idx, vid in enumerate(file_names[starting_idx:]):
         evaluation = evaluate_video(vid)
         write_log(idx, vid, evaluation, logfile)
 
+
+def main():
+    parser = argparse.ArgumentParser(description='Make confirmation and editing pass through VIND videos')
+    parser.add_argument("-l", "--log", help="log file name")
+    parser.add_argument("-i", "--startindex", help="starting index")
+    args = parser.parse_args()
+    confirm_many_videos('data/prediction_videos_final_', 'first_pass.log', int(args.startindex))
+
 if __name__ == '__main__':
-    confirm_many_videos('data/prediction_videos_final_', 'first_pass.log')
+    main()
+
 
