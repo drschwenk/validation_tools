@@ -7,7 +7,7 @@ import argparse
 
 
 def get_key(image):
-    valid_key_presses = {32: 'pass', 13: 'mark'}
+    valid_key_presses = {32: 'pass', 13: 'mark', 8: 'restart image', 98: 'back', 127: 'del'}
     while True:
         user_key = cv2.waitKey(0)
         if user_key in valid_key_presses:
@@ -53,15 +53,26 @@ def evaluate_video(video_path):
     motion_frames = []
     current_frame_range = [0, 0]
     video_frames = glob.glob(video_path + '/*.png')
-    for image_name in video_frames:
+    idx = 0
+    while idx < len(video_frames):
+        image_name = video_frames[idx]
         frame_n = image_name.split('/')[-1].split('.png')[0]
-        if show_image(image_name, frame_n) == 'mark':
+        key_pressed = show_image(image_name, frame_n)
+        if key_pressed == 'mark':
             new_range, complete = add_mark(current_frame_range, frame_n)
             if complete:
                 motion_frames.append(new_range)
                 current_frame_range = [0, 0]
             else:
                 current_frame_range = new_range
+        elif key_pressed == 'back':
+            idx = max(idx - 1, 0)
+            continue
+        elif key_pressed == 'del':
+            idx = 0
+            motion_frames = []
+            continue
+        idx += 1
     if motion_frames:
         return motion_frames
     else:
@@ -74,7 +85,7 @@ def write_log(idx, vid, evaluation, logfile):
 
 
 def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log', starting_idx=0):
-    stable_image_idx_offset = 294
+    stable_image_idx_offset = 294           # skips stable images
     starting_idx += stable_image_idx_offset
 
     with open('./movies_sorted_by_length.csv', 'r') as f:
@@ -91,7 +102,10 @@ def main():
     parser.add_argument("-l", "--log", help="log file name")
     parser.add_argument("-i", "--startindex", help="starting index")
     args = parser.parse_args()
-    confirm_many_videos('data/prediction_videos_final_', 'first_pass.log', int(args.startindex))
+    starting_idx = 0
+    if args.startindex:
+        starting_idx = int(args.startindex)
+    confirm_many_videos('data/prediction_videos_final_', 'first_pass.log', starting_idx)
 
 if __name__ == '__main__':
     main()
