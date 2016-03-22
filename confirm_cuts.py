@@ -1,6 +1,4 @@
-import json
 import numpy as np
-from collections import defaultdict
 import glob
 import cv2
 import csv
@@ -26,7 +24,9 @@ def get_key(image):
 
 def confirm(video_name):
     with open(video_name + '/good.txt', 'w') as f:
-        f.write(video_name + ' is good')
+        pass
+        # f.write(video_name + ' is good')
+    return 'confirmed'
 
 
 def show_image(image_name, frame_n):
@@ -47,16 +47,25 @@ def evaluate_video(video_path):
     if motion_frames:
         return motion_frames
     else:
-        confirm(video_path)
+        return confirm(video_path)
 
 
-def confirm_many_videos(path_prefix='data/prediction_videos_final_'):
+def write_log(idx, vid, evaluation, logfile):
+    if isinstance(evaluation, list):
+        evaluation = ', '.join(evaluation)
+
+    with open(logfile, 'a') as log:
+        log.write(str(idx) + ', ' + vid + ', ' + evaluation + '\n')
+
+
+def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log'):
     with open('./movies_sorted_by_length.csv', 'r') as f:
         reader = csv.reader(f)
         file_names = [path_prefix + fn[0] for fn in list(reader)]
-    for vid in file_names[500:505]:
-        print(evaluate_video(vid))
 
+    for idx, vid in enumerate(file_names[500:505]):
+        evaluation = evaluate_video(vid)
+        write_log(idx, vid, evaluation, logfile)
 
 if __name__ == '__main__':
-    confirm_many_videos('data/prediction_videos_final_')
+    confirm_many_videos('data/prediction_videos_final_', 'first_pass.log')
