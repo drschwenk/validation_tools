@@ -1,4 +1,5 @@
-import numpy as np
+#! /usr/bin/env python
+
 import glob
 import cv2
 import csv
@@ -38,12 +39,28 @@ def show_image(image_name, frame_n):
 
 
 def evaluate_video(video_path):
+
+    def add_mark(frame_range, marked_frame):
+        range_complete = False
+        if frame_range == [0, 0]:
+            frame_range[0] = marked_frame
+        elif int(frame_n) > int(frame_range[0]):
+            frame_range[1] = frame_n
+            range_complete = True
+        return frame_range, range_complete
+
     motion_frames = []
+    current_frame_range = [0, 0]
     video_frames = glob.glob(video_path + '/*.png')[:5]
     for image_name in video_frames:
         frame_n = image_name.split('/')[-1].split('.png')[0]
         if show_image(image_name, frame_n) == 'mark':
-            motion_frames.append(frame_n)
+            new_range, complete = add_mark(current_frame_range, frame_n)
+            if complete:
+                motion_frames.append(new_range)
+                current_frame_range = [0, 0]
+            else:
+                current_frame_range = new_range
     if motion_frames:
         return motion_frames
     else:
@@ -51,11 +68,11 @@ def evaluate_video(video_path):
 
 
 def write_log(idx, vid, evaluation, logfile):
-    if isinstance(evaluation, list):
-        evaluation = ', '.join(evaluation)
-
+    # if isinstance(evaluation, list):
+    #     evaluation = [', '.join(frame_range) for frame_range in evaluation]
+    #     print(evaluation)
     with open(logfile, 'a') as log:
-        log.write(str(idx) + ', ' + vid + ', ' + evaluation + '\n')
+        log.write(str(idx) + ', ' + vid + ', ' + str(evaluation) + '\n')
 
 
 def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log'):
@@ -69,3 +86,4 @@ def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pa
 
 if __name__ == '__main__':
     confirm_many_videos('data/prediction_videos_final_', 'first_pass.log')
+
