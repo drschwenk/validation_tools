@@ -25,7 +25,7 @@ def get_key(image):
 
 
 def confirm(video_name):
-    with open('good.txt','w') as f:
+    with open(video_name + '/good.txt', 'w') as f:
         f.write(video_name + ' is good')
 
 
@@ -44,7 +44,10 @@ def evaluate_video(video_path):
         frame_n = image_name.split('/')[-1].split('.png')[0]
         if show_image(image_name, frame_n) == 'mark':
             motion_frames.append(frame_n)
-    return motion_frames
+    if motion_frames:
+        return motion_frames
+    else:
+        confirm(video_path)
 
 
 def confirm_many_videos(path_prefix='data/prediction_videos_final_'):
