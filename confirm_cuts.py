@@ -116,9 +116,7 @@ def main():
     if args.resume:
         last_line = check_output('tail -1 ' + args.log, shell=True)
         last_line.decode()
-        print(last_line)
         starting_idx = int(last_line.split(b',')[0])
-        print(starting_idx)
 
     confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx)
 
