@@ -9,7 +9,7 @@ from subprocess import check_output
 
 
 def get_key(image):
-    valid_key_presses = {32: 'pass', 13: 'mark', 8: 'restart image', 98: 'back', 127: 'del'}
+    valid_key_presses = {32: 'pass', 13: 'mark', 8: 'restart image', 98: 'back', 127: 'del', 102: 'flag'}
     while True:
         user_key = cv2.waitKey(0)
         if user_key in valid_key_presses:
@@ -20,28 +20,25 @@ def get_key(image):
             cv2.waitKey(800)
             exit()
         else:
-            new_image = cv2.putText(image, 'try again', (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), thickness=2)
+            new_image = cv2.putText(image, 'try again', (30, 110), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), thickness=2)
             cv2.imshow('movie frame', new_image)
             continue
         return valid_key_presses[user_key]
 
 
 def confirm(video_name):
-    # with open(video_name + '/good.txt', 'w') as f:
-    #     pass
-        # f.write(video_name + ' is good')
     return 'confirmed'
 
 
-def show_image(image_name, frame_n):
+def show_image(image_name, frame_n, idx):
     drawn_image = cv2.imread(image_name, 0)
-    drawn_image = cv2.putText(drawn_image, 'frame ' + frame_n,
+    drawn_image = cv2.putText(drawn_image, 'idx= ' + str(idx) + '  frame= ' + frame_n,
                               (15, 40), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), thickness=2)
     cv2.imshow('movie frame', drawn_image)
     return get_key(drawn_image)
 
 
-def evaluate_video(video_path):
+def evaluate_video(video_path, video_idx):
 
     def add_mark(frame_range, marked_frame):
         range_complete = False
@@ -59,7 +56,7 @@ def evaluate_video(video_path):
     while idx < len(video_frames):
         image_name = video_frames[idx]
         frame_n = image_name.split('/')[-1].split('.png')[0]
-        key_pressed = show_image(image_name, frame_n)
+        key_pressed = show_image(image_name, frame_n, video_idx)
         if key_pressed == 'mark':
             new_range, complete = add_mark(current_frame_range, frame_n)
             if complete:
@@ -72,11 +69,13 @@ def evaluate_video(video_path):
             continue
         elif key_pressed == 'del':
             return 'previous image'
+        elif key_pressed == 'flag':
+            return 'flagged'
         idx += 1
     if motion_frames:
         return motion_frames
     else:
-        return confirm(video_path)
+        return 'confirmed'
 
 
 def write_log(idx, vid, evaluation, logfile):
@@ -94,7 +93,7 @@ def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pa
 
     idx = starting_idx
     while idx < len(file_names[starting_idx:]):
-        evaluation = evaluate_video(file_names[idx])
+        evaluation = evaluate_video(file_names[idx], idx)
         if evaluation == 'previous image':
             idx -= 1
             run('sed -i "" -e  "$ d " ' + logfile, shell=True)
