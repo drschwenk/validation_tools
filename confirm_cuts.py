@@ -5,6 +5,7 @@ import cv2
 import csv
 import argparse
 from subprocess import run
+from subprocess import check_output
 
 
 def get_key(image):
@@ -106,12 +107,23 @@ def main():
     parser = argparse.ArgumentParser(description='Make confirmation and editing pass through VIND videos')
     parser.add_argument("-l", "--log", help="log file name")
     parser.add_argument("-i", "--startindex", help="starting index")
+    parser.add_argument("-r", "--resume", help="resume", action="store_true")
     args = parser.parse_args()
+
     starting_idx = 0
     if args.startindex:
         starting_idx = int(args.startindex)
-    confirm_many_videos('data/prediction_videos_final_', 'first_pass.log', starting_idx)
+    if args.resume:
+        last_line = check_output('tail -1 ' + args.log, shell=True)
+        last_line.decode()
+        print(last_line)
+        starting_idx = int(last_line.split(b',')[0])
+        print(starting_idx)
+
+    confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx)
 
 if __name__ == '__main__':
     main()
+
+
 
