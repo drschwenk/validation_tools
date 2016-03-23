@@ -4,6 +4,7 @@ import glob
 import cv2
 import csv
 import argparse
+from subprocess import run
 
 
 def get_key(image):
@@ -25,8 +26,8 @@ def get_key(image):
 
 
 def confirm(video_name):
-    with open(video_name + '/good.txt', 'w') as f:
-        pass
+    # with open(video_name + '/good.txt', 'w') as f:
+    #     pass
         # f.write(video_name + ' is good')
     return 'confirmed'
 
@@ -69,9 +70,7 @@ def evaluate_video(video_path):
             idx = max(idx - 1, 0)
             continue
         elif key_pressed == 'del':
-            idx = 0
-            motion_frames = []
-            continue
+            return 'previous image'
         idx += 1
     if motion_frames:
         return motion_frames
@@ -92,9 +91,15 @@ def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pa
         reader = csv.reader(f)
         file_names = [path_prefix + fn[0] for fn in list(reader)]
 
-    for idx, vid in enumerate(file_names[starting_idx:]):
-        evaluation = evaluate_video(vid)
-        write_log(idx, vid, evaluation, logfile)
+    idx = starting_idx
+    while idx < len(file_names[starting_idx:]):
+        evaluation = evaluate_video(file_names[idx])
+        if evaluation == 'previous image':
+            idx -= 1
+            run('sed -i "" -e  "$ d " ' + logfile, shell=True)
+            continue
+        write_log(idx, file_names[idx], evaluation, logfile)
+        idx += 1
 
 
 def main():
@@ -109,5 +114,4 @@ def main():
 
 if __name__ == '__main__':
     main()
-
 
