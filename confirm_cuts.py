@@ -15,12 +15,12 @@ def get_key(image):
         if user_key in valid_key_presses:
             pass
         elif user_key == 27:
-            new_image = cv2.putText(image, 'quit', (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), thickness=2)
+            new_image = cv2.putText(image, 'quit', (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
             cv2.imshow('movie frame', new_image)
             cv2.waitKey(800)
             exit()
         else:
-            new_image = cv2.putText(image, 'try again', (30, 110), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), thickness=2)
+            new_image = cv2.putText(image, 'try again', (30, 110), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
             cv2.imshow('movie frame', new_image)
             continue
         return valid_key_presses[user_key]
@@ -31,9 +31,11 @@ def confirm(video_name):
 
 
 def show_image(image_name, frame_n, idx):
+    category = image_name.split('/')[2]
     drawn_image = cv2.imread(image_name, 0)
     drawn_image = cv2.putText(drawn_image, 'idx= ' + str(idx) + '  frame= ' + frame_n,
-                              (15, 40), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), thickness=2)
+                              (15, 40), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
+    drawn_image = cv2.putText(drawn_image, category, (15, 75), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
     cv2.imshow('movie frame', drawn_image)
     return get_key(drawn_image)
 
@@ -52,6 +54,7 @@ def evaluate_video(video_path, video_idx):
     motion_frames = []
     current_frame_range = [0, 0]
     video_frames = glob.glob(video_path + '/*.png')
+    frame_n = 0
     idx = 0
     while idx < len(video_frames):
         image_name = video_frames[idx]
@@ -72,6 +75,9 @@ def evaluate_video(video_path, video_idx):
         elif key_pressed == 'flag':
             return 'flagged'
         idx += 1
+
+    if current_frame_range[0] != 0 and current_frame_range[1] == 0:
+        motion_frames.append(add_mark(current_frame_range, frame_n)[0])
     if motion_frames:
         return motion_frames
     else:
@@ -114,9 +120,10 @@ def main():
         starting_idx = int(args.startindex)
     if args.resume:
         last_line = check_output('tail -1 ' + args.log, shell=True)
-        starting_idx = int(last_line.split(b',')[0]) - stable_image_idx_offset
+        starting_idx = int(last_line.split(b',')[0]) - stable_image_idx_offset + 1
 
     confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx, stable_image_idx_offset)
+
 
 if __name__ == '__main__':
     main()
