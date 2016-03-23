@@ -83,8 +83,8 @@ def write_log(idx, vid, evaluation, logfile):
         log.write(str(idx) + ', ' + vid + ', ' + str(evaluation) + '\n')
 
 
-def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log', starting_idx=0):
-    stable_image_idx_offset = 294           # skips stable images
+def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log',
+                        starting_idx=0, stable_image_idx_offset=0):
     starting_idx += stable_image_idx_offset
 
     with open('./movies_sorted_by_length.csv', 'r') as f:
@@ -108,16 +108,15 @@ def main():
     parser.add_argument("-i", "--startindex", help="starting index")
     parser.add_argument("-r", "--resume", help="resume", action="store_true")
     args = parser.parse_args()
-
+    stable_image_idx_offset = 294
     starting_idx = 0
     if args.startindex:
         starting_idx = int(args.startindex)
     if args.resume:
         last_line = check_output('tail -1 ' + args.log, shell=True)
-        last_line.decode()
-        starting_idx = int(last_line.split(b',')[0])
+        starting_idx = int(last_line.split(b',')[0]) - stable_image_idx_offset
 
-    confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx)
+    confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx, stable_image_idx_offset)
 
 if __name__ == '__main__':
     main()
