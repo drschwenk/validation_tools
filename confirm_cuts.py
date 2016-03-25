@@ -15,19 +15,22 @@ def get_key(image):
         if user_key in valid_key_presses:
             pass
         elif user_key == 27:
-            new_image = cv2.putText(image, 'quit', (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
+            new_image = cv2.putText(image, 'quit', (30, 80), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192),
+                                    thickness=2)
             cv2.imshow('movie frame', new_image)
             cv2.waitKey(800)
             exit()
         else:
-            new_image = cv2.putText(image, 'try again', (30, 110), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
+            new_image = cv2.putText(image, 'try again', (30, 110), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192),
+                                    thickness=2)
             cv2.imshow('movie frame', new_image)
             continue
         return valid_key_presses[user_key]
 
-
+"""
 def confirm(video_name):
     return 'confirmed'
+"""
 
 
 def show_image(image_name, frame_n, idx):
