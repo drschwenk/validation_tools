@@ -2050,3 +2050,74 @@
 2343, data/prediction_videos_final_test/bouncing-basketball-dribble/118_2, confirmed
 2344, data/prediction_videos_final_train/kicking-basketball/507_1, confirmed
 2345, data/prediction_videos_final_test/kicking-futsal/23_0, confirmed
+2346, data/prediction_videos_final_test/longthrowing-boomerang/93_2, [['00020', '00029']]
+2347, data/prediction_videos_final_train/kicking-football/89_1, [['00010', '00029']]
+2348, data/prediction_videos_final_train/rolling-soccer-pass/27_3, confirmed
+2349, data/prediction_videos_final_test/kicking-soccer-freekick/131_1, confirmed
+2350, data/prediction_videos_final_train/kicking-basketball/506_2, confirmed
+2351, data/prediction_videos_final_train/throwup-soccer-juggling/160_3, confirmed
+2352, data/prediction_videos_final_train/pushing-stroller/142_5, confirmed
+2353, data/prediction_videos_final_test/lifting-weightlifting/88_1, flagged
+2354, data/prediction_videos_final_train/kicking-football/155_0, confirmed
+2355, data/prediction_videos_final_train/swinging-swing/278_0, confirmed
+2356, data/prediction_videos_final_test/passing-handball/118_5, confirmed
+2357, data/prediction_videos_final_test/lifting-lift-box/40_1, confirmed
+2358, data/prediction_videos_final_train/pushing-stroller/33_4, confirmed
+2359, data/prediction_videos_final_train/throwup-soccer-juggling/181_0, confirmed
+2360, data/prediction_videos_final_test/lifting-weightlifting/173_0, confirmed
+2361, data/prediction_videos_final_train/kicking-basketball/500_0, confirmed
+2362, data/prediction_videos_final_train/falling-diving/108_1, flagged
+2363, data/prediction_videos_final_train/swinging-gymnastic2/5_2, confirmed
+2364, data/prediction_videos_final_test/lifting-bench-press/26_2, confirmed
+2365, data/prediction_videos_final_test/lifting-bench-press/90_3, confirmed
+2366, data/prediction_videos_final_train/kicking-football/161_5, confirmed
+2367, data/prediction_videos_final_train/lifting-bench-press/25_6, confirmed
+2368, data/prediction_videos_final_test/lifting-bench-press/23_2, confirmed
+2369, data/prediction_videos_final_test/longthrowing-frisbee/101_3, confirmed
+2370, data/prediction_videos_final_test/throwing-football/17_1, confirmed
+2371, data/prediction_videos_final_test/longthrowing-frisbee/167_1, confirmed
+2372, data/prediction_videos_final_test/pushing-lawn-mower/167_3, confirmed
+2373, data/prediction_videos_final_train/passing-handball/110_4, confirmed
+2374, data/prediction_videos_final_test/kicking-futsal/23_4, confirmed
+2375, data/prediction_videos_final_train/lifting-weightlifting/62_1, confirmed
+2376, data/prediction_videos_final_train/kicking-boomerang/9_5, [['00010', '00030']]
+2377, data/prediction_videos_final_train/kicking-futsal/58_6, confirmed
+2378, data/prediction_videos_final_train/pitching-tennis-smash/51_4, [['00000', '00021']]
+2379, data/prediction_videos_final_test/throwup-soccer-juggling/10_1, confirmed
+2380, data/prediction_videos_final_train/bouncing-basketball-dribble/141_0, [['00004', '00018']]
+2381, data/prediction_videos_final_train/sliding-skateboard/144_6, [['00000', '00021']]
+2382, data/prediction_videos_final_train/sliding-skateboard3/1_0, flagged
+2383, data/prediction_videos_final_train/pitching-volleyball-spike/71_7, [['00014', '00030']]
+2384, data/prediction_videos_final_test/passing-rugby/111_6, [['00000', '00016']]
+2385, data/prediction_videos_final_train/sliding-snowboard/79_1, confirmed
+2386, data/prediction_videos_final_train/sliding-snowboard/174_3, confirmed
+2387, data/prediction_videos_final_test/rolling-billiard/17_1, confirmed
+2388, data/prediction_videos_final_train/pitching-volleyball-spike/51_0, confirmed
+2389, data/prediction_videos_final_test/bouncing-volleyball/43_0, confirmed
+2390, data/prediction_videos_final_test/swinging-gymnastic/12_6, confirmed
+2391, data/prediction_videos_final_train/lifting-bench-press/122_7, confirmed
+2392, data/prediction_videos_final_test/lifting-bench-press/35_7, confirmed
+2393, data/prediction_videos_final_train/bouncing-basketball-dribble/71_5, [['00001', '00019']]
+2394, data/prediction_videos_final_train/sliding-ski2/98_1, confirmed
+2395, data/prediction_videos_final_train/passing-rugby/171_6, [['00000', '00017']]
+2396, data/prediction_videos_final_test/lifting-bench-press/90_2, confirmed
+2397, data/prediction_videos_final_train/rolling-billiard/120_6, confirmed
+2398, data/prediction_videos_final_train/lifting-bench-press/58_7, confirmed
+2399, data/prediction_videos_final_test/sliding-ski2/165_3, confirmed
+2400, data/prediction_videos_final_test/lifting-bench-press/26_4, confirmed
+2401, data/prediction_videos_final_train/kicking-football/39_3, confirmed
+2402, data/prediction_videos_final_train/swinging-gymnastic/7_0, confirmed
+2403, data/prediction_videos_final_test/kicking-soccer-penalty/88_0, [['00000', '00020']]
+2404, data/prediction_videos_final_train/kicking-disk/41_5, [['00000', '00018']]
+2405, data/prediction_videos_final_train/kicking-futsal/149_3, confirmed
+2406, data/prediction_videos_final_test/pitching-volleyball-spike/43_1, confirmed
+2407, data/prediction_videos_final_test/bouncing-volleyball/43_3, confirmed
+2408, data/prediction_videos_final_train/passing-rugby/76_1, confirmed
+2409, data/prediction_videos_final_train/swinging-gymnastic2/5_5, confirmed
+2410, data/prediction_videos_final_test/bouncing-basketball-dribble/189_4, confirmed
+2411, data/prediction_videos_final_train/bouncing-basketball-dribble/51_5, confirmed
+2412, data/prediction_videos_final_train/kicking-frisbee/49_1, confirmed
+2413, data/prediction_videos_final_train/swinging-gymnastic/24_0, confirmed
+2414, data/prediction_videos_final_train/bouncing-basketball-dribble/155_4, confirmed
+2415, data/prediction_videos_final_test/rolling-soccer-pass/111_4, confirmed
+2416, data/prediction_videos_final_train/swinging-rope/106_3, confirmed
