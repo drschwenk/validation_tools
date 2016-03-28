@@ -99,9 +99,8 @@ def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pa
     with open('./movies_sorted_by_length.csv', 'r') as f:
         reader = csv.reader(f)
         file_names = [path_prefix + fn[0] for fn in list(reader)]
-
     idx = starting_idx
-    while idx < len(file_names[starting_idx:]):
+    while idx < len(file_names):
         evaluation = evaluate_video(file_names[idx], idx)
         if evaluation == 'previous image':
             idx -= 1
@@ -130,6 +129,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
