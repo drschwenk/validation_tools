@@ -9,7 +9,7 @@ from subprocess import check_output
 
 
 def get_key(image):
-    valid_key_presses = {32: 'pass', 13: 'mark', 8: 'restart image', 98: 'back', 127: 'del', 102: 'flag'}
+    valid_key_presses = {32: 'pass', 13: 'mark', 8: 'restart image', 98: 'back', 127: 'del', 102: 'flag', 110: 'next'}
     while True:
         user_key = cv2.waitKey(0)
         if user_key in valid_key_presses:
@@ -77,6 +77,8 @@ def evaluate_video(video_path, video_idx):
             return 'previous image'
         elif key_pressed == 'flag':
             return 'flagged'
+        elif key_pressed == 'next':
+            idx = len(video_frames) - 1
         idx += 1
 
     if current_frame_range[0] != 0 and current_frame_range[1] == 0:
