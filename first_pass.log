@@ -5218,3 +5218,708 @@
 5511, data/prediction_videos_final_train/falling-tennis-serve/134_0, [['00000', '00013']]
 5512, data/prediction_videos_final_train/swinging-gymnastic/24_6, [['00032', '00076']]
 5513, data/prediction_videos_final_train/passing-handball/4_3, [['00006', '00066']]
+5514, data/prediction_videos_final_train/kicking-basketball/504_2, flagged
+5515, data/prediction_videos_final_test/swinging-swing/189_5, confirmed
+5516, data/prediction_videos_final_train/pushing-stroller/170_6, confirmed
+5517, data/prediction_videos_final_test/swinging-gymnastic2/15_1, confirmed
+5518, data/prediction_videos_final_train/falling-cliff-jumping/62_4, [['00020', '00076']]
+5519, data/prediction_videos_final_train/pushing-stroller/60_2, confirmed
+5520, data/prediction_videos_final_test/throwup-soccer-juggling/162_0, [['00025', '00076']]
+5521, data/prediction_videos_final_test/swinging-swing/189_3, confirmed
+5522, data/prediction_videos_final_train/falling-cliff-jumping/97_2, [['00021', '00065']]
+5523, data/prediction_videos_final_train/pushing-car/154_1, confirmed
+5524, data/prediction_videos_final_test/sliding-snowboard/72_0, confirmed
+5525, data/prediction_videos_final_train/swinging-swing/174_2, confirmed
+5526, data/prediction_videos_final_train/kicking-boomerang/31_7, [['00005', '00029']]
+5527, data/prediction_videos_final_train/sliding-snowboard/74_7, [['00000', '00073']]
+5528, data/prediction_videos_final_test/passing-basketball/3_6, [['00009', '00032']]
+5529, data/prediction_videos_final_train/falling-cliff-jumping/5_0, [['00022', '00076']]
+5530, data/prediction_videos_final_test/falling-cliff-jumping/118_3, [['00023', '00072']]
+5531, data/prediction_videos_final_train/pushing-stroller/170_7, confirmed
+5532, data/prediction_videos_final_train/falling-cliff-jumping/89_4, [['00031', '00067']]
+5533, data/prediction_videos_final_test/swinging-swing/189_2, confirmed
+5534, data/prediction_videos_final_test/swinging-swing/189_0, confirmed
+5535, data/prediction_videos_final_test/falling-tennis-serve/98_3, [['00000', '00061']]
+5536, data/prediction_videos_final_test/sliding-skateboard2/61_2, [['00045', '00075']]
+5537, data/prediction_videos_final_train/swinging-gymnastic2/122_0, confirmed
+5538, data/prediction_videos_final_train/swinging-swing/63_3, flagged
+5539, data/prediction_videos_final_test/rolling-soccer-pass/146_1, [['00000', '00007']]
+5540, data/prediction_videos_final_test/swinging-swing/151_1, confirmed
+5541, data/prediction_videos_final_train/pushing-car/138_3, confirmed
+5542, data/prediction_videos_final_test/swinging-swing/189_6, confirmed
+5543, data/prediction_videos_final_train/swinging-swing/160_5, confirmed
+5544, data/prediction_videos_final_test/throwup-table-tennis-serve/98_1, [['00000', '00038']]
+5545, data/prediction_videos_final_train/swinging-swing/149_0, confirmed
+5546, data/prediction_videos_final_train/sliding-ski/155_0, confirmed
+5547, data/prediction_videos_final_train/kicking-boomerang/163_0, [['00006', '00032']]
+5548, data/prediction_videos_final_test/falling-cliff-jumping/81_5, [['00002', '00073']]
+5549, data/prediction_videos_final_test/pushing-stroller/20_1, confirmed
+5550, data/prediction_videos_final_test/rolling-soccer-pass/124_0, [['00000', '00030'], ['00031', '00067']]
+5551, data/prediction_videos_final_test/falling-cliff-jumping/164_5, [['00022', '00067']]
+5552, data/prediction_videos_final_train/lifting-bench-press/97_5, [['00001', '00066']]
+5553, data/prediction_videos_final_train/swinging-swing/38_0, confirmed
+5554, data/prediction_videos_final_train/kicking-boomerang/194_7, [['00022', '00048']]
+5555, data/prediction_videos_final_train/pushing-lawn-mower/12_2, confirmed
+5556, data/prediction_videos_final_train/falling-cliff-jumping/5_6, [['00037', '00078']]
+5557, data/prediction_videos_final_train/kicking-football/51_4, [['00001', '00031']]
+5558, data/prediction_videos_final_train/kicking-boomerang/4_6, [['00002', '00029']]
+5559, data/prediction_videos_final_test/swinging-gymnastic2/1_2, confirmed
+5560, data/prediction_videos_final_train/pushing-stroller/84_2, confirmed
+5561, data/prediction_videos_final_test/swinging-swing/92_4, confirmed
+5562, data/prediction_videos_final_train/swinging-swing/49_4, confirmed
+5563, data/prediction_videos_final_train/rolling-bowling/29_0, flagged
+5564, data/prediction_videos_final_train/kicking-boomerang/169_2, [['00029', '00053']]
+5565, data/prediction_videos_final_test/sliding-slide2/77_3, [['00000', '00054']]
+5566, data/prediction_videos_final_test/swinging-gymnastic2/1_3, confirmed
+5567, data/prediction_videos_final_test/sliding-slide2/77_0, [['00005', '00051']]
+5568, data/prediction_videos_final_train/pushing-car/59_4, confirmed
+5569, data/prediction_videos_final_train/swinging-swing/54_1, confirmed
+5570, data/prediction_videos_final_test/swinging-swing/126_7, confirmed
+5571, data/prediction_videos_final_train/lifting-bench-press/170_0, [['00000', '00050']]
+5572, data/prediction_videos_final_train/sliding-ski2/39_4, [['00000', '00034']]
+5573, data/prediction_videos_final_train/swinging-swing/63_4, confirmed
+5574, data/prediction_videos_final_test/swinging-swing/92_3, confirmed
+5575, data/prediction_videos_final_train/sliding-slide2/62_1, [['00038', '00075']]
+5576, data/prediction_videos_final_train/swinging-swing/54_5, confirmed
+5577, data/prediction_videos_final_train/kicking-disk/106_2, [['00013', '00042']]
+5578, data/prediction_videos_final_train/sliding-snowboard/8_1, confirmed
+5579, data/prediction_videos_final_test/pushing-stroller/88_1, confirmed
+5580, data/prediction_videos_final_train/kicking-basketball/181_2, flagged
+5581, data/prediction_videos_final_train/sliding-slide2/110_5, [['00001', '00050']]
+5582, data/prediction_videos_final_train/swinging-gymnastic/96_1, confirmed
+5583, data/prediction_videos_final_train/pushing-stroller/4_3, confirmed
+5584, data/prediction_videos_final_train/sliding-skateboard/68_7, [['00001', '00047']]
+5585, data/prediction_videos_final_train/lifting-bench-press/174_7, [['00000', '00078']]
+5586, data/prediction_videos_final_train/sliding-slide2/165_0, [['00014', '00062']]
+5587, data/prediction_videos_final_train/swinging-swing/149_5, confirmed
+5588, data/prediction_videos_final_train/kicking-boomerang/197_5, [['00041', '00066']]
+5589, data/prediction_videos_final_train/kicking-disk/141_0, [['00000', '00014']]
+5590, data/prediction_videos_final_train/kicking-boomerang/74_0, [['00015', '00036']]
+5591, data/prediction_videos_final_test/longthrowing-boomerang/157_6, [['00054', '00078']]
+5592, data/prediction_videos_final_test/kicking-golf-swing/92_7, [['00001', '00059']]
+5593, data/prediction_videos_final_test/swinging-swing/10_6, confirmed
+5594, data/prediction_videos_final_test/longthrowing-boomerang/90_2, [['00048', '00078']]
+5595, data/prediction_videos_final_test/sliding-ski2/131_1, confirmed
+5596, data/prediction_videos_final_test/swinging-swing/72_7, confirmed
+5597, data/prediction_videos_final_train/swinging-swing/63_2, confirmed
+5598, data/prediction_videos_final_test/falling-cliff-jumping/118_5, [['00035', '00071']]
+5599, data/prediction_videos_final_train/swinging-swing/160_3, confirmed
+5600, data/prediction_videos_final_train/pushing-car/59_2, confirmed
+5601, data/prediction_videos_final_test/kicking-soccer-freekick/186_1, [['00002', '00012']]
+5602, data/prediction_videos_final_train/pushing-car/170_2, confirmed
+5603, data/prediction_videos_final_train/swinging-swing/160_0, confirmed
+5604, data/prediction_videos_final_train/swinging-swing/49_5, confirmed
+5605, data/prediction_videos_final_train/falling-cliff-jumping/87_3, [['00021', '00066']]
+5606, data/prediction_videos_final_test/swinging-swing/92_5, confirmed
+5607, data/prediction_videos_final_test/swinging-swing/126_3, confirmed
+5608, data/prediction_videos_final_train/falling-cliff-jumping/87_0, [['00028', '00073']]
+5609, data/prediction_videos_final_train/sliding-skateboard/68_5, flagged
+5610, data/prediction_videos_final_train/kicking-boomerang/33_4, [['00036', '00071']]
+5611, data/prediction_videos_final_test/falling-diving2/17_0, [['00038', '00072']]
+5612, data/prediction_videos_final_train/kicking-golf-swing/30_3, [['00000', '00037']]
+5613, data/prediction_videos_final_train/pushing-stroller/170_5, confirmed
+5614, data/prediction_videos_final_train/pushing-lawn-mower/2_5, confirmed
+5615, data/prediction_videos_final_train/pushing-lawn-mower/31_3, confirmed
+5616, data/prediction_videos_final_train/swinging-swing/54_7, confirmed
+5617, data/prediction_videos_final_train/lifting-bench-press/56_2, [['00002', '00079']]
+5618, data/prediction_videos_final_train/sliding-ski2/78_1, confirmed
+5619, data/prediction_videos_final_train/swinging-swing/54_3, confirmed
+5620, data/prediction_videos_final_train/kicking-boomerang/14_0, [['00006', '00022']]
+5621, data/prediction_videos_final_train/falling-cliff-jumping/188_5, [['00039', '00080']]
+5622, data/prediction_videos_final_train/kicking-golf-swing/46_0, [['00000', '00043']]
+5623, data/prediction_videos_final_test/falling-diving/185_0, [['00048', '00080']]
+5624, data/prediction_videos_final_train/kicking-volleyball/67_4, [['00000', '00012'], ['00071', '00080']]
+5625, data/prediction_videos_final_train/falling-diving/94_0, [['00043', '00080']]
+5626, data/prediction_videos_final_train/kicking-soccer-penalty/83_0, [['00036', '00055']]
+5627, data/prediction_videos_final_train/kicking-boomerang/194_3, [['00014', '00045']]
+5628, data/prediction_videos_final_test/falling-diving/185_4, [['00046', '00080']]
+5629, data/prediction_videos_final_test/kicking-golf-swing/92_0, [['00000', '00051']]
+5630, data/prediction_videos_final_test/kicking-soccer-freekick/13_0, [['00000', '00014']]
+5631, data/prediction_videos_final_test/swinging-swing/126_0, confirmed
+5632, data/prediction_videos_final_train/swinging-swing/54_6, confirmed
+5633, data/prediction_videos_final_test/falling-diving/185_7, [['00047', '00080']]
+5634, data/prediction_videos_final_test/swinging-gymnastic2/1_4, confirmed
+5635, data/prediction_videos_final_train/pushing-car/59_3, confirmed
+5636, data/prediction_videos_final_train/falling-cliff-jumping/104_1, [['00001', '00080']]
+5637, data/prediction_videos_final_train/falling-diving2/136_2, [['00030', '00072']]
+5638, data/prediction_videos_final_test/swinging-swing/151_6, confirmed
+5639, data/prediction_videos_final_train/pushing-stroller/178_1, confirmed
+5640, data/prediction_videos_final_test/kicking-golf-swing/92_1, [['00002', '00051']]
+5641, data/prediction_videos_final_train/swinging-boat/12_3, confirmed
+5642, data/prediction_videos_final_train/falling-cliff-jumping/19_1, [['00013', '00080']]
+5643, data/prediction_videos_final_test/falling-diving/1_1, [['00045', '00080']]
+5644, data/prediction_videos_final_train/swinging-swing/174_0, confirmed
+5645, data/prediction_videos_final_train/swinging-swing/54_4, confirmed
+5646, data/prediction_videos_final_train/sliding-ski/12_0, confirmed
+5647, data/prediction_videos_final_train/swinging-swing/174_6, confirmed
+5648, data/prediction_videos_final_train/pushing-stroller/98_2, confirmed
+5649, data/prediction_videos_final_test/kicking-soccer-freekick/13_7, [['00000', '00031']]
+5650, data/prediction_videos_final_train/kicking-soccer-penalty/84_0, [['00032', '00053']]
+5651, data/prediction_videos_final_test/falling-cliff-jumping/118_1, [['00039', '00072']]
+5652, data/prediction_videos_final_train/swinging-swing2/30_7, confirmed
+5653, data/prediction_videos_final_train/sliding-ski2/98_6, [['00000', '00080']]
+5654, data/prediction_videos_final_test/kicking-soccer-freekick/13_6, [['00001', '00015']]
+5655, data/prediction_videos_final_test/falling-cliff-jumping/11_1, [['00035', '00072']]
+5656, data/prediction_videos_final_test/kicking-golf-swing/93_5, [['00030', '00080']]
+5657, data/prediction_videos_final_train/sliding-snowboard/45_4, confirmed
+5658, data/prediction_videos_final_train/sliding-skateboard3/13_5, [['00041', '00062']]
+5659, data/prediction_videos_final_train/falling-cliff-jumping/4_3, [['00012', '00080']]
+5660, data/prediction_videos_final_train/sliding-snowboard/17_4, confirmed
+5661, data/prediction_videos_final_test/sliding-ski2/13_1, confirmed
+5662, data/prediction_videos_final_test/lifting-bench-press/3_5, [['00005', '00058']]
+5663, data/prediction_videos_final_test/falling-cliff-jumping/118_0, [['00027', '00076']]
+5664, data/prediction_videos_final_train/kicking-disk/197_0, [['00067', '00080']]
+5665, data/prediction_videos_final_train/sliding-skateboard3/1_3, [['00018', '00028']]
+5666, data/prediction_videos_final_train/swinging-swing/84_2, confirmed
+5667, data/prediction_videos_final_test/passing-rugby/102_1, [['00004', '00078']]
+5668, data/prediction_videos_final_test/sliding-ski/161_0, confirmed
+5669, data/prediction_videos_final_train/kicking-golf-swing/29_4, [['00003', '00038']]
+5670, data/prediction_videos_final_train/swinging-boat/12_2, confirmed
+5671, data/prediction_videos_final_test/falling-diving2/17_4, [['00038', '00071']]
+5672, data/prediction_videos_final_train/pushing-stroller/149_7, confirmed
+5673, data/prediction_videos_final_train/sliding-skateboard3/1_5, [['00020', '00029']]
+5674, data/prediction_videos_final_test/longthrowing-disk/17_5, [['00002', '00028']]
+5675, data/prediction_videos_final_train/falling-diving/94_2, [['00048', '00080']]
+5676, data/prediction_videos_final_train/swinging-swing/149_1, confirmed
+5677, data/prediction_videos_final_train/lifting-lift-box/72_1, [['00037', '00076']]
+5678, data/prediction_videos_final_train/sliding-ski2/21_6, confirmed
+5679, data/prediction_videos_final_test/swinging-swing/92_2, confirmed
+5680, data/prediction_videos_final_train/passing-basketball/7_0, [['00000', '00042']]
+5681, data/prediction_videos_final_train/sliding-slide2/48_6, [['00028', '00078']]
+5682, data/prediction_videos_final_train/swinging-swing/184_1, confirmed
+5683, data/prediction_videos_final_train/swinging-swing/84_1, confirmed
+5684, data/prediction_videos_final_train/pushing-stroller/192_0, confirmed
+5685, data/prediction_videos_final_train/sliding-skateboard/68_4, flagged
+5686, data/prediction_videos_final_test/pushing-car/94_2, confirmed
+5687, data/prediction_videos_final_train/pushing-stroller/192_4, confirmed
+5688, data/prediction_videos_final_train/falling-cliff-jumping/97_3, [['00027', '00069']]
+5689, data/prediction_videos_final_train/swinging-gymnastic/24_2, confirmed
+5690, data/prediction_videos_final_train/kicking-soccer-freekick/22_1, [['00000', '00020']]
+5691, data/prediction_videos_final_test/swinging-swing/10_4, confirmed
+5692, data/prediction_videos_final_train/swinging-swing/160_6, confirmed
+5693, data/prediction_videos_final_test/lifting-bench-press/26_1, [['00005', '00081']]
+5694, data/prediction_videos_final_train/pushing-stroller/181_2, confirmed
+5695, data/prediction_videos_final_train/rolling-soccer-pass/163_3, [['00040', '00079']]
+5696, data/prediction_videos_final_test/swinging-swing/126_6, confirmed
+5697, data/prediction_videos_final_train/kicking-boomerang/141_6, [['00066', '00080']]
+5698, data/prediction_videos_final_test/swinging-swing/126_4, confirmed
+5699, data/prediction_videos_final_train/passing-rugby/194_5, flagged
+5700, data/prediction_videos_final_train/sliding-snowboard/184_0, confirmed
+5701, data/prediction_videos_final_test/swinging-swing/126_5, confirmed
+5702, data/prediction_videos_final_train/swinging-swing/160_2, confirmed
+5703, data/prediction_videos_final_train/kicking-boomerang/113_4, [['00030', '00071']]
+5704, data/prediction_videos_final_test/falling-cliff-jumping/118_7, [['00034', '00073']]
+5705, data/prediction_videos_final_test/pushing-stroller/3_2, confirmed
+5706, data/prediction_videos_final_test/falling-diving/16_5, [['00034', '00082']]
+5707, data/prediction_videos_final_test/pushing-stroller/44_0, confirmed
+5708, data/prediction_videos_final_test/pushing-stroller/10_0, confirmed
+5709, data/prediction_videos_final_train/kicking-basketball/181_3, flagged
+5710, data/prediction_videos_final_train/lifting-bench-press/181_1, confirmed
+5711, data/prediction_videos_final_test/swinging-gymnastic2/1_0, confirmed
+5712, data/prediction_videos_final_test/swinging-swing/151_0, confirmed
+5713, data/prediction_videos_final_train/pushing-lawn-mower/31_1, confirmed
+5714, data/prediction_videos_final_train/pushing-stroller/192_5, confirmed
+5715, data/prediction_videos_final_train/rolling-bowling/45_0, flagged
+5716, data/prediction_videos_final_test/swinging-swing/173_0, confirmed
+5717, data/prediction_videos_final_train/swinging-swing/160_1, confirmed
+5718, data/prediction_videos_final_train/sliding-snowboard/38_2, confirmed
+5719, data/prediction_videos_final_train/swinging-swing/54_0, confirmed
+5720, data/prediction_videos_final_train/kicking-golf-swing/89_3, [['00000', '00023'], ['00041', '00078']]
+5721, data/prediction_videos_final_train/swinging-rope/121_3, confirmed
+5722, data/prediction_videos_final_train/swinging-swing/84_0, confirmed
+5723, data/prediction_videos_final_train/lifting-bench-press/89_5, flagged
+5724, data/prediction_videos_final_test/pushing-lawn-mower/85_7, confirmed
+5725, data/prediction_videos_final_train/passing-rugby/46_1, [['00000', '00021'], ['00042', '00060']]
+5726, data/prediction_videos_final_train/kicking-basketball/181_0, flagged
+5727, data/prediction_videos_final_train/swinging-swing/52_2, confirmed
+5728, data/prediction_videos_final_train/swinging-swing/91_1, confirmed
+5729, data/prediction_videos_final_test/lifting-weightlifting/146_1, [['00001', '00083']]
+5730, data/prediction_videos_final_train/swinging-swing/12_2, confirmed
+5731, data/prediction_videos_final_train/pushing-stroller/181_1, confirmed
+5732, data/prediction_videos_final_train/swinging-swing/174_7, confirmed
+5733, data/prediction_videos_final_test/swinging-swing/92_1, confirmed
+5734, data/prediction_videos_final_test/swinging-swing/162_2, confirmed
+5735, data/prediction_videos_final_test/sliding-snowboard/55_2, confirmed
+5736, data/prediction_videos_final_train/kicking-soccer-penalty/21_0, [['00055', '00073']]
+5737, data/prediction_videos_final_train/pushing-stroller/4_5, confirmed
+5738, data/prediction_videos_final_test/swinging-boat/42_1, confirmed
+5739, data/prediction_videos_final_test/rolling-soccer-pass/79_5, [['00000', '00023'], ['00047', '00071']]
+5740, data/prediction_videos_final_test/sliding-slide2/77_7, [['00002', '00049']]
+5741, data/prediction_videos_final_train/falling-cliff-jumping/21_7, [['00003', '00084']]
+5742, data/prediction_videos_final_test/pushing-lawn-mower/109_1, confirmed
+5743, data/prediction_videos_final_test/longthrowing-disk/23_4, [['00043', '00062']]
+5744, data/prediction_videos_final_train/pushing-stroller/33_3, confirmed
+5745, data/prediction_videos_final_train/swinging-swing/6_2, confirmed
+5746, data/prediction_videos_final_test/falling-cliff-jumping/73_4, [['00023', '00084']]
+5747, data/prediction_videos_final_train/kicking-disk/171_1, [['00000', '00012']]
+5748, data/prediction_videos_final_train/kicking-boomerang/78_3, [['00022', '00053']]
+5749, data/prediction_videos_final_train/kicking-soccer-freekick/11_7, [['00000', '00015']]
+5750, data/prediction_videos_final_train/swinging-swing/12_0, confirmed
+5751, data/prediction_videos_final_train/swinging-swing/174_4, confirmed
+5752, data/prediction_videos_final_test/throwing-football/165_2, [['00000', '00039']]
+5753, data/prediction_videos_final_train/swinging-swing/49_1, confirmed
+5754, data/prediction_videos_final_train/sliding-slide2/57_2, [['00032', '00063']]
+5755, data/prediction_videos_final_train/kicking-boomerang/67_0, [['00026', '00054']]
+5756, data/prediction_videos_final_test/pushing-stroller/20_3, confirmed
+5757, data/prediction_videos_final_train/sliding-snowboard/48_7, confirmed
+5758, data/prediction_videos_final_train/sliding-snowboard/64_7, confirmed
+5759, data/prediction_videos_final_test/rolling-bowling/44_0, flagged
+5760, data/prediction_videos_final_test/longthrowing-disk/44_5, [['00000', '00018']]
+5761, data/prediction_videos_final_train/passing-rugby/29_2, [['00000', '00084']]
+5762, data/prediction_videos_final_train/swinging-swing/52_1, confirmed
+5763, data/prediction_videos_final_train/lifting-bench-press/181_4, [['00000', '00084']]
+5764, data/prediction_videos_final_test/kicking-golf-swing/92_4, [['00002', '00052']]
+5765, data/prediction_videos_final_train/pushing-stroller/170_2, confirmed
+5766, data/prediction_videos_final_train/kicking-boomerang/197_0, [['00024', '00069']]
+5767, data/prediction_videos_final_train/pushing-stroller/199_0, confirmed
+5768, data/prediction_videos_final_train/pushing-stroller/159_4, confirmed
+5769, data/prediction_videos_final_train/pushing-car/150_0, confirmed
+5770, data/prediction_videos_final_train/kicking-volleyball/49_5, [['00000', '00032']]
+5771, data/prediction_videos_final_test/falling-diving/185_2, [['00054', '00085']]
+5772, data/prediction_videos_final_train/swinging-swing/184_0, confirmed
+5773, data/prediction_videos_final_train/sliding-slide/117_0, flagged
+5774, data/prediction_videos_final_train/swinging-swing/138_1, confirmed
+5775, data/prediction_videos_final_train/falling-diving2/30_2, [['00042', '00078']]
+5776, data/prediction_videos_final_train/swinging-swing/6_5, confirmed
+5777, data/prediction_videos_final_test/kicking-golf-swing/35_4, [['00000', '00056']]
+5778, data/prediction_videos_final_test/longthrowing-disk/17_0, [['00002', '00025']]
+5779, data/prediction_videos_final_test/sliding-ski2/124_1, confirmed
+5780, data/prediction_videos_final_train/pushing-lawn-mower/2_4, confirmed
+5781, data/prediction_videos_final_train/pushing-car/120_1, confirmed
+5782, data/prediction_videos_final_train/sliding-skateboard/6_6, [['00021', '00069']]
+5783, data/prediction_videos_final_train/kicking-soccer-freekick/160_0, flagged
+5784, data/prediction_videos_final_test/pushing-stroller/90_2, confirmed
+5785, data/prediction_videos_final_train/sliding-slide/2_2, [['00004', '00055']]
+5786, data/prediction_videos_final_test/sliding-skateboard2/61_0, flagged
+5787, data/prediction_videos_final_train/swinging-swing/49_0, confirmed
+5788, data/prediction_videos_final_train/swinging-swing/12_1, confirmed
+5789, data/prediction_videos_final_test/falling-diving2/17_1, [['00042', '00076']]
+5790, data/prediction_videos_final_train/pushing-car/4_3, confirmed
+5791, data/prediction_videos_final_test/longthrowing-boomerang/118_3, [['00000', '00015']]
+5792, data/prediction_videos_final_test/falling-diving2/1_5, [['00036', '00076']]
+5793, data/prediction_videos_final_test/kicking-soccer-penalty/134_2, [['00050', '00068']]
+5794, data/prediction_videos_final_train/kicking-golf-swing/41_0, [['00003', '00041']]
+5795, data/prediction_videos_final_train/falling-cliff-jumping/112_7, flagged
+5796, data/prediction_videos_final_train/kicking-golf-swing/7_0, [['00003', '00076']]
+5797, data/prediction_videos_final_train/sliding-snowboard/135_2, [['00020', '00085']]
+5798, data/prediction_videos_final_test/falling-diving/185_1, [['00048', '00085']]
+5799, data/prediction_videos_final_test/pushing-car/92_5, confirmed
+5800, data/prediction_videos_final_train/falling-cliff-jumping/52_0, [['00009', '00085']]
+5801, data/prediction_videos_final_train/swinging-rope/8_1, confirmed
+5802, data/prediction_videos_final_train/sliding-ski/112_1, confirmed
+5803, data/prediction_videos_final_train/falling-cliff-jumping/100_0, [['00010', '00086']]
+5804, data/prediction_videos_final_train/swinging-gymnastic2/4_0, confirmed
+5805, data/prediction_videos_final_train/swinging-swing/49_3, confirmed
+5806, data/prediction_videos_final_test/sliding-slide2/50_2, [['00001', '00070']]
+5807, data/prediction_videos_final_test/pushing-stroller/74_3, confirmed
+5808, data/prediction_videos_final_train/sliding-slide/2_5, [['00022', '00077']]
+5809, data/prediction_videos_final_train/pushing-car/49_6, confirmed
+5810, data/prediction_videos_final_train/pushing-lawn-mower/12_6, confirmed
+5811, data/prediction_videos_final_train/pushing-stroller/16_3, confirmed
+5812, data/prediction_videos_final_train/swinging-swing/52_3, confirmed
+5813, data/prediction_videos_final_test/sliding-slide2/50_3, [['00008', '00072']]
+5814, data/prediction_videos_final_train/swinging-swing/63_0, confirmed
+5815, data/prediction_videos_final_test/sliding-skateboard/79_1, flagged
+5816, data/prediction_videos_final_train/sliding-ski2/9_0, confirmed
+5817, data/prediction_videos_final_train/lifting-bench-press/80_0, [['00006', '00086']]
+5818, data/prediction_videos_final_train/passing-rugby/112_6, [['00000', '00031']]
+5819, data/prediction_videos_final_test/sliding-slide2/100_3, [['00032', '00068']]
+5820, data/prediction_videos_final_train/lifting-weightlifting/21_0, [['00000', '00086']]
+5821, data/prediction_videos_final_test/falling-cliff-jumping/164_7, [['00014', '00066']]
+5822, data/prediction_videos_final_test/swinging-gymnastic2/1_1, confirmed
+5823, data/prediction_videos_final_train/falling-cliff-jumping/104_0, [['00000', '00086']]
+5824, data/prediction_videos_final_train/rolling-bowling/27_0, flagged
+5825, data/prediction_videos_final_train/pushing-lawn-mower/16_4, confirmed
+5826, data/prediction_videos_final_test/swinging-swing/92_0, confirmed
+5827, data/prediction_videos_final_train/pushing-lawn-mower/71_0, confirmed
+5828, data/prediction_videos_final_test/throwing-football/40_3, [['00001', '00040']]
+5829, data/prediction_videos_final_train/rolling-bowling/47_0, flagged
+5830, data/prediction_videos_final_test/swinging-swing/191_2, confirmed
+5831, data/prediction_videos_final_train/swinging-swing/91_0, confirmed
+5832, data/prediction_videos_final_test/swinging-rope/111_0, confirmed
+5833, data/prediction_videos_final_test/swinging-gymnastic2/79_6, confirmed
+5834, data/prediction_videos_final_train/swinging-swing/6_0, confirmed
+5835, data/prediction_videos_final_test/lifting-bench-press/90_4, [['00000', '00051']]
+5836, data/prediction_videos_final_test/longthrowing-disk/134_7, [['00000', '00024']]
+5837, data/prediction_videos_final_test/falling-cliff-jumping/118_2, [['00027', '00067']]
+5838, data/prediction_videos_final_train/kicking-soccer-freekick/500_0, [['00054', '00070']]
+5839, data/prediction_videos_final_test/swinging-swing/191_3, confirmed
+5840, data/prediction_videos_final_train/swinging-swing/12_5, confirmed
+5841, data/prediction_videos_final_train/sliding-snowboard/140_1, flagged
+5842, data/prediction_videos_final_train/swinging-swing/52_0, confirmed
+5843, data/prediction_videos_final_train/swinging-swing/91_2, confirmed
+5844, data/prediction_videos_final_train/passing-rugby/138_5, flagged
+5845, data/prediction_videos_final_train/swinging-swing/184_5, confirmed
+5846, data/prediction_videos_final_train/pushing-car/12_1, [['00000', '00031'], ['00042', '00087']]
+5847, data/prediction_videos_final_train/kicking-soccer-freekick/45_4, [['00000', '00016']]
+5848, data/prediction_videos_final_test/falling-cliff-jumping/11_3, [['00034', '00064']]
+5849, data/prediction_videos_final_test/kicking-golf-swing/92_2, [['00000', '00037']]
+5850, data/prediction_videos_final_test/pushing-car/177_0, confirmed
+5851, data/prediction_videos_final_test/pushing-stroller/3_4, confirmed
+5852, data/prediction_videos_final_train/pushing-car/49_5, confirmed
+5853, data/prediction_videos_final_train/pushing-lawn-mower/31_2, confirmed
+5854, data/prediction_videos_final_train/swinging-swing/184_6, confirmed
+5855, data/prediction_videos_final_train/falling-cliff-jumping/62_0, [['00023', '00088']]
+5856, data/prediction_videos_final_test/longthrowing-disk/23_2, [['00033', '00061']]
+5857, data/prediction_videos_final_train/sliding-snowboard/115_3, confirmed
+5858, data/prediction_videos_final_test/pushing-stroller/26_1, confirmed
+5859, data/prediction_videos_final_test/swinging-boat/42_5, confirmed
+5860, data/prediction_videos_final_train/kicking-golf-swing/34_3, [['00000', '00057']]
+5861, data/prediction_videos_final_train/kicking-golf-swing/4_0, [['00001', '00050']]
+5862, data/prediction_videos_final_test/swinging-swing/191_5, confirmed
+5863, data/prediction_videos_final_train/throwup-basketball-lay-up/31_0, flagged
+5864, data/prediction_videos_final_train/swinging-swing/184_2, confirmed
+5865, data/prediction_videos_final_train/pushing-lawn-mower/12_0, confirmed
+5866, data/prediction_videos_final_train/rolling-bowling/49_0, flagged
+5867, data/prediction_videos_final_train/swinging-boat/12_0, confirmed
+5868, data/prediction_videos_final_test/longthrowing-boomerang/3_1, [['00001', '00022']]
+5869, data/prediction_videos_final_test/swinging-swing/191_0, confirmed
+5870, data/prediction_videos_final_test/swinging-gymnastic2/139_1, confirmed
+5871, data/prediction_videos_final_test/rolling-bowling/32_0, flagged
+5872, data/prediction_videos_final_train/swinging-swing/97_0, confirmed
+5873, data/prediction_videos_final_test/bouncing-basketball-dribble/118_4, [['00006', '00084']]
+5874, data/prediction_videos_final_test/swinging-boat/42_3, confirmed
+5875, data/prediction_videos_final_train/swinging-boat/14_0, confirmed
+5876, data/prediction_videos_final_train/rolling-billiard/59_2, flagged
+5877, data/prediction_videos_final_train/swinging-swing/12_6, confirmed
+5878, data/prediction_videos_final_train/falling-diving/94_3, [['00061', '00090']]
+5879, data/prediction_videos_final_test/passing-basketball/20_0, flagged
+5880, data/prediction_videos_final_train/lifting-bench-press/80_1, confirmed
+5881, data/prediction_videos_final_train/swinging-swing/138_2, confirmed
+5882, data/prediction_videos_final_train/sliding-snowboard/64_1, confirmed
+5883, data/prediction_videos_final_train/rolling-billiard/98_2, [['00012', '00023'], ['00024', '00038'], ['00039', '00087']]
+5884, data/prediction_videos_final_train/pushing-car/49_7, confirmed
+5885, data/prediction_videos_final_train/swinging-boat/12_4, confirmed
+5886, data/prediction_videos_final_test/pushing-lawn-mower/3_6, confirmed
+5887, data/prediction_videos_final_test/pushing-lawn-mower/3_0, confirmed
+5888, data/prediction_videos_final_train/swinging-swing2/30_3, confirmed
+5889, data/prediction_videos_final_train/pushing-car/49_2, confirmed
+5890, data/prediction_videos_final_train/pushing-car/4_5, confirmed
+5891, data/prediction_videos_final_train/falling-cliff-jumping/100_4, [['00010', '00090']]
+5892, data/prediction_videos_final_train/sliding-snowboard/135_4, [['00058', '00090']]
+5893, data/prediction_videos_final_train/kicking-disk/149_1, [['00000', '00013']]
+5894, data/prediction_videos_final_train/passing-rugby/170_4, flagged
+5895, data/prediction_videos_final_train/falling-diving/101_0, [['00059', '00090']]
+5896, data/prediction_videos_final_train/kicking-golf-swing/12_2, [['00007', '00077']]
+5897, data/prediction_videos_final_train/pushing-stroller/117_7, confirmed
+5898, data/prediction_videos_final_train/falling-diving/10_1, [['00057', '00090']]
+5899, data/prediction_videos_final_test/falling-cliff-jumping/164_0, [['00029', '00080']]
+5900, data/prediction_videos_final_train/falling-cliff-jumping/112_2, [['00019', '00080']]
+5901, data/prediction_videos_final_train/falling-diving2/30_1, [['00042', '00079']]
+5902, data/prediction_videos_final_train/falling-diving2/185_0, [['00048', '00082']]
+5903, data/prediction_videos_final_train/lifting-bench-press/117_0, [['00000', '00090']]
+5904, data/prediction_videos_final_test/longthrowing-boomerang/44_1, [['00000', '00033']]
+5905, data/prediction_videos_final_test/lifting-bench-press/119_2, [['00000', '00090']]
+5906, data/prediction_videos_final_test/pushing-car/92_4, confirmed
+5907, data/prediction_videos_final_train/kicking-disk/141_5, [['00000', '00022']]
+5908, data/prediction_videos_final_train/swinging-swing/12_7, confirmed
+5909, data/prediction_videos_final_test/falling-diving/185_6, [['00055', '00090']]
+5910, data/prediction_videos_final_test/sliding-ski/59_1, confirmed
+5911, data/prediction_videos_final_train/swinging-swing/6_3, confirmed
+5912, data/prediction_videos_final_train/falling-diving2/94_0, [['00043', '00080']]
+5913, data/prediction_videos_final_train/pushing-lawn-mower/96_1, confirmed
+5914, data/prediction_videos_final_train/swinging-swing/6_4, confirmed
+5915, data/prediction_videos_final_train/sliding-snowboard/174_7, confirmed
+5916, data/prediction_videos_final_test/longthrowing-disk/134_4, [['00001', '00025']]
+5917, data/prediction_videos_final_train/sliding-skating/130_7, [['00036', '00058']]
+5918, data/prediction_videos_final_train/sliding-snowboard/135_6, [['00000', '00075']]
+5919, data/prediction_videos_final_test/passing-rugby/74_5, flagged
+5920, data/prediction_videos_final_test/longthrowing-disk/17_2, [['00057', '00082']]
+5921, data/prediction_videos_final_train/sliding-ski2/199_0, confirmed
+5922, data/prediction_videos_final_test/sliding-ski/9_6, confirmed
+5923, data/prediction_videos_final_train/swinging-swing/153_2, confirmed
+5924, data/prediction_videos_final_train/swinging-swing/184_4, confirmed
+5925, data/prediction_videos_final_train/pitching-baseball/58_0, [['00049', '00089']]
+5926, data/prediction_videos_final_train/sliding-slide2/57_3, [['00008', '00058']]
+5927, data/prediction_videos_final_train/rolling-bowling/48_0, flagged
+5928, data/prediction_videos_final_test/throwing-football/28_2, [['00012', '00069']]
+5929, data/prediction_videos_final_test/pushing-car/126_3, confirmed
+5930, data/prediction_videos_final_train/swinging-swing/12_3, confirmed
+5931, data/prediction_videos_final_test/rolling-soccer-pass/124_2, [['00000', '00031'], ['00033', '00077']]
+5932, data/prediction_videos_final_train/pushing-car/12_6, confirmed
+5933, data/prediction_videos_final_test/pushing-car/126_1, confirmed
+5934, data/prediction_videos_final_train/kicking-disk/20_4, [['00068', '00091']]
+5935, data/prediction_videos_final_train/swinging-swing/97_2, confirmed
+5936, data/prediction_videos_final_test/lifting-weightlifting/146_2, confirmed
+5937, data/prediction_videos_final_train/swinging-swing/97_3, confirmed
+5938, data/prediction_videos_final_train/swinging-gymnastic2/102_2, confirmed
+5939, data/prediction_videos_final_train/pushing-car/138_1, confirmed
+5940, data/prediction_videos_final_test/swinging-swing2/69_4, confirmed
+5941, data/prediction_videos_final_test/pushing-stroller/74_0, confirmed
+5942, data/prediction_videos_final_test/passing-basketball/3_3, [['00011', '00047']]
+5943, data/prediction_videos_final_train/bouncing-basketball-dribble/190_5, [['00000', '00021'], ['00024', '00092']]
+5944, data/prediction_videos_final_train/swinging-swing/184_3, confirmed
+5945, data/prediction_videos_final_test/swinging-swing2/69_2, confirmed
+5946, data/prediction_videos_final_test/pushing-stroller/3_1, confirmed
+5947, data/prediction_videos_final_train/kicking-disk/97_5, [['00004', '00025']]
+5948, data/prediction_videos_final_train/pushing-car/120_4, confirmed
+5949, data/prediction_videos_final_test/swinging-swing/191_6, confirmed
+5950, data/prediction_videos_final_train/kicking-futsal/143_0, [['00000', '00069']]
+5951, data/prediction_videos_final_train/pushing-stroller/143_0, confirmed
+5952, data/prediction_videos_final_test/sliding-slide2/50_1, [['00000', '00072']]
+5953, data/prediction_videos_final_test/pushing-car/28_1, confirmed
+5954, data/prediction_videos_final_train/pushing-lawn-mower/70_0, confirmed
+5955, data/prediction_videos_final_train/falling-cliff-jumping/87_1, [['00041', '00085']]
+5956, data/prediction_videos_final_train/swinging-swing/91_4, confirmed
+5957, data/prediction_videos_final_train/sliding-skateboard/68_2, flagged
+5958, data/prediction_videos_final_test/swinging-gymnastic2/79_0, confirmed
+5959, data/prediction_videos_final_test/swinging-boat/42_0, confirmed
+5960, data/prediction_videos_final_train/kicking-boomerang/113_6, [['00058', '00093']]
+5961, data/prediction_videos_final_train/lifting-bench-press/21_0, confirmed
+5962, data/prediction_videos_final_test/longthrowing-disk/44_4, [['00000', '00020']]
+5963, data/prediction_videos_final_train/pushing-car/68_1, confirmed
+5964, data/prediction_videos_final_test/pushing-stroller/1_3, confirmed
+5965, data/prediction_videos_final_train/swinging-swing/97_4, confirmed
+5966, data/prediction_videos_final_train/passing-basketball/4_2, [['00006', '00039']]
+5967, data/prediction_videos_final_train/lifting-bench-press/117_3, confirmed
+5968, data/prediction_videos_final_train/swinging-swing/91_3, confirmed
+5969, data/prediction_videos_final_train/lifting-bench-press/97_4, [['00000', '00070']]
+5970, data/prediction_videos_final_test/swinging-boat/42_2, confirmed
+5971, data/prediction_videos_final_train/swinging-swing/91_6, confirmed
+5972, data/prediction_videos_final_train/sliding-slide/64_5, [['00048', '00080']]
+5973, data/prediction_videos_final_train/swinging-gymnastic/193_1, confirmed
+5974, data/prediction_videos_final_test/sliding-skating/110_6, [['00061', '00076']]
+5975, data/prediction_videos_final_train/kicking-boomerang/59_1, [['00056', '00090']]
+5976, data/prediction_videos_final_train/sliding-ski2/21_5, confirmed
+5977, data/prediction_videos_final_train/pushing-lawn-mower/107_5, confirmed
+5978, data/prediction_videos_final_test/pushing-lawn-mower/85_3, confirmed
+5979, data/prediction_videos_final_train/sliding-snowboard/114_4, confirmed
+5980, data/prediction_videos_final_test/rolling-soccer-pass/146_0, [['00000', '00008']]
+5981, data/prediction_videos_final_train/sliding-snowboard/98_1, confirmed
+5982, data/prediction_videos_final_test/falling-cliff-jumping/81_1, [['00008', '00085']]
+5983, data/prediction_videos_final_train/pushing-lawn-mower/16_1, confirmed
+5984, data/prediction_videos_final_train/sliding-slide2/153_3, [['00032', '00068']]
+5985, data/prediction_videos_final_train/sliding-slide/2_7, [['00031', '00075']]
+5986, data/prediction_videos_final_train/sliding-slide/64_3, [['00031', '00075']]
+5987, data/prediction_videos_final_test/sliding-slide2/139_5, [['00000', '00064']]
+5988, data/prediction_videos_final_train/falling-diving/10_3, [['00061', '00095']]
+5989, data/prediction_videos_final_train/falling-diving2/185_4, [['00045', '00083']]
+5990, data/prediction_videos_final_test/pushing-car/92_7, confirmed
+5991, data/prediction_videos_final_train/throwup-basketball-lay-up/40_5, [['00015', '00076']]
+5992, data/prediction_videos_final_train/sliding-ski2/199_4, [['00013', '00048']]
+5993, data/prediction_videos_final_test/falling-diving2/1_1, [['00045', '00086']]
+5994, data/prediction_videos_final_train/swinging-swing/184_7, confirmed
+5995, data/prediction_videos_final_test/sliding-ski/59_2, confirmed
+5996, data/prediction_videos_final_train/sliding-slide2/62_3, [['00013', '00044'], ['00065', '00092']]
+5997, data/prediction_videos_final_train/swinging-swing/6_6, confirmed
+5998, data/prediction_videos_final_train/kicking-golf-swing/30_0, [['00000', '00048'], ['00053', '00095']]
+5999, data/prediction_videos_final_test/falling-cliff-jumping/125_7, [['00021', '00066']]
+6000, data/prediction_videos_final_train/falling-diving2/94_2, [['00047', '00084']]
+6001, data/prediction_videos_final_test/pushing-lawn-mower/1_0, confirmed
+6002, data/prediction_videos_final_train/sliding-skateboard/24_1, [['00002', '00015'], ['00021', '00055'], ['00067', '00083']]
+6003, data/prediction_videos_final_test/swinging-swing/191_4, confirmed
+6004, data/prediction_videos_final_train/falling-diving2/185_7, [['00046', '00079']]
+6005, data/prediction_videos_final_train/swinging-swing/43_1, confirmed
+6006, data/prediction_videos_final_train/swinging-swing/153_4, confirmed
+6007, data/prediction_videos_final_train/kicking-golf-swing/12_3, [['00006', '00080']]
+6008, data/prediction_videos_final_train/swinging-swing/43_3, confirmed
+6009, data/prediction_videos_final_train/falling-diving2/185_2, [['00052', '00087']]
+6010, data/prediction_videos_final_train/swinging-swing/97_5, confirmed
+6011, data/prediction_videos_final_train/swinging-swing/97_1, confirmed
+6012, data/prediction_videos_final_train/swinging-swing/153_6, confirmed
+6013, data/prediction_videos_final_train/swinging-swing/43_2, confirmed
+6014, data/prediction_videos_final_train/pushing-car/4_4, confirmed
+6015, data/prediction_videos_final_train/sliding-ski2/39_5, confirmed
+6016, data/prediction_videos_final_train/pushing-stroller/18_1, flagged
+6017, data/prediction_videos_final_train/swinging-gymnastic2/102_0, confirmed
+6018, data/prediction_videos_final_test/sliding-slide2/9_3, [['00000', '00077']]
+6019, data/prediction_videos_final_train/kicking-golf-swing/34_4, [['00000', '00051']]
+6020, data/prediction_videos_final_train/sliding-slide2/57_6, [['00000', '00056']]
+6021, data/prediction_videos_final_train/falling-cliff-jumping/100_5, [['00020', '00096']]
+6022, data/prediction_videos_final_train/kicking-boomerang/67_3, [['00066', '00096']]
+6023, data/prediction_videos_final_test/longthrowing-boomerang/90_0, [['00070', '00096']]
+6024, data/prediction_videos_final_train/kicking-boomerang/78_7, [['00032', '00060']]
+6025, data/prediction_videos_final_test/kicking-soccer-freekick/3_2, [['00000', '00026']]
+6026, data/prediction_videos_final_test/swinging-gymnastic2/79_7, confirmed
+6027, data/prediction_videos_final_train/pushing-lawn-mower/34_0, confirmed
+6028, data/prediction_videos_final_train/sliding-snowboard/8_0, confirmed
+6029, data/prediction_videos_final_test/rolling-billiard/61_2, [['00000', '00011']]
+6030, data/prediction_videos_final_train/falling-cliff-jumping/4_6, [['00007', '00096']]
+6031, data/prediction_videos_final_train/rolling-bowling/50_0, flagged
+6032, data/prediction_videos_final_test/sliding-snowboard/57_0, confirmed
+6033, data/prediction_videos_final_test/pushing-lawn-mower/20_2, flagged
+6034, data/prediction_videos_final_test/throwing-football/11_0, [['00005', '00031']]
+6035, data/prediction_videos_final_test/pushing-stroller/40_0, confirmed
+6036, data/prediction_videos_final_train/rolling-soccer-pass/163_2, [['00019', '00065'], ['00080', '00097']]
+6037, data/prediction_videos_final_train/falling-cliff-jumping/97_0, [['00041', '00090']]
+6038, data/prediction_videos_final_train/falling-cliff-jumping/122_0, [['00028', '00086']]
+6039, data/prediction_videos_final_test/pushing-lawn-mower/85_6, confirmed
+6040, data/prediction_videos_final_train/swinging-swing/91_7, confirmed
+6041, data/prediction_videos_final_train/kicking-disk/141_3, [['00000', '00012']]
+6042, data/prediction_videos_final_train/swinging-swing/9_4, confirmed
+6043, data/prediction_videos_final_train/sliding-snowboard/8_3, confirmed
+6044, data/prediction_videos_final_train/lifting-bench-press/181_6, [['00000', '00098']]
+6045, data/prediction_videos_final_test/swinging-boat/42_7, confirmed
+6046, data/prediction_videos_final_train/lifting-bench-press/174_6, [['00000', '00062']]
+6047, data/prediction_videos_final_train/swinging-gymnastic2/184_0, confirmed
+6048, data/prediction_videos_final_train/swinging-swing/91_5, confirmed
+6049, data/prediction_videos_final_train/sliding-snowboard/115_0, confirmed
+6050, data/prediction_videos_final_train/falling-cliff-jumping/33_6, [['00011', '00098']]
+6051, data/prediction_videos_final_train/swinging-swing/164_0, confirmed
+6052, data/prediction_videos_final_test/longthrowing-disk/44_0, [['00000', '00017']]
+6053, data/prediction_videos_final_train/sliding-snowboard/67_0, confirmed
+6054, data/prediction_videos_final_test/rolling-billiard/13_5, [['00001', '00012'], ['00014', '00034'], ['00035', '00094']]
+6055, data/prediction_videos_final_test/swinging-swing/191_1, confirmed
+6056, data/prediction_videos_final_test/rolling-bowling/3_0, flagged
+6057, data/prediction_videos_final_test/pushing-stroller/40_2, confirmed
+6058, data/prediction_videos_final_train/passing-basketball/4_1, [['00005', '00032']]
+6059, data/prediction_videos_final_train/passing-basketball/7_1, [['00007', '00053']]
+6060, data/prediction_videos_final_train/kicking-boomerang/141_1, [['00058', '00097']]
+6061, data/prediction_videos_final_test/rolling-billiard/13_0, [['00000', '00012'], ['00013', '00031']]
+6062, data/prediction_videos_final_test/pushing-stroller/20_7, confirmed
+6063, data/prediction_videos_final_train/sliding-skateboard/68_3, flagged
+6064, data/prediction_videos_final_train/pushing-car/159_0, confirmed
+6065, data/prediction_videos_final_test/rolling-billiard/13_3, [['00000', '00099']]
+6066, data/prediction_videos_final_test/sliding-ski/67_2, confirmed
+6067, data/prediction_videos_final_test/pushing-lawn-mower/20_3, flagged
+6068, data/prediction_videos_final_test/lifting-lift-box/33_3, [['00030', '00082']]
+6069, data/prediction_videos_final_train/sliding-ski2/199_2, confirmed
+6070, data/prediction_videos_final_train/falling-diving/101_1, [['00060', '00097']]
+6071, data/prediction_videos_final_train/pushing-car/49_1, confirmed
+6072, data/prediction_videos_final_train/swinging-boat/78_1, confirmed
+6073, data/prediction_videos_final_train/swinging-boat/12_1, confirmed
+6074, data/prediction_videos_final_train/swinging-swing/153_5, confirmed
+6075, data/prediction_videos_final_test/swinging-swing2/69_7, confirmed
+6076, data/prediction_videos_final_train/falling-diving/10_5, [['00063', '00100']]
+6077, data/prediction_videos_final_train/passing-handball/199_0, [['00002', '00100']]
+6078, data/prediction_videos_final_train/falling-diving2/101_0, [['00060', '00092']]
+6079, data/prediction_videos_final_train/falling-diving2/185_6, [['00049', '00093']]
+6080, data/prediction_videos_final_train/swinging-swing/6_7, confirmed
+6081, data/prediction_videos_final_test/sliding-ski/59_6, confirmed
+6082, data/prediction_videos_final_train/rolling-soccer-pass/65_4, [['00000', '00020'], ['00047', '00086']]
+6083, data/prediction_videos_final_test/swinging-boat/13_1, confirmed
+6084, data/prediction_videos_final_test/falling-tennis-serve/98_0, [['00000', '00088']]
+6085, data/prediction_videos_final_test/sliding-ski/59_3, confirmed
+6086, data/prediction_videos_final_train/kicking-disk/41_2, [['00031', '00051']]
+6087, data/prediction_videos_final_train/falling-diving2/185_1, [['00047', '00088']]
+6088, data/prediction_videos_final_train/rolling-bowling/31_0, flagged
+6089, data/prediction_videos_final_test/swinging-swing2/69_3, confirmed
+6090, data/prediction_videos_final_train/swinging-swing/153_3, confirmed
+6091, data/prediction_videos_final_test/lifting-bench-press/186_0, [['00045', '00100']]
+6092, data/prediction_videos_final_test/lifting-weightlifting/134_1, confirmed
+6093, data/prediction_videos_final_train/rolling-bowling/46_0, flagged
+6094, data/prediction_videos_final_train/kicking-boomerang/188_1, [['00009', '00074']]
+6095, data/prediction_videos_final_train/swinging-gymnastic2/102_1, confirmed
+6096, data/prediction_videos_final_test/longthrowing-disk/44_7, [['00000', '00010']]
+6097, data/prediction_videos_final_train/kicking-disk/106_6, [['00000', '00025']]
+6098, data/prediction_videos_final_train/pushing-lawn-mower/16_2, confirmed
+6099, data/prediction_videos_final_train/swinging-boat/51_2, confirmed
+6100, data/prediction_videos_final_train/kicking-futsal/15_3, [['00008', '00047']]
+6101, data/prediction_videos_final_test/pushing-lawn-mower/13_6, confirmed
+6102, data/prediction_videos_final_train/sliding-ski2/32_0, confirmed
+6103, data/prediction_videos_final_train/pushing-lawn-mower/32_0, confirmed
+6104, data/prediction_videos_final_train/sliding-slide/160_0, [['00000', '00081']]
+6105, data/prediction_videos_final_test/throwing-football/162_6, [['00004', '00073']]
+6106, data/prediction_videos_final_test/sliding-snowboard/36_6, confirmed
+6107, data/prediction_videos_final_train/kicking-boomerang/161_0, [['00068', '00102']]
+6108, data/prediction_videos_final_test/lifting-bench-press/118_0, [['00006', '00057']]
+6109, data/prediction_videos_final_train/kicking-boomerang/113_7, [['00068', '00102']]
+6110, data/prediction_videos_final_test/swinging-boat/42_4, confirmed
+6111, data/prediction_videos_final_train/pushing-car/114_2, confirmed
+6112, data/prediction_videos_final_train/pushing-car/138_0, confirmed
+6113, data/prediction_videos_final_train/swinging-rope/121_0, confirmed
+6114, data/prediction_videos_final_train/pushing-car/196_7, confirmed
+6115, data/prediction_videos_final_test/swinging-boat/42_6, confirmed
+6116, data/prediction_videos_final_test/throwing-football/88_7, [['00000', '00036']]
+6117, data/prediction_videos_final_test/rolling-soccer-pass/124_1, [['00000', '00031'], ['00032', '00059']]
+6118, data/prediction_videos_final_train/rolling-bowling/30_0, flagged
+6119, data/prediction_videos_final_test/swinging-swing2/69_5, confirmed
+6120, data/prediction_videos_final_train/sliding-snowboard/97_7, confirmed
+6121, data/prediction_videos_final_train/pushing-lawn-mower/84_0, confirmed
+6122, data/prediction_videos_final_train/rolling-bowling/21_0, flagged
+6123, data/prediction_videos_final_test/swinging-swing2/69_0, [['00013', '00014']]
+6124, data/prediction_videos_final_train/pushing-lawn-mower/107_3, confirmed
+6125, data/prediction_videos_final_train/sliding-ski2/59_5, confirmed
+6126, data/prediction_videos_final_test/pushing-car/28_2, confirmed
+6127, data/prediction_videos_final_train/swinging-swing/43_0, confirmed
+6128, data/prediction_videos_final_test/swinging-boat/90_6, confirmed
+6129, data/prediction_videos_final_test/swinging-swing2/69_6, confirmed
+6130, data/prediction_videos_final_test/longthrowing-boomerang/151_0, [['00068', '00104']]
+6131, data/prediction_videos_final_train/sliding-slide/2_0, [['00016', '00030'], ['00042', '00085']]
+6132, data/prediction_videos_final_test/lifting-lift-box/1_0, [['00064', '00104']]
+6133, data/prediction_videos_final_train/sliding-slide/2_3, [['00009', '00034']]
+6134, data/prediction_videos_final_test/rolling-billiard/13_2, [['00000', '00014'], ['00022', '00055']]
+6135, data/prediction_videos_final_test/swinging-boat/90_7, confirmed
+6136, data/prediction_videos_final_train/falling-diving/10_0, [['00067', '00105']]
+6137, data/prediction_videos_final_train/swinging-boat/46_2, confirmed
+6138, data/prediction_videos_final_test/lifting-bench-press/3_0, [['00066', '00095']]
+6139, data/prediction_videos_final_test/throwing-football/165_0, [['00018', '00052']]
+6140, data/prediction_videos_final_train/pushing-car/4_0, confirmed
+6141, data/prediction_videos_final_train/falling-diving2/101_1, [['00062', '00097']]
+6142, data/prediction_videos_final_test/sliding-ski/9_4, [['00019', '00087'], ['00101', '00105']]
+6143, data/prediction_videos_final_train/rolling-soccer-pass/31_1, [['00016', '00052']]
+6144, data/prediction_videos_final_train/pushing-car/138_4, confirmed
+6145, data/prediction_videos_final_train/falling-diving2/10_1, [['00058', '00091']]
+6146, data/prediction_videos_final_train/falling-diving2/10_3, [['00061', '00096']]
+6147, data/prediction_videos_final_train/kicking-golf-swing/12_1, [['00000', '00095']]
+6148, data/prediction_videos_final_train/passing-basketball/4_0, [['00013', '00060']]
+6149, data/prediction_videos_final_train/sliding-slide2/57_4, [['00035', '00073']]
+6150, data/prediction_videos_final_train/sliding-slide2/52_7, [['00041', '00080']]
+6151, data/prediction_videos_final_train/falling-diving2/94_3, [['00061', '00096']]
+6152, data/prediction_videos_final_train/falling-diving/10_2, [['00071', '00105']]
+6153, data/prediction_videos_final_test/rolling-soccer-pass/99_1, [['00005', '00037'], ['00063', '00096']]
+6154, data/prediction_videos_final_test/sliding-ski2/13_6, confirmed
+6155, data/prediction_videos_final_test/swinging-boat/1_0, confirmed
+6156, data/prediction_videos_final_test/sliding-snowboard/36_0, confirmed
+6157, data/prediction_videos_final_test/sliding-ski/9_1, confirmed
+6158, data/prediction_videos_final_test/falling-diving/185_5, [['00075', '00105']]
+6159, data/prediction_videos_final_train/kicking-golf-swing/41_3, [['00007', '00081']]
+6160, data/prediction_videos_final_test/falling-diving/26_2, [['00059', '00105']]
+6161, data/prediction_videos_final_train/swinging-boat/51_3, confirmed
+6162, data/prediction_videos_final_train/lifting-bench-press/84_1, [['00024', '00097']]
+6163, data/prediction_videos_final_train/kicking-boomerang/75_1, [['00070', '00104']]
+6164, data/prediction_videos_final_train/pushing-car/59_0, confirmed
+6165, data/prediction_videos_final_train/swinging-swing/9_0, confirmed
+6166, data/prediction_videos_final_train/rolling-bowling/37_0, flagged
+6167, data/prediction_videos_final_train/swinging-boat/78_2, confirmed
+6168, data/prediction_videos_final_train/sliding-snowboard/98_0, confirmed
+6169, data/prediction_videos_final_train/falling-cliff-jumping/188_6, [['00023', '00106']]
+6170, data/prediction_videos_final_train/swinging-boat/78_5, confirmed
+6171, data/prediction_videos_final_test/throwing-football/180_0, [['00000', '00065']]
+6172, data/prediction_videos_final_test/sliding-ski2/44_4, confirmed
+6173, data/prediction_videos_final_train/falling-cliff-jumping/112_5, [['00054', '00100']]
+6174, data/prediction_videos_final_test/swinging-swing2/69_1, confirmed
+6175, data/prediction_videos_final_train/kicking-football/6_1, [['00001', '00015']]
+6176, data/prediction_videos_final_train/kicking-disk/129_7, [['00001', '00029']]
+6177, data/prediction_videos_final_test/passing-basketball/20_1, [['00009', '00059']]
+6178, data/prediction_videos_final_test/longthrowing-disk/134_5, [['00000', '00017']]
+6179, data/prediction_videos_final_train/swinging-boat/78_6, confirmed
+6180, data/prediction_videos_final_train/kicking-boomerang/78_1, [['00051', '00084']]
+6181, data/prediction_videos_final_test/bouncing-tennis-serve/195_1, [['00000', '00108']]
+6182, data/prediction_videos_final_test/pushing-stroller/72_2, confirmed
+6183, data/prediction_videos_final_train/passing-basketball/7_7, [['00008', '00049']]
+6184, data/prediction_videos_final_train/passing-basketball/4_7, [['00016', '00042']]
+6185, data/prediction_videos_final_test/throwing-football/162_5, [['00000', '00071']]
+6186, data/prediction_videos_final_train/swinging-boat/51_0, confirmed
+6187, data/prediction_videos_final_train/swinging-boat/78_3, confirmed
+6188, data/prediction_videos_final_train/pushing-stroller/59_0, confirmed
+6189, data/prediction_videos_final_train/kicking-football/51_3, [['00000', '00027']]
+6190, data/prediction_videos_final_train/kicking-football/47_2, flagged
+6191, data/prediction_videos_final_train/sliding-slide/2_4, flagged
+6192, data/prediction_videos_final_train/falling-cliff-jumping/87_5, [['00014', '00102']]
+6193, data/prediction_videos_final_train/kicking-football/51_2, [['00002', '00031']]
+6194, data/prediction_videos_final_train/kicking-disk/197_1, [['00099', '00109']]
+6195, data/prediction_videos_final_test/swinging-rope/162_1, confirmed
+6196, data/prediction_videos_final_test/swinging-boat/77_1, confirmed
+6197, data/prediction_videos_final_train/swinging-swing/9_2, confirmed
+6198, data/prediction_videos_final_test/swinging-boat/90_4, confirmed
+6199, data/prediction_videos_final_test/sliding-slide/69_0, [['00000', '00043']]
+6200, data/prediction_videos_final_test/swinging-boat/13_0, confirmed
+6201, data/prediction_videos_final_test/swinging-boat/90_5, confirmed
+6202, data/prediction_videos_final_test/kicking-soccer-freekick/186_0, [['00000', '00013']]
+6203, data/prediction_videos_final_train/sliding-slide/2_6, [['00016', '00082']]
+6204, data/prediction_videos_final_train/pushing-stroller/96_2, confirmed
+6205, data/prediction_videos_final_test/falling-cliff-jumping/118_4, [['00065', '00098']]
+6206, data/prediction_videos_final_test/pushing-car/36_5, confirmed
+6207, data/prediction_videos_final_train/sliding-ski/112_0, confirmed
+6208, data/prediction_videos_final_train/falling-cliff-jumping/6_6, [['00027', '00110']]
+6209, data/prediction_videos_final_train/kicking-disk/41_1, [['00011', '00037']]
+6210, data/prediction_videos_final_test/pushing-lawn-mower/167_5, confirmed
+6211, data/prediction_videos_final_train/swinging-boat/51_1, confirmed
+6212, data/prediction_videos_final_train/kicking-golf-swing/34_1, [['00004', '00076']]
+6213, data/prediction_videos_final_test/throwup-soccer-juggling/177_3, [['00000', '00110']]
+6214, data/prediction_videos_final_train/kicking-disk/19_0, [['00011', '00057']]
+6215, data/prediction_videos_final_test/sliding-ski/161_3, confirmed
+6216, data/prediction_videos_final_train/kicking-boomerang/58_0, [['00009', '00030']]
+6217, data/prediction_videos_final_train/swinging-swing/9_6, confirmed
+6218, data/prediction_videos_final_test/throwing-football/162_4, [['00000', '00064']]
