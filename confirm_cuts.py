@@ -101,7 +101,7 @@ def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pa
                         starting_idx=0, stable_image_idx_offset=0):
     starting_idx += stable_image_idx_offset
 
-    with open('./movies_sorted_by_length.csv', 'r') as f:
+    with open('./replacement_movies_sorted_by_length.csv', 'r') as f:
         reader = csv.reader(f)
         file_names = [path_prefix + fn[0] for fn in list(reader)]
     idx = starting_idx
@@ -121,7 +121,7 @@ def main():
     parser.add_argument("-i", "--startindex", help="starting index")
     parser.add_argument("-r", "--resume", help="resume", action="store_true")
     args = parser.parse_args()
-    stable_image_idx_offset = 294
+    stable_image_idx_offset = 0
     starting_idx = 0
     if args.startindex:
         starting_idx = int(args.startindex)
@@ -129,7 +129,7 @@ def main():
         last_line = check_output('tail -1 ' + args.log, shell=True)
         starting_idx = int(last_line.split(b',')[0]) - stable_image_idx_offset + 1
 
-    confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx, stable_image_idx_offset)
+    confirm_many_videos('data/prediction_videos_3_categories/', args.log, starting_idx, stable_image_idx_offset)
 
 
 if __name__ == '__main__':
