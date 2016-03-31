@@ -1,0 +1,229 @@
+0, data/prediction_videos_final_train/rolling-billiard/193_1, confirmed
+1, data/prediction_videos_final_train/rolling-billiard/176_1, confirmed
+2, data/prediction_videos_final_train/rolling-billiard/193_0, confirmed
+3, data/prediction_videos_final_train/rolling-billiard/37_1, confirmed
+4, data/prediction_videos_final_train/rolling-billiard/65_7, [['00000', '00003']]
+5, data/prediction_videos_final_train/rolling-billiard/65_2, confirmed
+6, data/prediction_videos_final_test/rolling-billiard/127_1, confirmed
+7, data/prediction_videos_final_train/rolling-billiard/193_5, confirmed
+8, data/prediction_videos_final_train/rolling-billiard/37_0, confirmed
+9, data/prediction_videos_final_train/rolling-billiard/65_4, confirmed
+10, data/prediction_videos_final_train/rolling-billiard/176_3, confirmed
+11, data/prediction_videos_final_test/rolling-billiard/17_3, confirmed
+12, data/prediction_videos_final_train/rolling-billiard/9_0, confirmed
+13, data/prediction_videos_final_train/rolling-billiard/4_3, confirmed
+14, data/prediction_videos_final_train/rolling-billiard/45_3, confirmed
+15, data/prediction_videos_final_test/rolling-billiard/23_1, confirmed
+16, data/prediction_videos_final_test/rolling-billiard/17_6, confirmed
+17, data/prediction_videos_final_train/rolling-billiard/46_7, confirmed
+18, data/prediction_videos_final_train/rolling-billiard/83_3, confirmed
+19, data/prediction_videos_final_train/rolling-billiard/4_6, confirmed
+20, data/prediction_videos_final_train/rolling-billiard/25_6, confirmed
+21, data/prediction_videos_final_train/rolling-billiard/45_2, confirmed
+22, data/prediction_videos_final_train/rolling-billiard/4_1, confirmed
+23, data/prediction_videos_final_train/rolling-billiard/46_0, confirmed
+24, data/prediction_videos_final_train/rolling-billiard/8_5, confirmed
+25, data/prediction_videos_final_train/rolling-billiard/8_0, confirmed
+26, data/prediction_videos_final_train/rolling-billiard/176_7, confirmed
+27, data/prediction_videos_final_train/rolling-billiard/193_7, confirmed
+28, data/prediction_videos_final_train/rolling-billiard/193_3, confirmed
+29, data/prediction_videos_final_train/rolling-billiard/37_7, confirmed
+30, data/prediction_videos_final_train/rolling-billiard/14_3, [['00000', '00007']]
+31, data/prediction_videos_final_train/rolling-billiard/65_1, confirmed
+32, data/prediction_videos_final_train/rolling-billiard/193_6, confirmed
+33, data/prediction_videos_final_train/rolling-billiard/37_4, confirmed
+34, data/prediction_videos_final_train/rolling-billiard/176_5, confirmed
+35, data/prediction_videos_final_test/rolling-billiard/127_0, confirmed
+36, data/prediction_videos_final_train/rolling-billiard/176_0, confirmed
+37, data/prediction_videos_final_test/rolling-billiard/109_0, [['00000', '00006']]
+38, data/prediction_videos_final_train/rolling-billiard/54_4, confirmed
+39, data/prediction_videos_final_train/rolling-billiard/53_2, [['00000', '00006'], ['00007', '00010']]
+40, data/prediction_videos_final_train/rolling-billiard/6_0, [['00002', '00006']]
+41, data/prediction_videos_final_train/rolling-billiard/25_0, [['00000', '00005']]
+42, data/prediction_videos_final_test/rolling-billiard/126_7, [['00000', '00006']]
+43, data/prediction_videos_final_test/rolling-billiard/1_3, [['00001', '00010']]
+44, data/prediction_videos_final_train/rolling-billiard/45_1, confirmed
+45, data/prediction_videos_final_train/rolling-billiard/5_6, confirmed
+46, data/prediction_videos_final_train/rolling-billiard/25_2, confirmed
+47, data/prediction_videos_final_train/rolling-billiard/4_0, confirmed
+48, data/prediction_videos_final_test/rolling-billiard/55_5, confirmed
+49, data/prediction_videos_final_train/rolling-billiard/5_3, [['00003', '00010']]
+50, data/prediction_videos_final_test/rolling-billiard/23_6, confirmed
+51, data/prediction_videos_final_train/rolling-billiard/5_4, confirmed
+52, data/prediction_videos_final_test/rolling-billiard/23_0, [['00000', '00007']]
+53, data/prediction_videos_final_train/rolling-billiard/45_6, [['00004', '00010']]
+54, data/prediction_videos_final_test/rolling-billiard/1_0, [['00001', '00005']]
+55, data/prediction_videos_final_test/rolling-billiard/17_0, [['00002', '00006']]
+56, data/prediction_videos_final_train/rolling-billiard/54_1, [['00000', '00007']]
+57, data/prediction_videos_final_test/rolling-billiard/55_3, [['00001', '00008']]
+58, data/prediction_videos_final_test/rolling-billiard/1_6, [['00001', '00009']]
+59, data/prediction_videos_final_train/rolling-billiard/54_6, [['00000', '00008']]
+60, data/prediction_videos_final_test/rolling-billiard/17_2, [['00006', '00010']]
+61, data/prediction_videos_final_train/rolling-billiard/45_4, confirmed
+62, data/prediction_videos_final_train/rolling-billiard/8_1, confirmed
+63, data/prediction_videos_final_test/rolling-billiard/23_3, [['00004', '00008']]
+64, data/prediction_videos_final_train/rolling-billiard/84_7, confirmed
+65, data/prediction_videos_final_train/rolling-billiard/8_7, confirmed
+66, data/prediction_videos_final_train/rolling-billiard/5_0, [['00000', '00005']]
+67, data/prediction_videos_final_train/rolling-billiard/78_3, [['00002', '00006']]
+68, data/prediction_videos_final_train/rolling-billiard/46_1, [['00002', '00006']]
+69, data/prediction_videos_final_train/rolling-billiard/46_6, [['00001', '00007']]
+70, data/prediction_videos_final_test/rolling-billiard/23_2, confirmed
+71, data/prediction_videos_final_train/rolling-billiard/78_6, flagged
+72, data/prediction_videos_final_train/rolling-billiard/4_2, [['00004', '00007']]
+73, data/prediction_videos_final_train/rolling-billiard/84_6, [['00003', '00009']]
+74, data/prediction_videos_final_train/rolling-billiard/59_0, [['00002', '00008']]
+75, data/prediction_videos_final_train/rolling-billiard/4_5, [['00000', '00007']]
+76, data/prediction_videos_final_train/rolling-billiard/5_7, [['00002', '00008']]
+77, data/prediction_videos_final_train/rolling-billiard/45_0, [['00001', '00009']]
+78, data/prediction_videos_final_train/rolling-billiard/176_2, [['00002', '00009']]
+79, data/prediction_videos_final_test/rolling-billiard/17_7, [['00002', '00010']]
+80, data/prediction_videos_final_train/rolling-billiard/84_1, [['00002', '00007']]
+81, data/prediction_videos_final_train/rolling-billiard/45_5, [['00004', '00009']]
+82, data/prediction_videos_final_test/rolling-billiard/1_7, [['00002', '00007']]
+83, data/prediction_videos_final_train/rolling-billiard/84_3, flagged
+84, data/prediction_videos_final_train/rolling-billiard/45_7, [['00000', '00006']]
+85, data/prediction_videos_final_test/rolling-billiard/55_4, [['00001', '00009']]
+86, data/prediction_videos_final_train/rolling-billiard/6_2, [['00003', '00006'], ['00006', '00010']]
+87, data/prediction_videos_final_train/rolling-billiard/6_7, [['00004', '00009']]
+88, data/prediction_videos_final_test/rolling-billiard/17_4, [['00005', '00008']]
+89, data/prediction_videos_final_train/rolling-billiard/8_6, [['00002', '00010']]
+90, data/prediction_videos_final_train/rolling-billiard/4_4, [['00001', '00006']]
+91, data/prediction_videos_final_train/rolling-billiard/83_5, [['00001', '00004']]
+92, data/prediction_videos_final_test/rolling-billiard/23_5, [['00002', '00006']]
+93, data/prediction_videos_final_train/rolling-billiard/8_3, [['00000', '00006']]
+94, data/prediction_videos_final_test/rolling-billiard/1_5, [['00000', '00005']]
+95, data/prediction_videos_final_train/rolling-billiard/37_5, flagged
+96, data/prediction_videos_final_train/rolling-billiard/14_1, flagged
+97, data/prediction_videos_final_train/rolling-billiard/193_4, [['00000', '00013']]
+98, data/prediction_videos_final_test/rolling-billiard/1_4, [['00002', '00011']]
+99, data/prediction_videos_final_train/rolling-billiard/83_6, [['00002', '00012']]
+100, data/prediction_videos_final_train/rolling-billiard/25_7, [['00005', '00011']]
+101, data/prediction_videos_final_train/rolling-billiard/6_1, [['00001', '00012']]
+102, data/prediction_videos_final_train/rolling-billiard/120_0, [['00005', '00012']]
+103, data/prediction_videos_final_train/rolling-billiard/120_7, [['00008', '00015']]
+104, data/prediction_videos_final_train/rolling-billiard/9_5, [['00000', '00002'], ['00014', '00015']]
+105, data/prediction_videos_final_train/rolling-billiard/25_1, [['00002', '00009'], ['00011', '00015']]
+106, data/prediction_videos_final_train/rolling-billiard/83_7, [['00004', '00013']]
+107, data/prediction_videos_final_test/rolling-billiard/126_5, confirmed
+108, data/prediction_videos_final_train/rolling-billiard/6_5, [['00009', '00013']]
+109, data/prediction_videos_final_test/rolling-billiard/1_2, [['00001', '00012']]
+110, data/prediction_videos_final_train/rolling-billiard/9_6, [['00002', '00013']]
+111, data/prediction_videos_final_train/rolling-billiard/84_4, [['00004', '00014']]
+112, data/prediction_videos_final_test/rolling-billiard/126_4, [['00005', '00012']]
+113, data/prediction_videos_final_train/rolling-billiard/84_5, [['00005', '00012']]
+114, data/prediction_videos_final_train/rolling-billiard/78_2, [['00002', '00009']]
+115, data/prediction_videos_final_train/rolling-billiard/59_5, [['00004', '00010'], ['00012', '00015']]
+116, data/prediction_videos_final_train/rolling-billiard/53_5, [['00001', '00012']]
+117, data/prediction_videos_final_test/rolling-billiard/23_4, [['00001', '00012']]
+118, data/prediction_videos_final_train/rolling-billiard/5_1, [['00002', '00011']]
+119, data/prediction_videos_final_test/rolling-billiard/55_7, [['00001', '00010']]
+120, data/prediction_videos_final_train/rolling-billiard/6_3, [['00004', '00007'], ['00008', '00013']]
+121, data/prediction_videos_final_train/rolling-billiard/59_4, [['00001', '00010'], ['00011', '00015']]
+122, data/prediction_videos_final_train/rolling-billiard/84_0, [['00001', '00014']]
+123, data/prediction_videos_final_train/rolling-billiard/53_1, [['00011', '00015']]
+124, data/prediction_videos_final_train/rolling-billiard/83_1, [['00005', '00011']]
+125, data/prediction_videos_final_train/rolling-billiard/54_5, [['00004', '00011']]
+126, data/prediction_videos_final_train/rolling-billiard/4_7, [['00001', '00009'], ['00012', '00015']]
+127, data/prediction_videos_final_test/rolling-billiard/55_0, [['00001', '00013']]
+128, data/prediction_videos_final_train/rolling-billiard/25_5, [['00004', '00013']]
+129, data/prediction_videos_final_train/rolling-billiard/8_2, [['00004', '00012']]
+130, data/prediction_videos_final_train/rolling-billiard/53_7, [['00006', '00013']]
+131, data/prediction_videos_final_train/rolling-billiard/9_1, [['00004', '00013']]
+132, data/prediction_videos_final_train/rolling-billiard/84_2, [['00007', '00012'], ['00013', '00015']]
+133, data/prediction_videos_final_train/rolling-billiard/6_6, [['00002', '00010']]
+134, data/prediction_videos_final_test/rolling-billiard/126_0, [['00007', '00011']]
+135, data/prediction_videos_final_train/rolling-billiard/176_4, [['00001', '00013']]
+136, data/prediction_videos_final_train/rolling-billiard/65_0, flagged
+137, data/prediction_videos_final_train/rolling-billiard/37_3, [['00001', '00016']]
+138, data/prediction_videos_final_train/rolling-billiard/193_2, [['00000', '00012']]
+139, data/prediction_videos_final_test/rolling-billiard/1_1, [['00002', '00019']]
+140, data/prediction_videos_final_train/rolling-billiard/25_3, [['00001', '00015']]
+141, data/prediction_videos_final_train/rolling-billiard/76_0, [['00002', '00014']]
+142, data/prediction_videos_final_train/rolling-billiard/53_0, [['00004', '00015']]
+143, data/prediction_videos_final_test/rolling-billiard/126_6, [['00007', '00015']]
+144, data/prediction_videos_final_test/rolling-billiard/55_2, [['00007', '00014']]
+145, data/prediction_videos_final_train/rolling-billiard/54_0, [['00002', '00014']]
+146, data/prediction_videos_final_test/rolling-billiard/129_1, [['00002', '00015']]
+147, data/prediction_videos_final_train/rolling-billiard/83_0, [['00000', '00016']]
+148, data/prediction_videos_final_test/rolling-billiard/17_5, [['00005', '00017']]
+149, data/prediction_videos_final_test/rolling-billiard/55_6, [['00004', '00016']]
+150, data/prediction_videos_final_train/rolling-billiard/78_5, [['00000', '00007'], ['00010', '00016']]
+151, data/prediction_videos_final_test/rolling-billiard/126_2, [['00005', '00014']]
+152, data/prediction_videos_final_train/rolling-billiard/83_2, [['00001', '00015']]
+153, data/prediction_videos_final_train/rolling-billiard/53_6, [['00010', '00016']]
+154, data/prediction_videos_final_train/rolling-billiard/120_1, [['00003', '00014']]
+155, data/prediction_videos_final_train/rolling-billiard/9_3, [['00003', '00019']]
+156, data/prediction_videos_final_train/rolling-billiard/37_6, confirmed
+157, data/prediction_videos_final_train/rolling-billiard/76_1, [['00003', '00016']]
+158, data/prediction_videos_final_train/rolling-billiard/120_4, [['00003', '00015']]
+159, data/prediction_videos_final_train/rolling-billiard/9_7, [['00003', '00020']]
+160, data/prediction_videos_final_train/rolling-billiard/176_6, [['00001', '00020']]
+161, data/prediction_videos_final_train/rolling-billiard/96_0, [['00005', '00021']]
+162, data/prediction_videos_final_train/rolling-billiard/65_5, [['00000', '00022']]
+163, data/prediction_videos_final_train/rolling-billiard/65_6, flagged
+164, data/prediction_videos_final_train/rolling-billiard/37_2, [['00001', '00024']]
+165, data/prediction_videos_final_train/rolling-billiard/25_4, [['00002', '00024']]
+166, data/prediction_videos_final_test/rolling-billiard/126_3, [['00005', '00019']]
+167, data/prediction_videos_final_train/rolling-billiard/46_5, [['00006', '00021']]
+168, data/prediction_videos_final_test/rolling-billiard/129_0, [['00011', '00022']]
+169, data/prediction_videos_final_train/rolling-billiard/120_5, [['00004', '00014']]
+170, data/prediction_videos_final_train/rolling-billiard/8_4, [['00003', '00022']]
+171, data/prediction_videos_final_train/rolling-billiard/120_3, [['00002', '00022']]
+172, data/prediction_videos_final_train/rolling-billiard/46_2, [['00001', '00020']]
+173, data/prediction_videos_final_train/rolling-billiard/54_3, [['00001', '00023']]
+174, data/prediction_videos_final_train/rolling-billiard/78_4, [['00008', '00020']]
+175, data/prediction_videos_final_train/rolling-billiard/9_2, [['00002', '00024']]
+176, data/prediction_videos_final_train/rolling-billiard/59_3, [['00005', '00021']]
+177, data/prediction_videos_final_train/rolling-billiard/5_5, [['00002', '00020']]
+178, data/prediction_videos_final_train/rolling-billiard/53_3, [['00002', '00020']]
+179, data/prediction_videos_final_train/rolling-billiard/59_6, [['00006', '00020']]
+180, data/prediction_videos_final_test/rolling-billiard/23_7, [['00001', '00022']]
+181, data/prediction_videos_final_train/rolling-billiard/98_0, [['00002', '00011'], ['00014', '00025']]
+182, data/prediction_videos_final_train/rolling-billiard/96_1, [['00002', '00027']]
+183, data/prediction_videos_final_train/rolling-billiard/78_7, [['00006', '00023']]
+184, data/prediction_videos_final_test/rolling-billiard/17_1, [['00004', '00027']]
+185, data/prediction_videos_final_train/rolling-billiard/54_7, [['00002', '00029']]
+186, data/prediction_videos_final_train/rolling-billiard/83_4, [['00005', '00025']]
+187, data/prediction_videos_final_train/rolling-billiard/46_3, [['00004', '00026']]
+188, data/prediction_videos_final_test/rolling-billiard/190_2, [['00000', '00028']]
+189, data/prediction_videos_final_train/rolling-billiard/59_1, [['00005', '00024']]
+190, data/prediction_videos_final_train/rolling-billiard/120_6, [['00001', '00028']]
+191, data/prediction_videos_final_test/rolling-billiard/119_0, [['00003', '00030']]
+192, data/prediction_videos_final_test/rolling-billiard/190_3, [['00002', '00030']]
+193, data/prediction_videos_final_train/rolling-billiard/6_4, [['00004', '00026']]
+194, data/prediction_videos_final_train/rolling-billiard/65_3, flagged
+195, data/prediction_videos_final_test/rolling-billiard/119_1, flagged
+196, data/prediction_videos_final_train/rolling-billiard/46_4, [['00001', '00016'], ['00018', '00037']]
+197, data/prediction_videos_final_test/rolling-billiard/61_3, [['00000', '00014'], ['00015', '00036']]
+198, data/prediction_videos_final_test/rolling-billiard/190_1, [['00004', '00035']]
+199, data/prediction_videos_final_test/rolling-billiard/55_1, [['00007', '00021'], ['00022', '00035']]
+200, data/prediction_videos_final_train/rolling-billiard/98_1, flagged
+201, data/prediction_videos_final_test/rolling-billiard/61_0, flagged
+202, data/prediction_videos_final_train/rolling-billiard/98_4, [['00007', '00013'], ['00014', '00021'], ['00022', '00043']]
+203, data/prediction_videos_final_train/rolling-billiard/9_4, [['00002', '00020'], ['00022', '00035']]
+204, data/prediction_videos_final_test/rolling-billiard/190_0, [['00001', '00045']]
+205, data/prediction_videos_final_train/rolling-billiard/78_0, [['00008', '00045']]
+206, data/prediction_videos_final_train/rolling-billiard/120_2, [['00001', '00040']]
+207, data/prediction_videos_final_train/rolling-billiard/98_3, [['00018', '00053']]
+208, data/prediction_videos_final_train/rolling-billiard/5_2, [['00003', '00052']]
+209, data/prediction_videos_final_test/rolling-billiard/126_1, [['00009', '00049']]
+210, data/prediction_videos_final_train/rolling-billiard/53_4, [['00012', '00051']]
+211, data/prediction_videos_final_train/rolling-billiard/54_2, [['00001', '00051']]
+212, data/prediction_videos_final_train/rolling-billiard/78_1, [['00008', '00060']]
+213, data/prediction_videos_final_test/rolling-billiard/13_4, [['00002', '00007'], ['00008', '00026'], ['00027', '00053']]
+214, data/prediction_videos_final_train/rolling-billiard/59_2, flagged
+215, data/prediction_videos_final_train/rolling-billiard/98_2, [['00011', '00023'], ['00024', '00037'], ['00038', '00088']]
+216, data/prediction_videos_final_test/rolling-billiard/61_2, [['00003', '00016'], ['00047', '00093']]
+217, data/prediction_videos_final_test/rolling-billiard/13_0, [['00003', '00011'], ['00012', '00032'], ['00033', '00061'], ['00062', '00099']]
+218, data/prediction_videos_final_test/rolling-billiard/13_3, [['00003', '00010'], ['00011', '00031'], ['00032', '00060'], ['00061', '00099']]
+219, data/prediction_videos_final_test/rolling-billiard/13_5, [['00003', '00013'], ['00014', '00034'], ['00035', '00096']]
+220, data/prediction_videos_final_test/rolling-billiard/13_2, [['00001', '00013'], ['00014', '00021'], ['00022', '00055'], ['00056', '00105']]
+221, data/prediction_videos_final_test/rolling-billiard/61_6, flagged
+222, data/prediction_videos_final_test/rolling-billiard/13_1, [['00001', '00008'], ['00009', '00017'], ['00018', '00024'], ['00025', '00042'], ['00043', '00071'], ['00072', '00113']]
+223, data/prediction_videos_final_test/rolling-billiard/61_5, [['00001', '00013'], ['00014', '00032'], ['00033', '00059'], ['00060', '00082'], ['00084', '00130']]
+224, data/prediction_videos_final_test/rolling-billiard/61_4, [['00001', '00016'], ['00017', '00022'], ['00023', '00038'], ['00039', '00077'], ['00078', '00098'], ['00099', '00133']]
+225, data/prediction_videos_final_test/rolling-billiard/61_1, [['00008', '00012'], ['00013', '00026'], ['00027', '00046'], ['00047', '00066'], ['00067', '00096'], ['00097', '00200']]
+226, data/prediction_videos_final_train/rolling-billiard/14_2, [['00001', '00008'], ['00009', '00015'], ['00016', '00024'], ['00025', '00047'], ['00048', '00069'], ['00071', '00131']]
+227, data/prediction_videos_final_train/rolling-billiard/14_0, [['00000', '00004'], ['00040', '00091'], ['00148', '00305']]
+
