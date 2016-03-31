@@ -18,29 +18,11 @@ def split_single_movie(movie_dir, frame_spans, new_path, file_ext):
     return
 
 
-def split_single_annotation(movie_dir, frame_spans, new_master_path):
-    """
-    splits and moves frames of a single movies annotations to the new master
-    """
-    file_ext = '_00.mat'
-    ge_ext = '_00_ge.mat'
-
-    return
-
-
-def preserve_fr_annotations(movie_dir, frame_spans, new_master_path):
-    """
-    """
-    fr_annotation_dir = 'viewpoint_annotations'
-    fr_annotation_path = new_master_path + fr_annotation_dir
-
-    return
-
-
 def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
 
     image_extension = '.png'
     annotation_extensions = ['_00.mat', '_00_ge.mat']
+    pov_ext = '_00_fr.mat'
 
     old_data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
     annotation_split = 'new_' + split + '_wbox'
@@ -49,12 +31,13 @@ def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
 
     new_master_path = '/'.join([new_master_dir, split, subdivided_cats, video_dir])
     new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, video_dir])
-
+    fr_annotation_path = new_master_dir + '/viewpoint_annotations/' + split + '/' + video_dir
     # split_single_movie(old_movie_dir, keep_frames, new_master_path)i
-    for ext in annotation_extensions:
-        split_single_movie(old_annotation_dir, keep_frames, new_annotation_path, ext)
+    # for ext in annotation_extensions:
+    #     split_single_movie(old_annotation_dir, keep_frames, new_annotation_path, ext)
 
-    return new_master_path
+    split_single_movie(old_annotation_dir, keep_frames, fr_annotation_path, pov_ext)
+    return
 
 
 def clean_all_to_master(confirmation_log, new_master_dir):
