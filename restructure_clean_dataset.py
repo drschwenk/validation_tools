@@ -8,7 +8,7 @@ def split_single_movie(movie_dir, frame_spans, new_path, file_ext):
     """
 
     # this removes the data dir from the path
-    # os.makedirs(new_path)
+    os.makedirs(new_path)
     new_movie_paths = []
     for idx, span in enumerate(frame_spans):
         if len(frame_spans) > 1:
@@ -93,7 +93,7 @@ def clean_category_to_master(confirmation_log, category, data_path):
         try:
             keep_frames = confirmation_log[movie_path.replace(' copy', '')]
         except KeyError:
-            movie_path_rn = '/'.join([data_dir, split, subdivided_cats, video_dir])
+            movie_path_rn = '/'.join([data_dir, split, subdivided_cats + '2', video_dir])
             keep_frames = confirmation_log[movie_path_rn]
         if keep_frames == 'flagged':
             pass
@@ -142,7 +142,7 @@ def make_category_moves(movie_frames_dict, subdivided_cats, data_path, new_maste
             old_movie_path = data_path + subdivided_cats + '/' + pvn + '_' + mvn
 
         try:
-            keep_frames = movie_frames_dict[old_movie_path[:-5]]
+            keep_frames = movie_frames_dict[old_movie_path.replace(' copy', '')]
         except KeyError:
             old_movie_path_rn = data_path + subdivided_cats + '2' + '/' + old_name
             keep_frames = movie_frames_dict[old_movie_path_rn]
