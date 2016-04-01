@@ -106,10 +106,10 @@ def make_category_moves(movie_frames_dict, subdivided_cats, data_path, new_maste
             keep_frames = movie_frames_dict[old_movie_path.replace(' copy', '')]
         except KeyError:
             try:
-                old_movie_path_rn = data_path + subdivided_cats + '2' + '/' + old_name
+                old_movie_path_rn = data_path + subdivided_cats + '2' + '/' + old_movie_path.split('/')[-1].replace(' copy', '')
                 keep_frames = movie_frames_dict[old_movie_path_rn]
             except:
-                old_movie_path_rn = data_path + subdivided_cats + '3' + '/' + old_name
+                old_movie_path_rn = data_path + subdivided_cats + '3' + '/' + old_movie_path.split('/')[-1].replace(' copy', '')
                 keep_frames = movie_frames_dict[old_movie_path_rn]
 
         if keep_frames == 'confirmed':
