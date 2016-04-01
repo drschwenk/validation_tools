@@ -9,15 +9,16 @@ def split_single_movie(movie_dir, frame_spans, new_path, file_ext):
 
     # this removes the data dir from the path
     # os.makedirs(new_path)
+    new_movie_paths = []
     for idx, span in enumerate(frame_spans):
         if len(frame_spans) > 1:
             new_path += '_' + str(idx)
         for frame in range(int(span[0]), int(span[1])+1):
             old_file = movie_dir + '/' + str(frame).zfill(5) + file_ext
             new_file = new_path + '/' + str(frame).zfill(5) + file_ext
-        print(old_file, new_file)
+            new_movie_paths.append(new_file)
             # os.rename(old_file, new_file)
-    return
+    return new_movie_paths
 
 
 def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
@@ -34,7 +35,7 @@ def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
     new_master_path = '/'.join([new_master_dir, split, subdivided_cats, video_dir])
     new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, video_dir])
     # fr_annotation_path = new_master_dir + '/viewpoint_annotations/' + split + '/' + video_dir
-    split_single_movie(old_movie_dir, keep_frames, new_master_path, image_extension)
+    # split_single_movie(old_movie_dir, keep_frames, new_master_path, image_extension)
     # for ext in annotation_extensions:
     #     split_single_movie(old_annotation_dir, keep_frames, new_annotation_path, ext)
 
@@ -42,13 +43,25 @@ def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
     return
 
 
+def move_confirmed_to_master():
+    pass
+
+
 def clean_category_to_master(confirmation_log, category, data_path, new_master_dir):
+
 
     movie_dirs = return_non_hidden(data_path + category)
     for movie in movie_dirs:
         movie_path = data_path + category + '/' + movie
-        print(movie_path, new_master_dir, confirmation_log[movie_path])
-        # clean_movie_to_master(movie_path, new_master_dir, confirmation_log[movie_path])
+
+        keep_frames = confirmation_log[movie_path]
+        if keep_frames == 'flagged':
+            pass
+        if keep_frames == 'confirmed':
+            move_confirmed_to_master()
+        else:
+            print(movie_path, new_master_dir, keep_frames)
+            clean_movie_to_master(movie_path, new_master_dir, keep_frames)
     return
 
 
@@ -69,15 +82,12 @@ def clean_all_data(data_path, confirmation_log):
     for movie in log_f:
         index, movie_path, keep_frames = movie.split(', ', maxsplit=2)
         # print(index, movie_path, keep_frames)
-        if keep_frames.strip() == 'confirmed':
-            confirmed()
-        elif keep_frames.strip() == 'flagged':
-            pass
-        else:
+        try:
             movie_frames_dict[movie_path] = ast.literal_eval(keep_frames)
-
+        except ValueError:
+            movie_frames_dict[movie_path] = keep_frames.strip()
     categories = return_non_hidden(data_path)
-    # clean_category_to_master(movie_frames_dict, categories[8], data_path, 'test_real')
-    return movie_frames_dict.keys()
+    clean_category_to_master(movie_frames_dict, categories[8], data_path, 'test_real')
+    return
 
 
