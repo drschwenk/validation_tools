@@ -180,7 +180,6 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
                     old_file = old_annotation_dir + '/' + str(frame).zfill(5) + fext
                     if fext == pov_ext:
                         new_annotation_path = new_annotation_path.replace(new_master_dir, 'save_fr_mat_files')
-                        print(new_annotation_path)
                     new_file = new_annotation_path + '/' + str(new_frame_idx_anno).zfill(5) + fext
                     new_movie_paths.append(new_file)
                     os.rename(old_file, new_file)
