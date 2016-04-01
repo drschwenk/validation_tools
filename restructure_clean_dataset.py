@@ -143,7 +143,7 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
     # os.makedirs(new_path)
 
     image_extension = '.png'
-    annotation_extensions = ['_00.mat', '_00_ge.mat']
+    annotation_extensions = ['_00.mat', '_00_ge.mat','_00_fr.mat']
     pov_ext = '_00_fr.mat'
 
     old_data_dir, split, subdivided_cats, video_dir = old_path.split('/')
@@ -157,9 +157,9 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
     file_ext = image_extension
     new_movie_paths = []
     new_frame_idx = 0
-    print(new_annotation_path)
     os.makedirs(new_video_path)
     os.makedirs(new_annotation_path)
+    os.makedirs(new_annotation_path.replace(new_master_dir, 'save_fr_mat_files'))
     for idx, span in enumerate(keep_frames):
         try:
             for frame in range(int(span[0]), int(span[1])+1):
@@ -172,28 +172,32 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
         except ValueError:
             pass
 
-    for idx, span in enumerate(keep_frames):
-        for fext in annotation_extensions:
+    for fext in annotation_extensions:
+        new_frame_idx_anno = 0
+        for idx, span in enumerate(keep_frames):
             try:
                 for frame in range(int(span[0]), int(span[1]) + 1):
                     old_file = old_annotation_dir + '/' + str(frame).zfill(5) + fext
-                    new_file = new_annotation_path + '/' + str(new_frame_idx).zfill(5) + fext
+                    if fext == pov_ext:
+                        new_annotation_path = new_annotation_path.replace(new_master_dir, 'save_fr_mat_files')
+                        print(new_annotation_path)
+                    new_file = new_annotation_path + '/' + str(new_frame_idx_anno).zfill(5) + fext
                     new_movie_paths.append(new_file)
                     os.rename(old_file, new_file)
-                    new_frame_idx += 1
+                    new_frame_idx_anno += 1
             except (FileNotFoundError, ValueError) as e:
                 pass
 
-    for idx, span in enumerate(keep_frames):
-        try:
-            for frame in range(int(span[0]), int(span[1]) + 1):
-                old_file = old_annotation_dir + '/' + str(frame).zfill(5) + pov_ext
-                new_file = 'pov_frames' + new_annotation_path + '/' + str(new_frame_idx).zfill(5) + pov_ext
-                new_movie_paths.append(new_file)
-                os.rename(old_file, new_file)
-                new_frame_idx += 1
-        except (FileNotFoundError, ValueError) as e:
-            pass
+    # for idx, span in enumerate(keep_frames):
+    #     try:
+    #         for frame in range(int(span[0]), int(span[1]) + 1):
+    #             old_file = old_annotation_dir + '/' + str(frame).zfill(5) + pov_ext
+    #             new_file = 'pov_frames' + new_annotation_path + '/' + str(new_frame_idx).zfill(5) + pov_ext
+    #             new_movie_paths.append(new_file)
+    #             os.rename(old_file, new_file)
+    #             new_frame_idx += 1
+    #     except (FileNotFoundError, ValueError) as e:
+    #         pass
     return
 
 
