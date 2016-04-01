@@ -21,6 +21,25 @@ def split_single_movie(movie_dir, frame_spans, new_path, file_ext):
     return new_movie_paths
 
 
+def split_single_movie(movie_dir, frame_spans, new_path, file_ext):
+    """
+    splits and moves frames of a single movie to the new master
+    """
+
+    # this removes the data dir from the path
+    # os.makedirs(new_path)
+    new_movie_paths = []
+    for idx, span in enumerate(frame_spans):
+        if len(frame_spans) > 1:
+            new_path += '_' + str(idx)
+        for frame in range(int(span[0]), int(span[1])+1):
+            old_file = movie_dir + '/' + str(frame).zfill(5) + file_ext
+            new_file = new_path + '/' + str(frame).zfill(5) + file_ext
+            new_movie_paths.append(new_file)
+            # os.rename(old_file, new_file)
+    return new_movie_paths
+
+
 def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
 
     image_extension = '.png'
@@ -78,8 +97,12 @@ def clean_category_to_master(confirmation_log, category, data_path, new_master_d
         else:
             # print(movie_path, new_master_dir, keep_frames)
             # clean_movie_to_master(movie_path, new_master_dir, keep_frames)
-            # print(split_single_movie(movie_dirs, keep_frames))
-            pass
+
+            if len(keep_frames) > 1:
+                for idx, span in enumerate(keep_frames):
+                    movies_with_splits.append(movie + '_' + str(idx))
+            else:
+                movies_with_splits.append(movie)
 
     for movie in movies_with_splits:
         pvn, mvn, sub_n = get_name_parts(movie)
@@ -99,21 +122,7 @@ def clean_category_to_master(confirmation_log, category, data_path, new_master_d
             else:
                 child_index += 1
                 dir_changes.append([str(parent_idx).zfill(3) + '_' + str(child_index).zfill(2), movie])
-
-        keep_frames = confirmation_log[movie_path]
-        if keep_frames == 'flagged':
-            pass
-        if keep_frames == 'confirmed':
-            move_confirmed_to_master()
-        else:
-            pass
-            # print(movie_path, new_master_dir, keep_frames)
-            # clean_movie_to_master(movie_path, new_master_dir, keep_frames)
     return dir_changes
-
-
-def confirmed():
-    pass
 
 
 def return_non_hidden(path):
