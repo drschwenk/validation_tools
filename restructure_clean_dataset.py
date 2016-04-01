@@ -166,7 +166,7 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
                 old_file = old_path + '/' + str(frame).zfill(5) + file_ext
                 new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
                 new_movie_paths.append(new_file)
-                # os.rename(old_file, new_file)
+                os.rename(old_file, new_file)
 
                 new_frame_idx += 1
         except ValueError:
@@ -209,8 +209,8 @@ def move_confirmed(old_path, new_name, new_master_dir):
     new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, new_name])
     os.makedirs(new_video_path)
     os.makedirs(new_annotation_path)
-    # os.rename(old_path, new_video_path)
-
+    os.rename(old_path, new_video_path)
+    os.rename(old_annotation_dir, new_annotation_path)
     return
 
 
