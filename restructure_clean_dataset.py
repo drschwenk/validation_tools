@@ -47,12 +47,58 @@ def move_confirmed_to_master():
     pass
 
 
-def clean_category_to_master(confirmation_log, category, data_path, new_master_dir):
+def get_name_parts(dname):
+    try:
+        pvn, mvn, submvn = dname.split('_')
+        return pvn, mvn, submvn
+    except ValueError:
+        pvn, mvn = dname.split('_')
+        return pvn, mvn, 0
 
+
+def clean_category_to_master(confirmation_log, category, data_path, new_master_dir):
+    dir_changes = []
 
     movie_dirs = return_non_hidden(data_path + category)
+    parent_idx = 0
+    current_parent = 0
+    child_index = 0
+    copies_detected = False
+
+    movies_with_splits = []
     for movie in movie_dirs:
+
         movie_path = data_path + category + '/' + movie
+
+        keep_frames = confirmation_log[movie_path]
+        if keep_frames == 'flagged':
+            pass
+        if keep_frames == 'confirmed':
+            movies_with_splits.append(movie)
+        else:
+            # print(movie_path, new_master_dir, keep_frames)
+            # clean_movie_to_master(movie_path, new_master_dir, keep_frames)
+            # print(split_single_movie(movie_dirs, keep_frames))
+            pass
+
+    for movie in movies_with_splits:
+        pvn, mvn, sub_n = get_name_parts(movie)
+
+        if pvn != current_parent:
+            if copies_detected:
+                parent_idx += 1
+                copies_detected = False
+            current_parent = pvn
+            parent_idx += 1
+            child_index = 0
+            dir_changes.append([str(parent_idx).zfill(3) + '_' + str(child_index).zfill(2), movie])
+        else:
+            if 'copy' in movie:
+                copies_detected = True
+                dir_changes.append([str(parent_idx + 1).zfill(3) + '_' + str(child_index).zfill(2), movie])
+            else:
+                child_index += 1
+                dir_changes.append([str(parent_idx).zfill(3) + '_' + str(child_index).zfill(2), movie])
 
         keep_frames = confirmation_log[movie_path]
         if keep_frames == 'flagged':
@@ -60,9 +106,10 @@ def clean_category_to_master(confirmation_log, category, data_path, new_master_d
         if keep_frames == 'confirmed':
             move_confirmed_to_master()
         else:
-            print(movie_path, new_master_dir, keep_frames)
-            clean_movie_to_master(movie_path, new_master_dir, keep_frames)
-    return
+            pass
+            # print(movie_path, new_master_dir, keep_frames)
+            # clean_movie_to_master(movie_path, new_master_dir, keep_frames)
+    return dir_changes
 
 
 def confirmed():
@@ -88,6 +135,7 @@ def clean_all_data(data_path, confirmation_log):
             movie_frames_dict[movie_path] = keep_frames.strip()
     categories = return_non_hidden(data_path)
     clean_category_to_master(movie_frames_dict, categories[8], data_path, 'test_real')
-    return
+    return clean_category_to_master(movie_frames_dict, categories[8], data_path, 'test_real')
+
 
 
