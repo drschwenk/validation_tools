@@ -42,20 +42,42 @@ def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
     return
 
 
-def clean_category_to_master(confirmation_log, new_master_dir, category):
-    with open(confirmation_log, 'r') as f:
-        movie_splits = f.readlines()
+def clean_category_to_master(confirmation_log, category, data_path, new_master_dir):
 
-    for movie in movie_splits:
-        index, movie_path, keep_frames = movie.split(', ', maxsplit=2)
-        frame_list = ast.literal_eval(keep_frames)
-        clean_movie_to_master(movie_path, new_master_dir, frame_list)
+    movie_dirs = return_non_hidden(data_path + category)
+    for movie in movie_dirs:
+        movie_path = data_path + category + '/' + movie
+        print(movie_path, new_master_dir, confirmation_log[movie_path])
+        # clean_movie_to_master(movie_path, new_master_dir, confirmation_log[movie_path])
     return
 
 
-def clean_all_data(data_path):
-    categories = glob.glob(data_path)
+def confirmed():
+    pass
 
-    return categories
+
+def return_non_hidden(path):
+    all_files = os.listdir(path)
+    return [file for file in all_files if not file.startswith('.')]
+
+
+def clean_all_data(data_path, confirmation_log):
+
+    movie_frames_dict = {}
+    with open(confirmation_log, 'r') as f:
+        log_f = f.readlines()
+    for movie in log_f:
+        index, movie_path, keep_frames = movie.split(', ', maxsplit=2)
+        # print(index, movie_path, keep_frames)
+        if keep_frames.strip() == 'confirmed':
+            confirmed()
+        elif keep_frames.strip() == 'flagged':
+            pass
+        else:
+            movie_frames_dict[movie_path] = ast.literal_eval(keep_frames)
+
+    categories = return_non_hidden(data_path)
+    # clean_category_to_master(movie_frames_dict, categories[8], data_path, 'test_real')
+    return movie_frames_dict.keys()
 
 
