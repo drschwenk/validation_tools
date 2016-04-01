@@ -144,9 +144,12 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
     file_ext = image_extension
     new_movie_paths = []
     new_frame_idx = 0
-    os.makedirs(new_video_path)
-    os.makedirs(new_annotation_path)
-    os.makedirs(new_annotation_path.replace(new_master_dir, 'save_fr_mat_files'))
+    try:
+        os.makedirs(new_video_path)
+        os.makedirs(new_annotation_path)
+        os.makedirs(new_annotation_path.replace(new_master_dir, 'save_fr_mat_files'))
+    except FileExistsError:
+        pass
     for idx, span in enumerate(keep_frames):
         try:
             for frame in range(int(span[0]), int(span[1])+1):
@@ -194,8 +197,11 @@ def move_confirmed(old_path, new_name, new_master_dir):
 
     new_video_path = '/'.join([new_master_dir, split, subdivided_cats, new_name])
     new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, new_name])
-    os.makedirs(new_video_path)
-    os.makedirs(new_annotation_path)
+    try:
+        os.makedirs(new_video_path)
+        os.makedirs(new_annotation_path)
+    except FileExistsError:
+        pass
     # os.rename(old_path, new_video_path)
     # os.rename(old_annotation_dir, new_annotation_path)
     return
@@ -225,5 +231,9 @@ def clean_all_data(data_path, confirmation_log):
     return
 
 if __name__ == '__main__':
-    data_path = 'data/prediction_videos_final_train/'
-    clean_all_data(data_path, './combined_log.txt')
+    data_path1 = 'data/prediction_videos_final_train/'
+    data_path2 = 'data/prediction_videos_final_test/'
+    data_path3 = 'data/prediction_videos_3_categories/'
+    clean_all_data(data_path1, './combined_log.txt')
+    clean_all_data(data_path2, './combined_log.txt')
+    clean_all_data(data_path3, './combined_log.txt')
