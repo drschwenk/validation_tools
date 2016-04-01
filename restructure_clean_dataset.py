@@ -9,11 +9,13 @@ def split_single_movie(movie_dir, frame_spans, new_path, file_ext):
 
     # this removes the data dir from the path
     # os.makedirs(new_path)
-    for span in frame_spans:
+    for idx, span in enumerate(frame_spans):
+        if len(frame_spans) > 1:
+            new_path += '_' + str(idx)
         for frame in range(int(span[0]), int(span[1])+1):
             old_file = movie_dir + '/' + str(frame).zfill(5) + file_ext
             new_file = new_path + '/' + str(frame).zfill(5) + file_ext
-            print(old_file, new_file)
+        print(old_file, new_file)
             # os.rename(old_file, new_file)
     return
 
@@ -31,23 +33,29 @@ def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
 
     new_master_path = '/'.join([new_master_dir, split, subdivided_cats, video_dir])
     new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, video_dir])
-    fr_annotation_path = new_master_dir + '/viewpoint_annotations/' + split + '/' + video_dir
-    # split_single_movie(old_movie_dir, keep_frames, new_master_path)i
+    # fr_annotation_path = new_master_dir + '/viewpoint_annotations/' + split + '/' + video_dir
+    split_single_movie(old_movie_dir, keep_frames, new_master_path, image_extension)
     # for ext in annotation_extensions:
     #     split_single_movie(old_annotation_dir, keep_frames, new_annotation_path, ext)
 
-    split_single_movie(old_annotation_dir, keep_frames, fr_annotation_path, pov_ext)
+    # split_single_movie(old_annotation_dir, keep_frames, fr_annotation_path, pov_ext)
     return
 
 
-def clean_all_to_master(confirmation_log, new_master_dir):
+def clean_category_to_master(confirmation_log, new_master_dir, category):
     with open(confirmation_log, 'r') as f:
         movie_splits = f.readlines()
 
     for movie in movie_splits:
         index, movie_path, keep_frames = movie.split(', ', maxsplit=2)
         frame_list = ast.literal_eval(keep_frames)
-    clean_movie_to_master(movie_path, new_master_dir, frame_list)
+        clean_movie_to_master(movie_path, new_master_dir, frame_list)
     return
+
+
+def clean_all_data(data_path):
+    categories = glob.glob(data_path)
+
+    return categories
 
 
