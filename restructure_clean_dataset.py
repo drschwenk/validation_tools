@@ -85,10 +85,16 @@ def clean_category_to_master(confirmation_log, category, data_path):
 
     movies_with_splits = []
     for movie in movie_dirs:
-
+        print(movie)
         movie_path = data_path + category + '/' + movie
-
-        keep_frames = confirmation_log[movie_path]
+        data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
+        if 'copy' in movie:
+            movie_path = '/'.join([data_dir, split, subdivided_cats + '2', video_dir])
+        try:
+            keep_frames = confirmation_log[movie_path.replace(' copy', '')]
+        except KeyError:
+            movie_path_rn = '/'.join([data_dir, split, subdivided_cats, video_dir])
+            keep_frames = confirmation_log[movie_path_rn]
         if keep_frames == 'flagged':
             pass
         if keep_frames == 'confirmed':
@@ -105,7 +111,6 @@ def clean_category_to_master(confirmation_log, category, data_path):
 
     for movie in movies_with_splits:
         pvn, mvn, sub_n = get_name_parts(movie)
-
         if pvn != current_parent:
             if copies_detected:
                 parent_idx += 1
@@ -124,26 +129,29 @@ def clean_category_to_master(confirmation_log, category, data_path):
     return dir_changes
 
 
-def make_category_moves(movie_frames_dict, category, data_path, new_master_dir, dir_changes):
+def make_category_moves(movie_frames_dict, subdivided_cats, data_path, new_master_dir, dir_changes):
+    print(dir_changes)
     for movie in dir_changes:
         new_name = movie[0]
         old_name = movie[1]
         old_movie_path = 0
         pvn, mvn, sub_n = get_name_parts(old_name)
-
         if not sub_n:
-            old_movie_path = data_path + category + '/' + old_name
+            old_movie_path = data_path + subdivided_cats + '/' + old_name
         else:
-            old_movie_path = data_path + category + '/' + pvn + '_' +  mvn
+            old_movie_path = data_path + subdivided_cats + '/' + pvn + '_' + mvn
 
-        keep_frames = movie_frames_dict[old_movie_path]
+        try:
+            keep_frames = movie_frames_dict[old_movie_path[:-5]]
+        except KeyError:
+            old_movie_path_rn = data_path + subdivided_cats + '2' + '/' + old_name
+            keep_frames = movie_frames_dict[old_movie_path_rn]
 
         if keep_frames == 'confirmed':
             move_confirmed(old_movie_path, new_name, new_master_dir)
 
         else:
             pass
-            # print(keep_frames)
             move_split(old_movie_path, new_name, new_master_dir, keep_frames)
     pass
 
@@ -170,15 +178,15 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
     file_ext = image_extension
     new_movie_paths = []
     new_frame_idx = 0
+    os.makedirs(new_video_path)
     for idx, span in enumerate(keep_frames):
         try:
             for frame in range(int(span[0]), int(span[1])+1):
                 old_file = old_path + '/' + str(frame).zfill(5) + file_ext
                 new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
                 new_movie_paths.append(new_file)
-                os.rename(old_file, new_file)
-                new_frame_idx += 1
                 # os.rename(old_file, new_file)
+                new_frame_idx += 1
         except ValueError:
             pass
     return
@@ -191,8 +199,8 @@ def move_confirmed(old_path, new_name, new_master_dir):
 
     new_video_path = '/'.join([new_master_dir, split, subdivided_cats, new_name])
     new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, new_name])
-
-    os.rename(old_path, new_video_path)
+    os.makedirs(new_video_path)
+    # os.rename(old_path, new_video_path)
 
     return
 
@@ -209,14 +217,16 @@ def clean_all_data(data_path, confirmation_log):
         log_f = f.readlines()
     for movie in log_f:
         index, movie_path, keep_frames = movie.split(', ', maxsplit=2)
+        # print(movie_path, '\n')
         try:
             movie_frames_dict[movie_path] = ast.literal_eval(keep_frames)
         except ValueError:
             movie_frames_dict[movie_path] = keep_frames.strip()
     categories = return_non_hidden(data_path)
-    dir_change = clean_category_to_master(movie_frames_dict, categories[0], data_path)
-    make_category_moves(movie_frames_dict, categories[0], data_path, 'real_test', dir_change)
-    return clean_category_to_master(movie_frames_dict, categories[0], data_path)
+    for cat in categories:
+        dir_change = clean_category_to_master(movie_frames_dict, cat, data_path)
+        make_category_moves(movie_frames_dict, cat, data_path, 'master', dir_change)
+    return
 
 if __name__ == '__main__':
     data_path = 'data/prediction_videos_final_train/'
