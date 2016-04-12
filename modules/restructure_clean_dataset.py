@@ -156,37 +156,27 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
                 old_file = old_path + '/' + str(frame).zfill(5) + file_ext
                 new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
                 new_movie_paths.append(new_file)
-                # os.rename(old_file, new_file)
+                os.rename(old_file, new_file)
 
                 new_frame_idx += 1
-        except ValueError:
+        except (ValueError, FileNotFoundError) as e:
             pass
 
-    for fext in annotation_extensions:
+    for file_ext in annotation_extensions:
         new_frame_idx_anno = 0
         for idx, span in enumerate(keep_frames):
             try:
                 for frame in range(int(span[0]), int(span[1]) + 1):
-                    old_file = old_annotation_dir + '/' + str(frame).zfill(5) + fext
-                    if fext == pov_ext:
+                    old_file = old_annotation_dir + '/' + str(frame).zfill(5) + file_ext
+                    if file_ext == pov_ext:
                         new_annotation_path = new_annotation_path.replace(new_master_dir, 'save_fr_mat_files')
-                    new_file = new_annotation_path + '/' + str(new_frame_idx_anno).zfill(5) + fext
+                    new_file = new_annotation_path + '/' + str(new_frame_idx_anno).zfill(5) + file_ext
                     new_movie_paths.append(new_file)
-                    # os.rename(old_file, new_file)
+                    os.rename(old_file, new_file)
                     new_frame_idx_anno += 1
             except (FileNotFoundError, ValueError) as e:
                 pass
 
-    # for idx, span in enumerate(keep_frames):
-    #     try:
-    #         for frame in range(int(span[0]), int(span[1]) + 1):
-    #             old_file = old_annotation_dir + '/' + str(frame).zfill(5) + pov_ext
-    #             new_file = 'pov_frames' + new_annotation_path + '/' + str(new_frame_idx).zfill(5) + pov_ext
-    #             new_movie_paths.append(new_file)
-    #             os.rename(old_file, new_file)
-    #             new_frame_idx += 1
-    #     except (FileNotFoundError, ValueError) as e:
-    #         pass
     return
 
 
@@ -202,8 +192,11 @@ def move_confirmed(old_path, new_name, new_master_dir):
         os.makedirs(new_annotation_path)
     except FileExistsError:
         pass
-    # os.rename(old_path, new_video_path)
-    # os.rename(old_annotation_dir, new_annotation_path)
+    try:
+        os.rename(old_path, new_video_path)
+        os.rename(old_annotation_dir, new_annotation_path)
+    except OSError:
+        pass
     return
 
 
@@ -225,9 +218,21 @@ def clean_all_data(data_path, confirmation_log):
         except ValueError:
             movie_frames_dict[movie_path] = keep_frames.strip()
     categories = return_non_hidden(data_path)
-    for cat in categories:
-        dir_change = clean_category_to_master(movie_frames_dict, cat, data_path)
-        make_category_moves(movie_frames_dict, cat, data_path, 'master', dir_change)
+    combined_categories = []
+    for cat in categories[:15]:
+        # print(cat, '\n')
+        if cat[:-1] in categories:
+            old_path = data_path + '/' + cat
+            new_path = data_path + '/' + cat[:-1]
+            # print(cat, return_non_hidden(old_path), '\n')
+            for mov_dir in return_non_hidden(old_path):
+                try:
+                    os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir)
+                except OSError:
+                    os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir + ' copy')
+        # dir_change = clean_category_to_master(movie_frames_dict, cat, data_path)
+        # print(dir_change)
+        # make_category_moves(movie_frames_dict, cat, data_path, 'master', dir_change)
     return
 
 if __name__ == '__main__':
@@ -235,5 +240,6 @@ if __name__ == '__main__':
     data_path2 = 'data/prediction_videos_final_test/'
     data_path3 = 'data/prediction_videos_3_categories/'
     clean_all_data(data_path1, './combined_log.txt')
-    clean_all_data(data_path2, './combined_log.txt')
-    clean_all_data(data_path3, './combined_log.txt')
+    # clean_all_data(data_path2, './combined_log.txt')
+    # clean_all_data(data_path3, './combined_log.txt')
+
