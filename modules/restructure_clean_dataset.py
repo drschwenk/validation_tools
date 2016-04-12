@@ -1,36 +1,19 @@
 import os
 import ast
+from restruct_helpers import get_name_parts
+from restruct_helpers import return_non_hidden
 
 
-def clean_movie_to_master(movie_path, new_master_dir, keep_frames):
-
-    image_extension = '.png'
-    annotation_extensions = ['_00.mat', '_00_ge.mat']
-    pov_ext = '_00_fr.mat'
-
-    old_data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
-    annotation_split = 'new_' + split + '_wbox'
-    old_movie_dir = '/'.join([old_data_dir, split, subdivided_cats, video_dir])
-    old_annotation_dir = '/'.join([old_data_dir, annotation_split, subdivided_cats, video_dir])
-
-    new_master_path = '/'.join([new_master_dir, split, subdivided_cats, video_dir])
-    new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, video_dir])
-    # fr_annotation_path = new_master_dir + '/viewpoint_annotations/' + split + '/' + video_dir
-    # split_single_movie(old_movie_dir, keep_frames, new_master_path, image_extension)
-    # for ext in annotation_extensions:
-    #     split_single_movie(old_annotation_dir, keep_frames, new_annotation_path, ext)
-
-    # split_single_movie(old_annotation_dir, keep_frames, fr_annotation_path, pov_ext)
-    return
+def move_stable_dir():
+    pass
 
 
-def get_name_parts(dname):
-    try:
-        pvn, mvn, submvn = dname.split('_')
-        return pvn, mvn, submvn
-    except ValueError:
-        pvn, mvn = dname.split('_')
-        return pvn, mvn, 0
+def remove_dupes():
+    pass
+
+
+def test_train_split_three_cats():
+    pass
 
 
 def clean_category_to_master(confirmation_log, category, data_path):
@@ -118,7 +101,6 @@ def make_category_moves(movie_frames_dict, subdivided_cats, data_path, new_maste
         else:
             pass
             move_split(old_movie_path, new_name, new_master_dir, keep_frames)
-    pass
 
 
 def move_split(old_path, new_name, new_master_dir, keep_frames):
@@ -176,7 +158,6 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
                     new_frame_idx_anno += 1
             except (FileNotFoundError, ValueError) as e:
                 pass
-
     return
 
 
@@ -200,19 +181,22 @@ def move_confirmed(old_path, new_name, new_master_dir):
     return
 
 
-def return_non_hidden(path):
-    all_files = os.listdir(path)
-    return [file for file in all_files if not file.startswith('.')]
+def trim_move_images():
+    pass
 
 
-def clean_all_data(data_path, confirmation_log):
+def trim_move_annotations():
+    pass
 
+
+def trim_move_all_categories(data_path, trim_log_file):
     movie_frames_dict = {}
-    with open(confirmation_log, 'r') as f:
-        log_f = f.readlines()
-    for movie in log_f:
+    with open(trim_log_file, 'r') as f:
+        trim_log = f.readlines()
+    for movie in trim_log:
         index, movie_path, keep_frames = movie.split(', ', maxsplit=2)
         # print(movie_path, '\n')
+        # This try-except block converts frame ranged to a python list, flags remain strings
         try:
             movie_frames_dict[movie_path] = ast.literal_eval(keep_frames)
         except ValueError:
@@ -226,20 +210,19 @@ def clean_all_data(data_path, confirmation_log):
             new_path = data_path + '/' + cat[:-1]
             # print(cat, return_non_hidden(old_path), '\n')
             for mov_dir in return_non_hidden(old_path):
-                try:
-                    os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir)
-                except OSError:
-                    os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir + ' copy')
-        # dir_change = clean_category_to_master(movie_frames_dict, cat, data_path)
+                print(mov_dir)
+        #         try:
+        #             os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir)
+        #         except OSError:
+        #             os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir + ' copy')
+        # # dir_change = clean_category_to_master(movie_frames_dict, cat, data_path)
         # print(dir_change)
         # make_category_moves(movie_frames_dict, cat, data_path, 'master', dir_change)
     return
 
+
 if __name__ == '__main__':
-    data_path1 = 'data/prediction_videos_final_train/'
-    data_path2 = 'data/prediction_videos_final_test/'
-    data_path3 = 'data/prediction_videos_3_categories/'
-    clean_all_data(data_path1, './combined_log.txt')
-    # clean_all_data(data_path2, './combined_log.txt')
-    # clean_all_data(data_path3, './combined_log.txt')
+    root_data_path = 'data/prediction_videos_final_'
+    for split in ['test/', 'train/'][1:]:
+        trim_move_all_categories(root_data_path + split, './combined_log.txt')
 
