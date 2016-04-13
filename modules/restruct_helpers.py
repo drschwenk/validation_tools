@@ -32,32 +32,31 @@ def formatted_change(parent_idx, child_idx, movie):
     return [str(parent_idx).zfill(3) + '_' + str(child_idx).zfill(2), movie]
 
 
-def generate_new_dir_structure(confirmation_log, category, data_path, change_log, resume_index=0):
-    dir_changes = []
-    movie_dirs = return_non_hidden(data_path + category)
-    movies_with_splits = []
+def generate_new_dir_structure(confirmation_log, category, old_path, new_path, change_log, resume_index=0):
+    directory_renaming_instructions = []
+    movie_dirs = return_non_hidden(old_path)
+    subdivided_movies = []
     for movie in movie_dirs:
-        movie_path = data_path + category + '/' + movie
+        movie_path = old_path + movie
         data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
         movie_path = '/'.join([data_dir, split, subdivided_cats, video_dir])
         keep_frames = confirmation_log[movie_path.replace(' copy', '')]
 
         if keep_frames == 'flagged':
             append_to_change_log(movie_path, 0, change_log)
-            # break
         elif keep_frames == 'confirmed':
-            movies_with_splits.append(movie)
+            subdivided_movies.append(movie)
         else:
             if len(keep_frames) > 1:
                 for idx, span in enumerate(keep_frames):
-                    movies_with_splits.append(movie + '_' + str(idx))
+                    subdivided_movies.append(movie + '_' + str(idx))
             else:
-                movies_with_splits.append(movie)
+                subdivided_movies.append(movie)
 
     parent_idx = resume_index
     current_parent = resume_index
     child_idx = 0
-    for movie in movies_with_splits:
+    for movie in subdivided_movies:
         parent_number, inter_n, sub_n = get_name_parts(movie)
         if parent_number != current_parent:
             current_parent = parent_number
@@ -66,9 +65,8 @@ def generate_new_dir_structure(confirmation_log, category, data_path, change_log
         else:
             child_idx += 1
 
-        dir_changes.append(formatted_change(parent_idx, child_idx, movie))
-        changes = formatted_change(parent_idx, child_idx, movie)
-        movie_path = data_path + category + '/'
-        append_to_change_log(changes[0], movie_path + changes[1], change_log)
+        path_change = formatted_change(parent_idx, child_idx, movie)
+        directory_renaming_instructions.append([new_path + path_change[0], old_path + path_change[1]])
+        append_to_change_log(new_path + path_change[0], old_path + path_change[1], change_log)
 
-    return dir_changes
+    return directory_renaming_instructions

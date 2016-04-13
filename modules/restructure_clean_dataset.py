@@ -19,32 +19,25 @@ def test_train_split_three_cats():
     pass
 
 
-def make_single_category_moves(trim_decisions, category, data_path, new_master_dir, dir_changes):
-    for movie in dir_changes:
-        new_dir_name = movie[0]
-        old_dir_name = movie[1]
-        pvn, mvn, sub_n = get_name_parts(old_dir_name)
+def make_single_category_moves(trim_decisions, category, data_path, directory_renaming_instructions):
+    for movie in directory_renaming_instructions:
+        new_movie_path = movie[0]
+        old_movie_path = movie[1]
+
+        old_movie_sub_path, old_movie_dir = old_movie_path.rsplit('/', maxsplit = 1)
+
+        pvn, mvn, sub_n = get_name_parts(old_movie_dir)
+
         if not sub_n:
-            old_movie_path = data_path + category + '/' + old_dir_name
+            keep_frames = trim_decisions[old_movie_path]
         else:
-            old_movie_path = data_path + category + '/' + pvn + '_' + mvn
-
-        try:
-            keep_frames = trim_decisions[old_movie_path.replace(' copy', '')]
-        except KeyError:
-            try:
-                old_movie_path_rn = data_path + category + '2' + '/' + old_movie_path.split('/')[-1].replace(' copy', '')
-                keep_frames = trim_decisions[old_movie_path_rn]
-            except:
-                old_movie_path_rn = data_path + category + '3' + '/' + old_movie_path.split('/')[-1].replace(' copy', '')
-                keep_frames = trim_decisions[old_movie_path_rn]
-
+            keep_frames = trim_decisions[old_movie_sub_path + '/' + old_movie_dir.rsplit('_', maxsplit=1)[0]]
         if keep_frames == 'confirmed':
-            move_confirmed(old_movie_path, new_dir_name, new_master_dir)
+            move_confirmed(old_movie_path, new_movie_path)
 
         else:
             pass
-            move_split(old_movie_path, new_dir_name, new_master_dir, keep_frames)
+            # move_split(old_movie_path, new_movie_path, keep_frames)
 
 
 def move_split(old_path, new_name, new_master_dir, keep_frames):
@@ -105,31 +98,37 @@ def move_split(old_path, new_name, new_master_dir, keep_frames):
     return
 
 
-def move_confirmed(old_path, new_name, new_master_dir):
-    old_data_dir, split, subdivided_cats, video_dir = old_path.split('/')
-    annotation_split = 'new_' + split + '_wbox'
-    old_annotation_dir = '/'.join([old_data_dir, annotation_split, subdivided_cats, video_dir])
+def move_confirmed(old_path, new_path):
+    old_data_dir, tt_split, cat, video_dir = old_path.split('/')
+    new_data_dir, tt_split, cat, video_dir = new_path.split('/')
 
-    new_video_path = '/'.join([new_master_dir, split, subdivided_cats, new_name])
-    new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, new_name])
-    try:
-        os.makedirs(new_video_path)
-        os.makedirs(new_annotation_path)
-    except FileExistsError:
-        pass
-    try:
-        os.rename(old_path, new_video_path)
-        os.rename(old_annotation_dir, new_annotation_path)
-    except OSError:
-        pass
+    print(old_data_dir, new_data_dir, '\n')
+
+    # trim_and_move_images()
+    # trim_and_move_annotations()
+
+    # try:
+    #     os.makedirs(new_video_path)
+    #     os.makedirs(new_annotation_path)
+    # except FileExistsError:
+    #     pass
+    # try:
+    #     os.rename(old_path, new_video_path)
+    #     os.rename(old_annotation_dir, new_annotation_path)
+    # except OSError:
+    #     pass
     return
 
 
-def trim_move_images():
+def move_images():
+
     pass
 
 
-def trim_move_annotations():
+def move_annotations(old_data_dir, new_data_dir, category, old_mov_name, new_mov_name):
+    annotation_tt_split = 'new_' + split + '_wbox'
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_mov_name])
+    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, category, new_mov_name])
     pass
 
 
@@ -147,24 +146,16 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log):
     categories = return_non_hidden(data_path)
     resume_index = 0
     for cat in categories[4:6]:
-        print(cat, '\n')
         if cat[:-1] in categories:
-            old_path = data_path + '/' + cat
-            new_path = data_path + '/' + cat[:-1]
-            # print(cat, return_non_hidden(old_path), '\n')
+            new_path = data_path + cat[:-1] + '/'
             last_cat_dir = get_name_parts(os.listdir(new_path)[-1])[0]
             resume_index = int(last_cat_dir)
-            # generate_new_dir_structure(trim_decisions, cat, data_path, change_log, resume_index)
-            # for mov_dir i
-            # ln return_non_hidden(old_path):
-                # print(mov_dir)
-                # pass
-        #         try:
-        #             os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir)
-        #         except OSError:
-        #             os.rename(old_path + '/' + mov_dir, new_path + '/' + mov_dir + ' copy')
-        dir_changes = generate_new_dir_structure(trim_decisions, cat, data_path, change_log, resume_index)
-        # make_single_category_moves(trim_decisions, cat, data_path, 'master', dir_changes)
+        else:
+            new_path = data_path + cat + '/'
+
+        old_path = data_path + cat + '/'
+        directory_renaming_instructions = generate_new_dir_structure(trim_decisions, cat, old_path, new_path, change_log, resume_index)
+        make_single_category_moves(trim_decisions, cat, data_path, directory_renaming_instructions)
     return
 
 
