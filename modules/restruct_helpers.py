@@ -20,63 +20,55 @@ def reset_logfile(logfile):
 
 
 def append_to_change_log(new_path, old_path, logfile):
-    with open(logfile, 'a') as log:
-        log.write('moving ' + old_path + ' to ' + new_path + '\n')
+    if old_path != 0:
+        with open(logfile, 'a') as log:
+            log.write('moving ' + old_path + ' to ' + new_path + '\n')
+    else:
+        with open(logfile, 'a') as log:
+            log.write(new_path + ' was not included' + '\n')
 
 
-def make_new_dir_structure(confirmation_log, category, data_path):
+def formatted_change(parent_idx, child_idx, movie):
+    return [str(parent_idx).zfill(3) + '_' + str(child_idx).zfill(2), movie]
+
+
+def generate_new_dir_structure(confirmation_log, category, data_path, change_log, resume_index=0):
     dir_changes = []
-
     movie_dirs = return_non_hidden(data_path + category)
-    parent_idx = 0
-    current_parent = 0
-    child_index = 0
-    copies_detected = False
-
     movies_with_splits = []
     for movie in movie_dirs:
         movie_path = data_path + category + '/' + movie
         data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
-        if 'copy' in movie:
-            movie_path = '/'.join([data_dir, split, subdivided_cats + '2', video_dir])
-        try:
-            keep_frames = confirmation_log[movie_path.replace(' copy', '')]
-        except KeyError:
-            try:
-                movie_path_rn = '/'.join([data_dir, split, subdivided_cats + '2', video_dir.replace(' copy', '')])
-                keep_frames = confirmation_log[movie_path_rn]
-            except KeyError:
-                movie_path_rn = '/'.join([data_dir, split, subdivided_cats + '3', video_dir.replace(' copy', '')])
-                keep_frames = confirmation_log[movie_path_rn]
+        movie_path = '/'.join([data_dir, split, subdivided_cats, video_dir])
+        keep_frames = confirmation_log[movie_path.replace(' copy', '')]
+
         if keep_frames == 'flagged':
-            pass
-        if keep_frames == 'confirmed':
+            append_to_change_log(movie_path, 0, change_log)
+            # break
+        elif keep_frames == 'confirmed':
             movies_with_splits.append(movie)
         else:
-            # print(movie_path, new_master_dir, keep_frames)
-            # clean_movie_to_master(movie_path, new_master_dir, keep_frames)
-
             if len(keep_frames) > 1:
                 for idx, span in enumerate(keep_frames):
                     movies_with_splits.append(movie + '_' + str(idx))
             else:
                 movies_with_splits.append(movie)
 
+    parent_idx = resume_index
+    current_parent = resume_index
+    child_idx = 0
     for movie in movies_with_splits:
-        pvn, mvn, sub_n = get_name_parts(movie)
-        if pvn != current_parent:
-            if copies_detected:
-                parent_idx += 1
-                copies_detected = False
-            current_parent = pvn
+        parent_number, inter_n, sub_n = get_name_parts(movie)
+        if parent_number != current_parent:
+            current_parent = parent_number
             parent_idx += 1
-            child_index = 0
-            dir_changes.append([str(parent_idx).zfill(3) + '_' + str(child_index).zfill(2), movie])
+            child_idx = 0
         else:
-            if 'copy' in movie:
-                copies_detected = True
-                dir_changes.append([str(parent_idx + 1).zfill(3) + '_' + str(child_index).zfill(2), movie])
-            else:
-                child_index += 1
-                dir_changes.append([str(parent_idx).zfill(3) + '_' + str(child_index).zfill(2), movie])
+            child_idx += 1
+
+        dir_changes.append(formatted_change(parent_idx, child_idx, movie))
+        changes = formatted_change(parent_idx, child_idx, movie)
+        movie_path = data_path + category + '/'
+        append_to_change_log(changes[0], movie_path + changes[1], change_log)
+
     return dir_changes
