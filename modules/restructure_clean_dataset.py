@@ -1,5 +1,6 @@
 import os
 import ast
+import glob
 from restruct_helpers import get_name_parts
 from restruct_helpers import return_non_hidden
 from restruct_helpers import generate_new_dir_structure
@@ -47,87 +48,86 @@ def move_split(old_video_path, new_video_path, keep_frames, change_log):
     """
     splits and moves frames of a single movie to the new master
     """
-
-    image_extension = '.png'
-    # annotation_extensions = ['_00.mat', '_00_ge.mat', '_00_fr.mat']
-    # pov_ext = '_00_fr.mat'
-
-    # old_data_dir, split, subdivided_cats, video_dir = old_path.split('/')
-    # annotation_split = 'new_' + split + '_wbox'
-
-    # old_annotation_dir = '/'.join([old_data_dir, annotation_split, subdivided_cats, video_dir])
-
-    # new_video_path = '/'.join([new_master_dir, split, subdivided_cats, new_name])
-    # new_annotation_path = '/'.join([new_master_dir, annotation_split, subdivided_cats, new_name])
-
-    file_ext = image_extension
-    new_movie_paths = []
-    new_frame_idx = 0
-    try:
-        os.makedirs(new_video_path)
-        # os.makedirs(new_annotation_path)
-        # os.makedirs(new_annotation_path.replace(new_master_dir, 'save_fr_mat_files'))
-    except FileExistsError:
-        pass
-    for idx, span in enumerate(keep_frames):
-        try:
-            for frame in range(int(span[0]), int(span[1])+1):
-                old_file = old_video_path + '/' + str(frame).zfill(5) + file_ext
-                new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
-                new_movie_paths.append(new_file)
-                # os.rename(old_file, new_file)
-                append_to_change_log(new_file, old_file, change_log)
-                new_frame_idx += 1
-        except (ValueError, FileNotFoundError) as e:
-            pass
-
-    # for file_ext in annotation_extensions:
-    #     new_frame_idx_anno = 0
-    #     for idx, span in enumerate(keep_frames):
-    #         try:
-    #             for frame in range(int(span[0]), int(span[1]) + 1):
-    #                 old_file = old_annotation_dir + '/' + str(frame).zfill(5) + file_ext
-    #                 if file_ext == pov_ext:
-    #                     new_annotation_path = new_annotation_path.replace(new_master_dir, 'save_fr_mat_files')
-    #                 new_file = new_annotation_path + '/' + str(new_frame_idx_anno).zfill(5) + file_ext
-    #                 new_movie_paths.append(new_file)
-    #                 os.rename(old_file, new_file)
-    #                 new_frame_idx_anno += 1
-    #         except (FileNotFoundError, ValueError) as e:
-    #             pass
-    return
+    mov_pov_files(old_video_path, new_video_path, change_log)
+    move_images(old_video_path, new_video_path, keep_frames, change_log)
+    move_annotations(old_video_path, new_video_path, keep_frames, change_log)
 
 
 def move_confirmed(old_path, new_path, change_log):
-    old_data_dir, tt_split, cat, video_dir = old_path.split('/')
-    new_data_dir, tt_split, cat, new_video_dir = new_path.split('/')
+    old_data_dir, tt_split, category, old_video_dir = old_path.split('/')
+    new_data_dir, tt_split, category, new_video_dir = new_path.split('/')
+    annotation_tt_split = 'new_' + tt_split + '_wbox'
 
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_video_dir])
+    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, category, new_video_dir])
     append_to_change_log(new_path + ' without cuts', old_path, change_log)
+    append_to_change_log(new_annotation_path + ' without cuts', old_annotation_path, change_log)
 
-    try:
-        os.makedirs(new_path)
-        # os.makedirs(new_annotation_path)
-    except FileExistsError:
-        pass
-    try:
-        pass
-        # os.rename(old_path, new_path)
-        # os.rename(old_annotation_dir, new_annotation_path)
-    except OSError:
-        pass
-    return
+    mov_pov_files(old_path, new_path, change_log)
+    os.makedirs(new_path)
+    os.makedirs(new_annotation_path)
 
 
-def move_images():
-
+def move_images(old_video_path, new_video_path, keep_frames, change_log):
+    file_ext = '.png'
+    # new_movie_paths = []
+    new_frame_idx = 0
+    # try:
+    os.makedirs(new_video_path)
+    # except FileExistsError:
+    #     pass
+    for idx, span in enumerate(keep_frames):
+        # try:
+        for frame in range(int(span[0]), int(span[1])+1):
+            old_file = old_video_path + '/' + str(frame).zfill(5) + file_ext
+            new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
+            # new_movie_paths.append(new_file)
+            # os.rename(old_file, new_file)
+            append_to_change_log(new_file, old_file, change_log)
+            new_frame_idx += 1
+    # except (ValueError, FileNotFoundError) as e:
+        #     pass
     pass
 
 
-def move_annotations(old_data_dir, new_data_dir, category, old_mov_name, new_mov_name):
-    annotation_tt_split = 'new_' + split + '_wbox'
-    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_mov_name])
-    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, category, new_mov_name])
-    pass
+def move_annotations(old_video_path, new_video_path, keep_frames, change_log):
+    old_data_dir, tt_split, category, old_video_dir = old_video_path.split('/')
+    new_data_dir, tt_split, category, new_video_dir = new_video_path.split('/')
+
+    annotation_tt_split = 'new_' + tt_split + '_wbox'
+
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_video_dir])
+    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, category, new_video_dir])
+
+    annotation_extensions = ['_00.mat', '_00_ge.mat']
+    os.makedirs(new_annotation_path)
+    for file_ext in annotation_extensions:
+        new_frame_idx_anno = 0
+        for idx, span in enumerate(keep_frames):
+            try:
+                for frame in range(int(span[0]), int(span[1]) + 1):
+                    old_file = old_annotation_path + '/' + str(frame).zfill(5) + file_ext
+                    new_file = new_annotation_path + '/' + str(new_frame_idx_anno).zfill(5) + file_ext
+                    append_to_change_log(new_file, old_file, change_log)
+                    os.open(old_file, 1)
+                    new_frame_idx_anno += 1
+            except(ValueError, FileNotFoundError) as e:
+                append_to_change_log('doesn\'t exist', old_file, change_log)
+
+
+def mov_pov_files(old_video_path, new_video_path, change_log):
+    old_data_dir, tt_split, category, old_video_dir = old_video_path.split('/')
+    new_data_dir, tt_split, category, new_video_dir = new_video_path.split('/')
+
+    annotation_tt_split = 'new_' + tt_split + '_wbox'
+
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_video_dir])
+    new_annotation_path = '/'.join([new_data_dir, 'saved_pov', annotation_tt_split, category, new_video_dir])
+    pov_ext = '_00_fr.mat'
+    os.makedirs(new_annotation_path)
+    for fr_file in glob.glob(old_annotation_path + '/*' + pov_ext):
+        new_file_path = new_annotation_path + '/' + fr_file
+        append_to_change_log(new_file_path, fr_file, change_log)
 
 
 def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_dir_prefix):
@@ -147,7 +147,7 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_
         if cat[:-1] in categories:
             new_path = new_data_dir_prefix + data_path + cat[:-1] + '/'
             #### CHANGE TO NEW PATH   ####
-            last_cat_dir = get_name_parts(os.listdir(old_path)[-1])[0]
+            last_cat_dir = get_name_parts(os.listdir(new_path)[-1])[0]
             resume_index = int(last_cat_dir)
         else:
             new_path = new_data_dir_prefix + data_path + cat + '/'
