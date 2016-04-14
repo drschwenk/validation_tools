@@ -1,6 +1,7 @@
 import os
 import ast
 import glob
+import shutil
 from restruct_helpers import get_name_parts
 from restruct_helpers import return_non_hidden
 from restruct_helpers import generate_new_dir_structure
@@ -16,8 +17,20 @@ def move_stable_dir(data_path, change_file_log, new_prefix):
         append_to_change_log(new_stable_path, stable_file_path, change_log_file)
 
 
-def remove_dupes():
-    pass
+def remove_dupes(dupe_log, change_log):
+    with open(dupe_log, 'r') as f:
+        dupes= f.readlines()
+    dupe_pairs = []
+    for idx, line in enumerate(dupes):
+        if not idx %3:
+            dupe_1 = dupes[idx+1].strip()
+            dupe_2 = line.strip()
+            dupe_pairs.append([dupe_1.rsplit('/', maxsplit=1)[0],
+                               dupe_2.rsplit('/', maxsplit=1)[0]])
+    for pair in dupe_pairs:
+        shutil.rmtree('data/' + pair[1])
+        with open(change_log, 'a') as log:
+            log.write(pair[0] + ' and ' + pair[1] + ' are duplicates, removing ' + pair[1] + '\n')
 
 
 def test_train_split_three_cats():
@@ -166,12 +179,16 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_
 if __name__ == '__main__':
     new_data_prefix = 'master_'
     change_log_file = 'change_log.txt'
+    dupe_dirs = 'dupes.txt'
+
     if os.path.isfile(change_log_file):
         reset_logfile(change_log_file)
+
     root_data_path = 'data/prediction_videos_final_'
-    for split in ['test/', 'train/']:
+    remove_dupes(dupe_dirs, change_log_file)
+    # for split in ['test/', 'train/']:
         # move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
-        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
+        # trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
 
 
 
