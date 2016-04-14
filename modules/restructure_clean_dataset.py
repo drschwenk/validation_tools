@@ -8,8 +8,12 @@ from restruct_helpers import append_to_change_log
 from restruct_helpers import reset_logfile
 
 
-def move_stable_dir():
-    pass
+def move_stable_dir(data_path, change_file_log, new_prefix):
+    os.makedirs((new_prefix + data_path).rsplit('/', maxsplit=1)[0])
+    for stable_file_path in glob.glob(data_path + '/stable*'):
+        new_stable_path = new_prefix + stable_file_path
+        os.rename(stable_file_path, new_stable_path)
+        append_to_change_log(new_stable_path, stable_file_path, change_log_file)
 
 
 def remove_dupes():
@@ -38,7 +42,7 @@ def make_single_category_moves(trim_decisions, category, data_path, directory_re
             move_confirmed(old_movie_path, new_movie_path, change_log)
         else:
             # move_confirmed_pov_files(old_movie_path, new_movie_path, change_log)
-            move_images(old_movie_path, new_movie_path, keep_frames, change_log)
+            move_images_and_annotations(old_movie_path, new_movie_path, keep_frames, change_log)
 
 
 def move_confirmed(old_path, new_path, change_log):
@@ -48,17 +52,23 @@ def move_confirmed(old_path, new_path, change_log):
 
     old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category, old_video_dir])
     new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, new_category, new_video_dir])
-    append_to_change_log(new_path + ' without cuts', old_path, change_log)
-    append_to_change_log(new_annotation_path + ' without cuts', old_annotation_path, change_log)
 
     move_confirmed_pov_files(old_path, new_path, change_log)
     os.makedirs(new_path)
     os.makedirs(new_annotation_path)
+
+    if not os.path.isfile(old_annotation_path):
+        append_to_change_log('has no annotations', old_annotation_path, change_log)
+        return
+
     os.rename(old_path, new_path)
     os.rename(old_annotation_path, new_annotation_path)
 
+    append_to_change_log(new_path + ' without cuts', old_path, change_log)
+    append_to_change_log(new_annotation_path + ' without cuts', old_annotation_path, change_log)
 
-def move_images(old_video_path, new_video_path, keep_frames, change_log):
+
+def move_images_and_annotations(old_video_path, new_video_path, keep_frames, change_log):
     file_ext = '.png'
     new_frame_idx = 0
     old_data_dir, tt_split, old_category, old_video_dir = old_video_path.split('/')
@@ -90,6 +100,9 @@ def move_images(old_video_path, new_video_path, keep_frames, change_log):
 
 
 def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx, change_log):
+    if not os.path.isfile(old_annotation_path):
+        append_to_change_log('has no annotations', old_annotation_path, change_log)
+        return
     annotation_extensions = ['_00.mat', '_00_ge.mat', '_00_fr.mat']
     pov_ext = '_00_fr.mat'
     new_data_dir, annotation_tt_split, new_category, new_video_dir = new_annotation_path.split('/')
@@ -136,7 +149,7 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_
             trim_decisions[movie_path] = keep_frames.strip()
     categories = return_non_hidden(data_path)
     resume_index = 0
-    for cat in categories[4:6]:
+    for cat in categories:
         if cat[:-1] in categories:
             new_path = new_data_dir_prefix + data_path + cat[:-1] + '/'
             last_cat_dir = get_name_parts(os.listdir(new_path)[-1])[0]
@@ -151,12 +164,14 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_
 
 
 if __name__ == '__main__':
+    new_data_prefix = 'master_'
     change_log_file = 'change_log.txt'
     if os.path.isfile(change_log_file):
         reset_logfile(change_log_file)
     root_data_path = 'data/prediction_videos_final_'
-    for split in ['test/', 'train/'][1:]:
-        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, 'master_')
+    for split in ['test/', 'train/']:
+        # move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
+        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
 
 
 
