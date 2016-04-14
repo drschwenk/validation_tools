@@ -19,7 +19,7 @@ def move_stable_dir(data_path, change_file_log, new_prefix):
 
 def remove_dupes(dupe_log, change_log):
     with open(dupe_log, 'r') as f:
-        dupes= f.readlines()
+        dupes = f.readlines()
     dupe_pairs = []
     for idx, line in enumerate(dupes):
         if not idx %3:
@@ -33,8 +33,8 @@ def remove_dupes(dupe_log, change_log):
             log.write(pair[0] + ' and ' + pair[1] + ' are duplicates, removing ' + pair[1] + '\n')
 
 
-def test_train_split_three_cats():
-    pass
+def test_train_split_three_cats(replacement_dir):
+    print(replacement_dir)
 
 
 def make_single_category_moves(trim_decisions, category, data_path, directory_renaming_instructions, change_log):
@@ -70,7 +70,7 @@ def move_confirmed(old_path, new_path, change_log):
     os.makedirs(new_path)
     os.makedirs(new_annotation_path)
 
-    if not os.path.isfile(old_annotation_path):
+    if not os.path.isdir(old_annotation_path):
         append_to_change_log('has no annotations', old_annotation_path, change_log)
         return
 
@@ -113,7 +113,8 @@ def move_images_and_annotations(old_video_path, new_video_path, keep_frames, cha
 
 
 def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx, change_log):
-    if not os.path.isfile(old_annotation_path):
+    print
+    if not os.path.isdir(old_annotation_path):
         append_to_change_log('has no annotations', old_annotation_path, change_log)
         return
     annotation_extensions = ['_00.mat', '_00_ge.mat', '_00_fr.mat']
@@ -128,6 +129,7 @@ def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx,
             new_file = new_annotation_path + '/' + str(image_idx).zfill(5) + file_ext
             try:
                 append_to_change_log(new_file, old_file, change_log)
+                print(old_file, new_file)
                 os.rename(old_file, new_file)
             except(ValueError, FileNotFoundError) as e:
                 append_to_change_log('doesn\'t exist', old_file, change_log)
@@ -185,10 +187,14 @@ if __name__ == '__main__':
         reset_logfile(change_log_file)
 
     root_data_path = 'data/prediction_videos_final_'
+
+    replacement_mov_dir = 'data/prediction_3_categories/'
+    test_train_split_three_cats(replacement_mov_dir)
+
     remove_dupes(dupe_dirs, change_log_file)
-    # for split in ['test/', 'train/']:
-        # move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
-        # trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
+    for split in ['test/', 'train/']:
+        move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
+        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
 
 
 
