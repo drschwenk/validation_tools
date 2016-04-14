@@ -1,6 +1,7 @@
 import os
 from shutil import copyfile
 
+
 def get_name_parts(dir_name):
     try:
         pvn, mvn, sub_mov_n = dir_name.split('_')

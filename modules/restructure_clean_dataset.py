@@ -131,7 +131,6 @@ def move_confirmed(old_path, new_path, change_log):
     if not os.path.isdir(old_annotation_path):
         append_to_change_log('has no annotations', old_annotation_path, change_log)
         return
-    copy_view_mat_files(old_annotation_path, new_annotation_path, change_log)
     os.rename(old_path, new_path)
     os.rename(old_annotation_path, new_annotation_path)
 
@@ -247,8 +246,8 @@ if __name__ == '__main__':
                        'train/rolling-bowling', 'test/rolling-bowling']
     replacement_mov_dir = 'data/prediction_videos_3_categories'
 
-    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
     remove_dupes(dupe_dirs, change_log_file)
+    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
     test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
 
     for split in ['test/', 'train/']:
