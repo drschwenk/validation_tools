@@ -10,12 +10,32 @@ from restruct_helpers import append_to_change_log
 from restruct_helpers import reset_logfile
 
 
+def convert_vid_path_to_anno(vid_path):
+    # prediction_videos_final_train / passing - rugby / 95_6
+    try:
+        data_dir, tt_split, category, video_dir = vid_path.split('/')
+        anno_path = '/'.join([data_dir, 'new_' + tt_split + '_wbox', category, video_dir])
+    except ValueError:
+        data_dir, tt_split, category = vid_path.split('/')
+        anno_path = '/'.join([data_dir, 'new_' + tt_split + '_wbox', category])
+    return anno_path
+
+
 def move_stable_dir(data_path, change_file_log, new_prefix):
-    os.makedirs((new_prefix + data_path).rsplit('/', maxsplit=1)[0])
+    img_dir_path = (new_prefix + data_path).rsplit('/', maxsplit=1)[0]
+    data_dir, an_sub_path, _ = data_path.split('/', maxsplit=2)
+    anno_dir_path = new_prefix + data_dir + '/new_' + an_sub_path + '_wbox'
+
+    os.makedirs(img_dir_path)
+    os.makedirs(anno_dir_path)
     for stable_file_path in glob.glob(data_path + '/stable*'):
+        old_anno = convert_vid_path_to_anno(stable_file_path)
         new_stable_path = new_prefix + stable_file_path
+        new_anno = convert_vid_path_to_anno(new_stable_path)
         os.rename(stable_file_path, new_stable_path)
         append_to_change_log(new_stable_path, stable_file_path, change_log_file)
+        os.rename(old_anno, new_anno)
+        append_to_change_log(new_anno, old_anno, change_log_file)
 
 
 def remove_dupes(dupe_log, change_log):
@@ -29,7 +49,10 @@ def remove_dupes(dupe_log, change_log):
             dupe_pairs.append([dupe_1.rsplit('/', maxsplit=1)[0],
                                dupe_2.rsplit('/', maxsplit=1)[0]])
     for pair in dupe_pairs:
-        shutil.rmtree('data/' + pair[1])
+        vid_dir = 'data/' + pair[1]
+        anno_dir =  convert_vid_path_to_anno(vid_dir)
+        shutil.rmtree(vid_dir)
+        shutil.rmtree(anno_dir)
         with open(change_log, 'a') as log:
             log.write(pair[0] + ' and ' + pair[1] + ' are duplicates, removing ' + pair[1] + '\n')
 
@@ -37,8 +60,12 @@ def remove_dupes(dupe_log, change_log):
 def delete_superseded_dirs(root_dir, to_delete, change_log):
     for action_type in to_delete:
         with open(change_log, 'a') as log:
-            shutil.rmtree(root_dir + action_type)
-            log.write('deleting directory- ' + root_dir + action_type + '\n')
+            vid_dir = root_dir + action_type
+            anno_dir = convert_vid_path_to_anno(vid_dir)
+            shutil.rmtree(vid_dir)
+            shutil.rmtree(anno_dir)
+            log.write('deleting directory- ' + vid_dir + '\n')
+            log.write('deleting directory- ' + anno_dir + '\n')
 
 
 def test_train_split_three_cats(replacement_dir, new_prefix, change_log):
@@ -48,13 +75,12 @@ def test_train_split_three_cats(replacement_dir, new_prefix, change_log):
             anno_dir = mov.replace('prediction_videos_3_categories',
                                    'new_prediction_videos_3_categories_wbox')
             if random.randint(1, 3) < 3:
-                new_vid_path = 'test' + mov.replace('3_categories', 'final_train')
-                new_anno_path ='test' +  anno_dir.replace('3_categories', 'final_train')
+                new_vid_path = mov.replace('3_categories', 'final_train')
+                new_anno_path = anno_dir.replace('3_categories', 'final_train')
 
             else:
-                new_vid_path ='test' +  mov.replace('3_categories', 'final_test')
-                new_anno_path ='test' +  anno_dir.replace('3_categories', 'final_test')
-
+                new_vid_path = mov.replace('3_categories', 'final_test')
+                new_anno_path =anno_dir.replace('3_categories', 'final_test')
             os.makedirs(new_vid_path)
             os.makedirs(new_anno_path)
             try:
@@ -217,15 +243,16 @@ if __name__ == '__main__':
 
     superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
                        'train/rolling-bowling', 'test/rolling-bowling']
+    # superseded_dirs = ['test/rolling-bowling']
     # delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
 
-    replacement_mov_dir = 'data/prediction_videos_3_categories'
-    test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
-
     # remove_dupes(dupe_dirs, change_log_file)
-    # for split in ['test/', 'train/']:
-    #     move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
-    #     trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
+    replacement_mov_dir = 'data/prediction_videos_3_categories'
+    # test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
+
+    for split in ['test/', 'train/']:
+        # move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
+        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
 
 
 

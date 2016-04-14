@@ -40,7 +40,14 @@ def generate_new_dir_structure(confirmation_log, category, old_path, new_path, c
         movie_path = old_path + movie
         data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
         movie_path = '/'.join([data_dir, split, subdivided_cats, video_dir])
-        keep_frames = confirmation_log[movie_path.replace(' copy', '')]
+        try:
+            keep_frames = confirmation_log[movie_path]
+        except KeyError:
+            try:
+                keep_frames = confirmation_log[movie_path.replace('final_train', '3_categories')]
+            except KeyError:
+                keep_frames = confirmation_log[movie_path.replace('final_test', '3_categories')]
+
 
         if keep_frames == 'flagged':
             append_to_change_log(movie_path, 0, change_log)
