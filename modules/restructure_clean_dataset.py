@@ -2,6 +2,7 @@ import os
 import ast
 import glob
 import shutil
+import random
 from restruct_helpers import get_name_parts
 from restruct_helpers import return_non_hidden
 from restruct_helpers import generate_new_dir_structure
@@ -9,7 +10,7 @@ from restruct_helpers import append_to_change_log
 from restruct_helpers import reset_logfile
 
 
-def move_stable_dir(data_path, change_file_log, new_prefix):
+def move_stable_dir(data_path, change_file_log, new_prefi):
     os.makedirs((new_prefix + data_path).rsplit('/', maxsplit=1)[0])
     for stable_file_path in glob.glob(data_path + '/stable*'):
         new_stable_path = new_prefix + stable_file_path
@@ -33,9 +34,28 @@ def remove_dupes(dupe_log, change_log):
             log.write(pair[0] + ' and ' + pair[1] + ' are duplicates, removing ' + pair[1] + '\n')
 
 
-def test_train_split_three_cats(replacement_dir):
-    print(replacement_dir)
+def delete_superseded_dirs(root_dir, to_delete, change_log):
+    for action_type in to_delete:
+        print(root_dir + action_type)
+        with open(change_log, 'a') as log:
+            log.write('deleting directory- ' + root_dir + action_type + '\n')
 
+
+def test_train_split_three_cats(replacement_dir, new_prefix):
+    random.seed(15)
+    for rep_dir in glob.glob(replacement_dir+'/*'):
+        for mov in glob.glob(rep_dir + '/*'):
+            anno_dir = mov.replace('prediction_videos_3_categories',
+                                   'new_prediction_videos_3_categories_wbox')
+            if random.randint(1, 3) < 3:
+                new_vid_path = 'test' + mov.replace('3_categories', 'final_train')
+                new_anno_path = 'test' + anno_dir.replace('3_categories', 'final_train')
+
+            else:
+                new_vid_path = 'test' + mov.replace('3_categories', 'final_test')
+                new_anno_path = 'test' + anno_dir.replace('3_categories', 'final_test')
+            os.makedirs(new_vid_path)
+            os.makedirs(new_anno_path)
 
 def make_single_category_moves(trim_decisions, category, data_path, directory_renaming_instructions, change_log):
     for movie in directory_renaming_instructions:
@@ -113,7 +133,6 @@ def move_images_and_annotations(old_video_path, new_video_path, keep_frames, cha
 
 
 def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx, change_log):
-    print
     if not os.path.isdir(old_annotation_path):
         append_to_change_log('has no annotations', old_annotation_path, change_log)
         return
@@ -129,7 +148,6 @@ def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx,
             new_file = new_annotation_path + '/' + str(image_idx).zfill(5) + file_ext
             try:
                 append_to_change_log(new_file, old_file, change_log)
-                print(old_file, new_file)
                 os.rename(old_file, new_file)
             except(ValueError, FileNotFoundError) as e:
                 append_to_change_log('doesn\'t exist', old_file, change_log)
@@ -188,13 +206,17 @@ if __name__ == '__main__':
 
     root_data_path = 'data/prediction_videos_final_'
 
-    replacement_mov_dir = 'data/prediction_3_categories/'
-    test_train_split_three_cats(replacement_mov_dir)
+    superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
+                       'train/rolling-bowling', 'test/rolling-bowling']
+    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
 
-    remove_dupes(dupe_dirs, change_log_file)
-    for split in ['test/', 'train/']:
-        move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
-        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
+    replacement_mov_dir = 'data/prediction_videos_3_categories'
+    # test_train_split_three_cats(replacement_mov_dir, new_data_prefix)
+
+    # remove_dupes(dupe_dirs, change_log_file)
+    # for split in ['test/', 'train/']:
+    #     move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
+    #     trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
 
 
 
