@@ -29,8 +29,8 @@ def make_single_category_moves(trim_decisions, category, data_path, directory_re
 
         pvn, mvn, sub_n = get_name_parts(old_movie_dir)
 
-        old_data_dir, tt_split, cat, video_dir = old_movie_path.split('/')
-        new_data_dir, tt_split, cat, new_video_dir = new_movie_path.split('/')
+        # old_data_dir, tt_split, cat, video_dir = old_movie_path.split('/')
+        # new_data_dir, tt_split, cat, new_video_dir = new_movie_path.split('/')
 
         if sub_n == 'childless':
             keep_frames = trim_decisions[old_movie_path]
@@ -53,20 +53,20 @@ def move_split(old_video_path, new_video_path, keep_frames, change_log):
 
 
 def move_confirmed(old_path, new_path, change_log):
-    old_data_dir, tt_split, category, old_video_dir = old_path.split('/')
-    new_data_dir, tt_split, category, new_video_dir = new_path.split('/')
+    old_data_dir, tt_split, old_category, old_video_dir = old_path.split('/')
+    new_data_dir, tt_split, new_category, new_video_dir = new_path.split('/')
     annotation_tt_split = 'new_' + tt_split + '_wbox'
 
-    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_video_dir])
-    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, category, new_video_dir])
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category, old_video_dir])
+    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, old_category, new_video_dir])
     append_to_change_log(new_path + ' without cuts', old_path, change_log)
     append_to_change_log(new_annotation_path + ' without cuts', old_annotation_path, change_log)
 
     # move_pov_files(old_path, new_path, change_log)
     os.makedirs(new_path)
     os.makedirs(new_annotation_path)
-    #os.rename(old_path, new_path)
-    #os.rename(old_annotation_path, new_annotation_path)
+    os.rename(old_path, new_path)
+    os.rename(old_annotation_path, new_annotation_path)
 
 
 def move_images(old_video_path, new_video_path, keep_frames, change_log):
@@ -74,18 +74,19 @@ def move_images(old_video_path, new_video_path, keep_frames, change_log):
     # new_movie_paths = []
     new_frame_idx = 0
     # try:
-    old_data_dir, tt_split, category, old_video_dir = old_video_path.split('/')
-    new_data_dir, tt_split, category, new_video_dir = new_video_path.split('/')
+    old_data_dir, tt_split, old_category, old_video_dir = old_video_path.split('/')
+    new_data_dir, tt_split, new_category, new_video_dir = new_video_path.split('/')
     annotation_tt_split = 'new_' + tt_split + '_wbox'
-    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_video_dir])
-    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, category, new_video_dir])
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category, old_video_dir])
+    new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, old_category, new_video_dir])
 
     os.makedirs(new_video_path)
     os.makedirs(new_annotation_path)
 
     pvn, mvn, sub_n = get_name_parts(old_video_dir)
     if sub_n != 'childless':
-        old_video_path = '/'.join([old_data_dir + annotation_tt_split + category]) + '/' + pvn + '_' + mvn
+        old_video_path = '/'.join([old_data_dir, tt_split, old_category]) + '/' + pvn + '_' + mvn
+        old_annotation_path = '/'.join([old_annotation_path, annotation_tt_split, old_category]) + '/' + pvn + '_' + mvn
     else:
         sub_n = 0
 
@@ -94,14 +95,14 @@ def move_images(old_video_path, new_video_path, keep_frames, change_log):
     # for idx, span in enumerate(keep_frames):
     # try:
     span = keep_frames[int(sub_n)]
-    for frame in range(int(span[0]), int(span[1])+1):
+    for frame in range(int(span[0]), int(span[1])+1)[:1]:
         old_file = old_video_path + '/' + str(frame).zfill(5) + file_ext
         new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
         # new_movie_paths.append(new_file)
-        # #os.rename(old_file, new_file)
-        append_to_change_log(new_file, old_file, change_log)
-        #os.rename(old_file, new_file)
-        move_annotations(old_annotation_path, new_annotation_path, frame, new_frame_idx, change_log)
+        # os.rename(old_file, new_file)
+        append_to_change_log(new_file + 'subn = ' + str(sub_n), old_file, change_log)
+        # os.rename(old_file, new_file)
+        # move_annotations(old_annotation_path, new_annotation_path, frame, new_frame_idx, change_log)
         new_frame_idx += 1
     # except (ValueError, FileNotFoundError) as e:
         #     pass
@@ -116,25 +117,25 @@ def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx,
                 old_file = old_annotation_path + '/' + str(frame).zfill(5) + file_ext
                 new_file = new_annotation_path + '/' + str(image_idx).zfill(5) + file_ext
                 # append_to_change_log(new_file, old_file, change_log)
-                #os.rename(old_file, new_file)
+                os.rename(old_file, new_file)
             except(ValueError, FileNotFoundError) as e:
                 append_to_change_log('doesn\'t exist', old_file, change_log)
 
 
 def move_pov_files(old_video_path, new_video_path, change_log):
-    old_data_dir, tt_split, category, old_video_dir = old_video_path.split('/')
-    new_data_dir, tt_split, category, new_video_dir = new_video_path.split('/')
+    old_data_dir, tt_split, old_category, old_video_dir = old_video_path.split('/')
+    new_data_dir, tt_split, new_category, new_video_dir = new_video_path.split('/')
 
     annotation_tt_split = 'new_' + tt_split + '_wbox'
 
-    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, category, old_video_dir])
-    new_annotation_path = '/'.join([new_data_dir, 'save_fr', annotation_tt_split, category, new_video_dir])
+    old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category, old_video_dir])
+    new_annotation_path = '/'.join([new_data_dir, 'save_fr', annotation_tt_split, new_category, new_video_dir])
 
     pov_ext = '_00_fr.mat'
     os.makedirs(new_annotation_path)
     for fr_file in glob.glob(old_annotation_path + '/*' + pov_ext):
         fr_file_name = fr_file.rsplit('/', maxsplit=1)[1]
-        #os.rename(fr_file, new_annotation_path + '/' + fr_file_name)
+        os.rename(fr_file, new_annotation_path + '/' + fr_file_name)
 
 
 def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_dir_prefix):
