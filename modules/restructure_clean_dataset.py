@@ -10,7 +10,7 @@ from restruct_helpers import append_to_change_log
 from restruct_helpers import reset_logfile
 
 
-def move_stable_dir(data_path, change_file_log, new_prefi):
+def move_stable_dir(data_path, change_file_log, new_prefix):
     os.makedirs((new_prefix + data_path).rsplit('/', maxsplit=1)[0])
     for stable_file_path in glob.glob(data_path + '/stable*'):
         new_stable_path = new_prefix + stable_file_path
@@ -36,12 +36,12 @@ def remove_dupes(dupe_log, change_log):
 
 def delete_superseded_dirs(root_dir, to_delete, change_log):
     for action_type in to_delete:
-        print(root_dir + action_type)
         with open(change_log, 'a') as log:
+            shutil.rmtree(root_dir + action_type)
             log.write('deleting directory- ' + root_dir + action_type + '\n')
 
 
-def test_train_split_three_cats(replacement_dir, new_prefix):
+def test_train_split_three_cats(replacement_dir, new_prefix, change_log):
     random.seed(15)
     for rep_dir in glob.glob(replacement_dir+'/*'):
         for mov in glob.glob(rep_dir + '/*'):
@@ -49,13 +49,23 @@ def test_train_split_three_cats(replacement_dir, new_prefix):
                                    'new_prediction_videos_3_categories_wbox')
             if random.randint(1, 3) < 3:
                 new_vid_path = 'test' + mov.replace('3_categories', 'final_train')
-                new_anno_path = 'test' + anno_dir.replace('3_categories', 'final_train')
+                new_anno_path ='test' +  anno_dir.replace('3_categories', 'final_train')
 
             else:
-                new_vid_path = 'test' + mov.replace('3_categories', 'final_test')
-                new_anno_path = 'test' + anno_dir.replace('3_categories', 'final_test')
+                new_vid_path ='test' +  mov.replace('3_categories', 'final_test')
+                new_anno_path ='test' +  anno_dir.replace('3_categories', 'final_test')
+
             os.makedirs(new_vid_path)
             os.makedirs(new_anno_path)
+            try:
+                os.rename(mov, new_vid_path)
+                os.rename(anno_dir, new_anno_path)
+            except FileNotFoundError:
+                with open(change_log, 'a') as log:
+                    log.write(mov + ' annotations not found \n')
+            append_to_change_log(new_vid_path, mov, change_log)
+            append_to_change_log(new_anno_path, anno_dir, change_log)
+
 
 def make_single_category_moves(trim_decisions, category, data_path, directory_renaming_instructions, change_log):
     for movie in directory_renaming_instructions:
@@ -200,18 +210,17 @@ if __name__ == '__main__':
     new_data_prefix = 'master_'
     change_log_file = 'change_log.txt'
     dupe_dirs = 'dupes.txt'
+    root_data_path = 'data/prediction_videos_final_'
 
     if os.path.isfile(change_log_file):
         reset_logfile(change_log_file)
 
-    root_data_path = 'data/prediction_videos_final_'
-
     superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
                        'train/rolling-bowling', 'test/rolling-bowling']
-    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
+    # delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
 
     replacement_mov_dir = 'data/prediction_videos_3_categories'
-    # test_train_split_three_cats(replacement_mov_dir, new_data_prefix)
+    test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
 
     # remove_dupes(dupe_dirs, change_log_file)
     # for split in ['test/', 'train/']:
