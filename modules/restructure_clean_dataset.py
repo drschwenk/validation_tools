@@ -8,6 +8,7 @@ from restruct_helpers import return_non_hidden
 from restruct_helpers import generate_new_dir_structure
 from restruct_helpers import append_to_change_log
 from restruct_helpers import reset_logfile
+from restruct_helpers import get_keep_frames
 
 
 def convert_vid_path_to_anno(vid_path):
@@ -103,9 +104,11 @@ def make_single_category_moves(trim_decisions, category, data_path, directory_re
         pvn, mvn, sub_n = get_name_parts(old_movie_dir)
 
         if sub_n == 'childless':
-            keep_frames = trim_decisions[old_movie_path]
+            keep_frames = get_keep_frames(trim_decisions, old_movie_path)
+            # keep_frames = trim_decisions[old_movie_path]
         else:
-            keep_frames = trim_decisions[old_movie_sub_path + '/' + old_movie_dir.rsplit('_', maxsplit=1)[0]]
+            keep_frames = get_keep_frames(trim_decisions, old_movie_sub_path + '/' +
+                                          old_movie_dir.rsplit('_', maxsplit=1)[0])
 
         if keep_frames == 'confirmed':
             move_confirmed(old_movie_path, new_movie_path, change_log)
@@ -243,15 +246,14 @@ if __name__ == '__main__':
 
     superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
                        'train/rolling-bowling', 'test/rolling-bowling']
-    # superseded_dirs = ['test/rolling-bowling']
-    # delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
+    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
 
-    # remove_dupes(dupe_dirs, change_log_file)
+    remove_dupes(dupe_dirs, change_log_file)
     replacement_mov_dir = 'data/prediction_videos_3_categories'
-    # test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
+    test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
 
     for split in ['test/', 'train/']:
-        # move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
+        move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
         trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
 
 

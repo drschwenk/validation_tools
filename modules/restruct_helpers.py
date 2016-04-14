@@ -32,6 +32,17 @@ def formatted_change(parent_idx, child_idx, movie):
     return [str(parent_idx).zfill(3) + '_' + str(child_idx).zfill(2), movie]
 
 
+def get_keep_frames(confirmation_log, movie_path):
+    try:
+        keep_frames = confirmation_log[movie_path]
+    except KeyError:
+        try:
+            keep_frames = confirmation_log[movie_path.replace('final_train', '3_categories')]
+        except KeyError:
+            keep_frames = confirmation_log[movie_path.replace('final_test', '3_categories')]
+    return keep_frames
+
+
 def generate_new_dir_structure(confirmation_log, category, old_path, new_path, change_log, resume_index=0):
     directory_renaming_instructions = []
     movie_dirs = return_non_hidden(old_path)
@@ -40,14 +51,8 @@ def generate_new_dir_structure(confirmation_log, category, old_path, new_path, c
         movie_path = old_path + movie
         data_dir, split, subdivided_cats, video_dir = movie_path.split('/')
         movie_path = '/'.join([data_dir, split, subdivided_cats, video_dir])
-        try:
-            keep_frames = confirmation_log[movie_path]
-        except KeyError:
-            try:
-                keep_frames = confirmation_log[movie_path.replace('final_train', '3_categories')]
-            except KeyError:
-                keep_frames = confirmation_log[movie_path.replace('final_test', '3_categories')]
 
+        keep_frames = get_keep_frames(confirmation_log, movie_path)
 
         if keep_frames == 'flagged':
             append_to_change_log(movie_path, 0, change_log)
