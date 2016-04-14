@@ -65,7 +65,6 @@ def generate_new_dir_structure(confirmation_log, category, old_path, new_path, c
         else:
             child_idx += 1
         path_change = formatted_change(parent_idx, child_idx, movie)
-        # print(path_change)
         directory_renaming_instructions.append([new_path + path_change[0], old_path + path_change[1]])
 
     return directory_renaming_instructions
