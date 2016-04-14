@@ -173,7 +173,7 @@ def move_images_and_annotations(old_video_path, new_video_path, keep_frames, cha
         new_frame_idx += 1
 
 
-def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx, change_log):
+def move_annotations(old_annotation_path, new_annotation_path, frame, new_frame_idx, change_log):
     annotation_extensions = ['_00.mat', '_00_ge.mat', '_00_fr.mat']
     pov_ext = '_00_fr.mat'
     new_data_dir, annotation_tt_split, new_category, new_video_dir = new_annotation_path.split('/')
@@ -182,10 +182,10 @@ def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx,
             if file_ext == pov_ext:
                 new_annotation_path = '/'.join([new_data_dir, 'save_fr', annotation_tt_split,
                                                 new_category, new_video_dir])
-            new_file = new_annotation_path + '/' + str(image_idx).zfill(5) + file_ext
+            new_file = new_annotation_path + '/' + str(new_frame_idx).zfill(5) + file_ext
             try:
-                append_to_change_log(new_file, old_file, change_log)
                 os.rename(old_file, new_file)
+                append_to_change_log(new_file, old_file, change_log)
             except(ValueError, FileNotFoundError) as e:
                 append_to_change_log('doesn\'t exist', old_file, change_log)
 
