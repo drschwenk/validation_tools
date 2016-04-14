@@ -37,7 +37,7 @@ def make_single_category_moves(trim_decisions, category, data_path, directory_re
         if keep_frames == 'confirmed':
             move_confirmed(old_movie_path, new_movie_path, change_log)
         else:
-            move_pov_files(old_movie_path, new_movie_path, change_log)
+            # move_confirmed_pov_files(old_movie_path, new_movie_path, change_log)
             move_images(old_movie_path, new_movie_path, keep_frames, change_log)
 
 
@@ -51,7 +51,7 @@ def move_confirmed(old_path, new_path, change_log):
     append_to_change_log(new_path + ' without cuts', old_path, change_log)
     append_to_change_log(new_annotation_path + ' without cuts', old_annotation_path, change_log)
 
-    move_pov_files(old_path, new_path, change_log)
+    move_confirmed_pov_files(old_path, new_path, change_log)
     os.makedirs(new_path)
     os.makedirs(new_annotation_path)
     os.rename(old_path, new_path)
@@ -66,9 +66,11 @@ def move_images(old_video_path, new_video_path, keep_frames, change_log):
     annotation_tt_split = 'new_' + tt_split + '_wbox'
     old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category, old_video_dir])
     new_annotation_path = '/'.join([new_data_dir, annotation_tt_split, new_category, new_video_dir])
-
+    save_anno_path = '/'.join([new_data_dir, 'save_fr', annotation_tt_split,
+                               new_category, new_video_dir])
     os.makedirs(new_video_path)
     os.makedirs(new_annotation_path)
+    os.makedirs(save_anno_path)
 
     pvn, mvn, sub_n = get_name_parts(old_video_dir)
     if sub_n != 'childless':
@@ -88,19 +90,24 @@ def move_images(old_video_path, new_video_path, keep_frames, change_log):
 
 
 def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx, change_log):
-    annotation_extensions = ['_00.mat', '_00_ge.mat']
-
+    annotation_extensions = ['_00.mat', '_00_ge.mat', '_00_fr.mat']
+    pov_ext = '_00_fr.mat'
+    new_data_dir, annotation_tt_split, new_category, new_video_dir = new_annotation_path.split('/')
     for file_ext in annotation_extensions:
+            old_file = old_annotation_path + '/' + str(frame).zfill(5) + file_ext
+
+            if file_ext == pov_ext:
+                new_annotation_path = '/'.join([new_data_dir, 'save_fr', annotation_tt_split,
+                                                new_category, new_video_dir])
+            new_file = new_annotation_path + '/' + str(image_idx).zfill(5) + file_ext
             try:
-                old_file = old_annotation_path + '/' + str(frame).zfill(5) + file_ext
-                new_file = new_annotation_path + '/' + str(image_idx).zfill(5) + file_ext
                 append_to_change_log(new_file, old_file, change_log)
                 os.rename(old_file, new_file)
             except(ValueError, FileNotFoundError) as e:
                 append_to_change_log('doesn\'t exist', old_file, change_log)
 
 
-def move_pov_files(old_video_path, new_video_path, change_log):
+def move_confirmed_pov_files(old_video_path, new_video_path, change_log):
     old_data_dir, tt_split, old_category, old_video_dir = old_video_path.split('/')
     new_data_dir, tt_split, new_category, new_video_dir = new_video_path.split('/')
 
