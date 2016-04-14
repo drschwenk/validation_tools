@@ -1,5 +1,5 @@
 import os
-
+from shutil import copyfile
 
 def get_name_parts(dir_name):
     try:
@@ -41,6 +41,12 @@ def get_keep_frames(confirmation_log, movie_path):
         except KeyError:
             keep_frames = confirmation_log[movie_path.replace('final_test', '3_categories')]
     return keep_frames
+
+
+def copy_view_mat_files(old_path, new_path, change_log):
+    view_file = 'view.mat'
+    copyfile(old_path + '/' + view_file, new_path + '/' + view_file)
+    append_to_change_log(new_path + '/' + view_file, old_path + '/' + view_file, change_log)
 
 
 def generate_new_dir_structure(confirmation_log, category, old_path, new_path, change_log, resume_index=0):

@@ -9,10 +9,10 @@ from restruct_helpers import generate_new_dir_structure
 from restruct_helpers import append_to_change_log
 from restruct_helpers import reset_logfile
 from restruct_helpers import get_keep_frames
+from restruct_helpers import copy_view_mat_files
 
 
 def convert_vid_path_to_anno(vid_path):
-    # prediction_videos_final_train / passing - rugby / 95_6
     try:
         data_dir, tt_split, category, video_dir = vid_path.split('/')
         anno_path = '/'.join([data_dir, 'new_' + tt_split + '_wbox', category, video_dir])
@@ -105,7 +105,6 @@ def make_single_category_moves(trim_decisions, category, data_path, directory_re
 
         if sub_n == 'childless':
             keep_frames = get_keep_frames(trim_decisions, old_movie_path)
-            # keep_frames = trim_decisions[old_movie_path]
         else:
             keep_frames = get_keep_frames(trim_decisions, old_movie_sub_path + '/' +
                                           old_movie_dir.rsplit('_', maxsplit=1)[0])
@@ -113,7 +112,7 @@ def make_single_category_moves(trim_decisions, category, data_path, directory_re
         if keep_frames == 'confirmed':
             move_confirmed(old_movie_path, new_movie_path, change_log)
         else:
-            # move_confirmed_pov_files(old_movie_path, new_movie_path, change_log)
+            pass
             move_images_and_annotations(old_movie_path, new_movie_path, keep_frames, change_log)
 
 
@@ -132,7 +131,7 @@ def move_confirmed(old_path, new_path, change_log):
     if not os.path.isdir(old_annotation_path):
         append_to_change_log('has no annotations', old_annotation_path, change_log)
         return
-
+    copy_view_mat_files(old_annotation_path, new_annotation_path, change_log)
     os.rename(old_path, new_path)
     os.rename(old_annotation_path, new_annotation_path)
 
@@ -142,7 +141,7 @@ def move_confirmed(old_path, new_path, change_log):
 
 def move_images_and_annotations(old_video_path, new_video_path, keep_frames, change_log):
     file_ext = '.png'
-    new_frame_idx = 0
+
     old_data_dir, tt_split, old_category, old_video_dir = old_video_path.split('/')
     new_data_dir, tt_split, new_category, new_video_dir = new_video_path.split('/')
     annotation_tt_split = 'new_' + tt_split + '_wbox'
@@ -154,13 +153,17 @@ def move_images_and_annotations(old_video_path, new_video_path, keep_frames, cha
     os.makedirs(new_annotation_path)
     os.makedirs(save_anno_path)
 
+    new_frame_idx = 0
     pvn, mvn, sub_n = get_name_parts(old_video_dir)
     if sub_n != 'childless':
         old_video_path = '/'.join([old_data_dir, tt_split, old_category]) + '/' + pvn + '_' + mvn
         old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category]) + '/' + pvn + '_' + mvn
     else:
         sub_n = 0
-
+    if not os.path.isdir(old_annotation_path):
+        append_to_change_log('has no annotations', old_annotation_path, change_log)
+        return
+    copy_view_mat_files(old_annotation_path, new_annotation_path, change_log)
     span = keep_frames[int(sub_n)]
     for frame in range(int(span[0]), int(span[1])+1):
         old_file = old_video_path + '/' + str(frame).zfill(5) + file_ext
@@ -172,15 +175,11 @@ def move_images_and_annotations(old_video_path, new_video_path, keep_frames, cha
 
 
 def move_annotations(old_annotation_path, new_annotation_path, frame, image_idx, change_log):
-    if not os.path.isdir(old_annotation_path):
-        append_to_change_log('has no annotations', old_annotation_path, change_log)
-        return
     annotation_extensions = ['_00.mat', '_00_ge.mat', '_00_fr.mat']
     pov_ext = '_00_fr.mat'
     new_data_dir, annotation_tt_split, new_category, new_video_dir = new_annotation_path.split('/')
     for file_ext in annotation_extensions:
             old_file = old_annotation_path + '/' + str(frame).zfill(5) + file_ext
-
             if file_ext == pov_ext:
                 new_annotation_path = '/'.join([new_data_dir, 'save_fr', annotation_tt_split,
                                                 new_category, new_video_dir])
@@ -246,10 +245,10 @@ if __name__ == '__main__':
 
     superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
                        'train/rolling-bowling', 'test/rolling-bowling']
-    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
-
-    remove_dupes(dupe_dirs, change_log_file)
     replacement_mov_dir = 'data/prediction_videos_3_categories'
+
+    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
+    remove_dupes(dupe_dirs, change_log_file)
     test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
 
     for split in ['test/', 'train/']:
