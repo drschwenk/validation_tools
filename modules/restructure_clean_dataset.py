@@ -94,7 +94,7 @@ def test_train_split_three_cats(replacement_dir, new_prefix, change_log):
             append_to_change_log(new_anno_path, anno_dir, change_log)
 
 
-def make_single_category_moves(trim_decisions, category, data_path, directory_renaming_instructions, change_log):
+def make_single_category_moves(trim_decisions, directory_renaming_instructions, change_log):
     for movie in directory_renaming_instructions:
         new_movie_path = movie[0]
         old_movie_path = movie[1]
@@ -128,10 +128,10 @@ def move_confirmed(old_path, new_path, change_log):
     os.makedirs(new_path)
     os.makedirs(new_annotation_path)
 
+    os.rename(old_path, new_path)
     if not os.path.isdir(old_annotation_path):
         append_to_change_log('has no annotations', old_annotation_path, change_log)
         return
-    os.rename(old_path, new_path)
     os.rename(old_annotation_path, new_annotation_path)
 
     append_to_change_log(new_path + ' without cuts', old_path, change_log)
@@ -159,16 +159,17 @@ def move_images_and_annotations(old_video_path, new_video_path, keep_frames, cha
         old_annotation_path = '/'.join([old_data_dir, annotation_tt_split, old_category]) + '/' + pvn + '_' + mvn
     else:
         sub_n = 0
-    if not os.path.isdir(old_annotation_path):
-        append_to_change_log('has no annotations', old_annotation_path, change_log)
-        return
-    copy_view_mat_files(old_annotation_path, new_annotation_path, change_log)
+
     span = keep_frames[int(sub_n)]
     for frame in range(int(span[0]), int(span[1])+1):
         old_file = old_video_path + '/' + str(frame).zfill(5) + file_ext
         new_file = new_video_path + '/' + str(new_frame_idx).zfill(5) + file_ext
         os.rename(old_file, new_file)
         append_to_change_log(new_file, old_file, change_log)
+        if not os.path.isdir(old_annotation_path):
+            append_to_change_log('has no annotations', old_annotation_path, change_log)
+            return
+        copy_view_mat_files(old_annotation_path, new_annotation_path, change_log)
         move_annotations(old_annotation_path, new_annotation_path, frame, new_frame_idx, change_log)
         new_frame_idx += 1
 
@@ -218,8 +219,9 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_
         except ValueError:
             trim_decisions[movie_path] = keep_frames.strip()
     categories = return_non_hidden(data_path)
-    resume_index = 0
+
     for cat in categories:
+        resume_index = 0
         if cat[:-1] in categories:
             new_path = new_data_dir_prefix + data_path + cat[:-1] + '/'
             last_cat_dir = get_name_parts(os.listdir(new_path)[-1])[0]
@@ -228,10 +230,9 @@ def trim_and_move_all_categories(data_path, trim_log_file, change_log, new_data_
             new_path = new_data_dir_prefix + data_path + cat + '/'
 
         old_path = data_path + cat + '/'
-        directory_renaming_instructions = generate_new_dir_structure(trim_decisions, cat, old_path, new_path, change_log, resume_index)
-        make_single_category_moves(trim_decisions, cat, data_path, directory_renaming_instructions, change_log)
+        directory_renaming_instructions = generate_new_dir_structure(trim_decisions, old_path, new_path, change_log, resume_index)
+        make_single_category_moves(trim_decisions, directory_renaming_instructions, change_log)
     return
-
 
 
 if __name__ == '__main__':
@@ -247,13 +248,10 @@ if __name__ == '__main__':
                        'train/rolling-bowling', 'test/rolling-bowling']
     replacement_mov_dir = 'data/prediction_videos_3_categories'
 
-    # remove_dupes(dupe_dirs, change_log_file)
-    # delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
-    # test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
-    #
-    # for split in ['test/', 'train/']:
-    #     move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
-    #     trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
+    remove_dupes(dupe_dirs, change_log_file)
+    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
+    test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
 
-
-
+    for split in ['test/', 'train/']:
+        move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
+        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)

@@ -50,7 +50,7 @@ def copy_view_mat_files(old_path, new_path, change_log):
     append_to_change_log(new_path + '/' + view_file, old_path + '/' + view_file, change_log)
 
 
-def generate_new_dir_structure(confirmation_log, category, old_path, new_path, change_log, resume_index=0):
+def generate_new_dir_structure(confirmation_log, old_path, new_path, change_log, resume_index=0):
     directory_renaming_instructions = []
     movie_dirs = return_non_hidden(old_path)
     subdivided_movies = []

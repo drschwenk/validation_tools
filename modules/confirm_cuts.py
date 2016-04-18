@@ -4,6 +4,7 @@ import glob
 import cv2
 import csv
 import argparse
+from scipy.io.matlab import loadmat
 from subprocess import run
 from subprocess import check_output
 
@@ -28,23 +29,36 @@ def get_key(image):
             continue
         return valid_key_presses[user_key]
 
-"""
-def confirm(video_name):
-    return 'confirmed'
-"""
 
-
-def show_image(image_name, frame_n, idx):
+def show_image(image_name, frame_n, idx, annotation_path):
     category = image_name.split('/')[2]
     drawn_image = cv2.imread(image_name, 0)
     drawn_image = cv2.putText(drawn_image, 'idx= ' + str(idx) + '  frame= ' + frame_n,
                               (15, 40), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
     drawn_image = cv2.putText(drawn_image, category, (15, 75), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
+    draw_annotations(frame_n, annotation_path, drawn_image)
+    annotation_file = annotation_path + '/' + frame_n + '_00.mat'
+    mat_file = loadmat(annotation_file)
+    bnd_box = mat_file['box']
+
+    cv2.rectangle(drawn_image, tuple([bnd_box[0][0], bnd_box[0][1]]),
+                  tuple([bnd_box[0][2], bnd_box[0][3]]),
+                  color=(192, 192, 192), thickness=1)
     cv2.imshow('movie frame', drawn_image)
     return get_key(drawn_image)
 
 
-def evaluate_video(video_path, video_idx):
+def draw_annotations(frame_n, annotation_path, drawn_image):
+    annotation_file = annotation_path + '/' + frame_n + '_00.mat'
+    mat_file = loadmat(annotation_file)
+    bnd_box = mat_file['box']
+    print('drawing')
+    cv2.rectangle(drawn_image, tuple(bnd_box[0][:2]), tuple(bnd_box[0][:2]),
+                  color=(255, 255, 0), thickness=1)
+    pass
+
+
+def evaluate_video(video_path, video_idx, annotation_file):
 
     def add_mark(frame_range, marked_frame):
         range_complete = False
@@ -63,7 +77,7 @@ def evaluate_video(video_path, video_idx):
     while idx < len(video_frames):
         image_name = video_frames[idx]
         frame_n = image_name.split('/')[-1].split('.png')[0]
-        key_pressed = show_image(image_name, frame_n, video_idx)
+        key_pressed = show_image(image_name, frame_n, video_idx, annotation_file)
         if key_pressed == 'mark':
             new_range, complete = add_mark(current_frame_range, frame_n)
             if complete:
@@ -97,16 +111,18 @@ def write_log(idx, vid, evaluation, logfile):
         log.write(str(idx) + ', ' + vid + ', ' + str(evaluation) + '\n')
 
 
-def confirm_many_videos(path_prefix='data/prediction_videos_final_', logfile='pass.log',
-                        starting_idx=0, stable_image_idx_offset=0):
+def confirm_many_videos(path_prefix, logfile,
+                        starting_idx, stable_image_idx_offset, sorted_file_list):
     starting_idx += stable_image_idx_offset
 
-    with open('./second_pass_billiard_test.csv', 'r') as f:
+    with open(sorted_file_list, 'r') as f:
         reader = csv.reader(f)
-        file_names = [path_prefix + fn[0] for fn in list(reader)]
+        file_names = ['data/' + path_prefix + '/' + fn[0] for fn in list(reader)]
     idx = starting_idx
     while idx < len(file_names):
-        evaluation = evaluate_video(file_names[idx], idx)
+        image_file_name = file_names[idx]
+        annotation_file_name = image_file_name.replace(path_prefix, 'new_' + path_prefix + '_wbox/')
+        evaluation = evaluate_video(image_file_name, idx, annotation_file_name)
         if evaluation == 'previous image':
             idx -= 1
             run('sed -i "" -e  "$ d " ' + logfile, shell=True)
@@ -129,8 +145,9 @@ def main():
         last_line = check_output('tail -1 ' + args.log, shell=True)
         starting_idx = int(last_line.split(b',')[0]) - stable_image_idx_offset + 1
 
-    confirm_many_videos('data/prediction_videos_final_', args.log, starting_idx, stable_image_idx_offset)
-
+    sorted_file_list = 'only_throwing.csv'
+    prefix = 'prediction_videos_3_categories'
+    confirm_many_videos(prefix, args.log, starting_idx, stable_image_idx_offset, sorted_file_list)
 
 if __name__ == '__main__':
     main()
