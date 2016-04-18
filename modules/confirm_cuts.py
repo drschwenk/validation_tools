@@ -3,6 +3,7 @@
 import glob
 import cv2
 import csv
+import os
 import argparse
 from scipy.io.matlab import loadmat
 from subprocess import run
@@ -37,25 +38,20 @@ def show_image(image_name, frame_n, idx, annotation_path):
                               (15, 40), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
     drawn_image = cv2.putText(drawn_image, category, (15, 75), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
     draw_annotations(frame_n, annotation_path, drawn_image)
-    annotation_file = annotation_path + '/' + frame_n + '_00.mat'
-    mat_file = loadmat(annotation_file)
-    bnd_box = mat_file['box']
-
-    cv2.rectangle(drawn_image, tuple([bnd_box[0][0], bnd_box[0][1]]),
-                  tuple([bnd_box[0][2], bnd_box[0][3]]),
-                  color=(192, 192, 192), thickness=1)
     cv2.imshow('movie frame', drawn_image)
     return get_key(drawn_image)
 
 
 def draw_annotations(frame_n, annotation_path, drawn_image):
     annotation_file = annotation_path + '/' + frame_n + '_00.mat'
-    mat_file = loadmat(annotation_file)
-    bnd_box = mat_file['box']
-    print('drawing')
-    cv2.rectangle(drawn_image, tuple(bnd_box[0][:2]), tuple(bnd_box[0][:2]),
-                  color=(255, 255, 0), thickness=1)
-    pass
+    if os.path.isfile(annotation_file):
+        mat_file = loadmat(annotation_file)
+        bnd_box = mat_file['box']
+        cv2.rectangle(drawn_image, tuple([int(bnd_box[0][0]), int(bnd_box[0][1])]),
+                      tuple([int(bnd_box[0][2]), int(bnd_box[0][3])]),
+                      color=(192, 192, 192), thickness=1)
+    else:
+        cv2.putText(drawn_image, 'no annotation', (50, 90), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
 
 
 def evaluate_video(video_path, video_idx, annotation_file):
