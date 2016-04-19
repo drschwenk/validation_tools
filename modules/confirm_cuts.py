@@ -12,7 +12,7 @@ from subprocess import check_output
 
 def get_key(image):
     valid_key_presses = {32: 'pass', 13: 'mark', 8: 'restart image', 98: 'back', 127: 'del', 102: 'flag', 110: 'next',
-                         108: 'last'}
+                         108: 'last', 114: 'advance_10'}
     while True:
         user_key = cv2.waitKey(0)
         if user_key in valid_key_presses:
@@ -31,10 +31,10 @@ def get_key(image):
         return valid_key_presses[user_key]
 
 
-def show_image(image_name, frame_n, idx, annotation_path):
+def show_image(image_name, frame_n, idx, annotation_path, n_frames_total):
     category = image_name.split('/')[2]
     drawn_image = cv2.imread(image_name, 0)
-    drawn_image = cv2.putText(drawn_image, 'idx= ' + str(idx) + '  frame= ' + frame_n,
+    drawn_image = cv2.putText(drawn_image, 'idx= ' + str(idx) + '  frame= ' + frame_n + ' of ' + str(n_frames_total),
                               (15, 40), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
     drawn_image = cv2.putText(drawn_image, category, (15, 75), cv2.FONT_HERSHEY_PLAIN, 2, (192, 192, 192), thickness=2)
     draw_annotations(frame_n, annotation_path, drawn_image)
@@ -73,7 +73,7 @@ def evaluate_video(video_path, video_idx, annotation_file):
     while idx < len(video_frames):
         image_name = video_frames[idx]
         frame_n = image_name.split('/')[-1].split('.png')[0]
-        key_pressed = show_image(image_name, frame_n, video_idx, annotation_file)
+        key_pressed = show_image(image_name, frame_n, video_idx, annotation_file, len(video_frames))
         if key_pressed == 'mark':
             new_range, complete = add_mark(current_frame_range, frame_n)
             if complete:
@@ -90,8 +90,11 @@ def evaluate_video(video_path, video_idx, annotation_file):
             return 'flagged'
         elif key_pressed == 'next':
             idx = len(video_frames) - 1
+
         elif key_pressed == 'last':
             idx = len(video_frames) - 2
+        elif key_pressed == 'advance_10':
+            idx += 10
         idx += 1
 
     if current_frame_range[0] != 0 and current_frame_range[1] == 0:
