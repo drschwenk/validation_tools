@@ -116,17 +116,34 @@ def confirm_many_videos(path_prefix, logfile,
 
     with open(sorted_file_list, 'r') as f:
         reader = csv.reader(f)
-        file_names = ['data/' + path_prefix + '/' + fn[0] for fn in list(reader)]
+        file_names = ['master_data/' + path_prefix + fn[0] for fn in list(reader)]
     idx = starting_idx
     while idx < len(file_names):
         image_file_name = file_names[idx]
-        annotation_file_name = image_file_name.replace(path_prefix, 'new_' + path_prefix + '_wbox/')
+        this_prefix = image_file_name.split('/', maxsplit=2)
+        this_prefix = this_prefix[1]
+        annotation_file_name = image_file_name.replace(this_prefix, 'new_' + this_prefix + '_wbox')
         evaluation = evaluate_video(image_file_name, idx, annotation_file_name)
         if evaluation == 'previous image':
             idx -= 1
             run('sed -i "" -e  "$ d " ' + logfile, shell=True)
             continue
         write_log(idx, file_names[idx], evaluation, logfile)
+        idx += 1
+
+
+def view_results(path_prefix, starting_idx):
+    f_path = 'master_data/' + path_prefix + '*/*/*'
+    # print(f_path)
+    file_list = glob.glob(f_path)
+    # print(file_list)
+    idx = starting_idx
+    while idx < len(file_list):
+        image_file_name = file_list[idx]
+        this_prefix = image_file_name.split('/', maxsplit=2)
+        this_prefix = this_prefix[1]
+        annotation_file_name = image_file_name.replace(this_prefix, 'new_' + this_prefix + '_wbox')
+        evaluation = evaluate_video(image_file_name, idx, annotation_file_name)
         idx += 1
 
 
@@ -145,8 +162,9 @@ def main():
         starting_idx = int(last_line.split(b',')[0]) - stable_image_idx_offset + 1
 
     sorted_file_list = 'only_throwing.csv'
-    prefix = 'prediction_videos_3_categories'
-    confirm_many_videos(prefix, args.log, starting_idx, stable_image_idx_offset, sorted_file_list)
+    prefix = 'prediction_videos_final_'
+    # confirm_many_videos(prefix, args.log, starting_idx, stable_image_idx_offset, sorted_file_list)
+    view_results(prefix, starting_idx)
 
 if __name__ == '__main__':
     main()

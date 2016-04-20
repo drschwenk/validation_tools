@@ -240,18 +240,19 @@ if __name__ == '__main__':
     change_log_file = 'change_log.txt'
     dupe_dirs = 'dupes.txt'
     root_data_path = 'data/prediction_videos_final_'
-
+    # annotation_log = 'cat3_basket_throw.log'
+    annotation_log = 'final_second_pass.log'
     if os.path.isfile(change_log_file):
         reset_logfile(change_log_file)
 
-    superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
-                       'train/rolling-bowling', 'test/rolling-bowling']
-    replacement_mov_dir = 'data/prediction_videos_3_categories'
+    # superseded_dirs = ['test/throwing-basketball', 'train/kicking-basketball',
+    #                    'train/rolling-bowling', 'test/rolling-bowling']
+    # replacement_mov_dir = 'data/prediction_videos_3_categories'
 
-    remove_dupes(dupe_dirs, change_log_file)
-    delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
-    test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
+    # remove_dupes(dupe_dirs, change_log_file)
+    # delete_superseded_dirs(root_data_path, superseded_dirs, change_log_file)
+    # test_train_split_three_cats(replacement_mov_dir, new_data_prefix, change_log_file)
 
     for split in ['test/', 'train/']:
         move_stable_dir(root_data_path + split, change_log_file, new_data_prefix)
-        trim_and_move_all_categories(root_data_path + split, './combined_log.txt', change_log_file, new_data_prefix)
+        trim_and_move_all_categories(root_data_path + split, annotation_log, change_log_file, new_data_prefix)
